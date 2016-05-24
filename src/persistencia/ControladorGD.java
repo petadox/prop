@@ -106,7 +106,7 @@ public class ControladorGD{	//controlador gestio dades
 		}
 		b.close();
 		System.out.print(plant.size());
-		return plant;
+		return plant; 
 	}
 	
 	public static void guardarPlantilla(PlantillaPerfil pp, String tipus, String nomPP) throws IOException, FicheroNoExiste, FicheroYaExistente{
