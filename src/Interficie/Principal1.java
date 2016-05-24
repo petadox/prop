@@ -34,7 +34,7 @@ public class Principal1 extends JFrame {
 			}
 		});
 	}
-
+	//tds pts
 	/**
 	 * Create the frame.
 	 */
