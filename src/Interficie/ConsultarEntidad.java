@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 public class ConsultarEntidad extends JFrame {
@@ -220,15 +221,18 @@ public class ConsultarEntidad extends JFrame {
 			MouseListener mouseListener = new MouseAdapter() {
 			     public void mouseClicked(MouseEvent e) {
 			             Integer index = list.locationToIndex(e.getPoint());
-			             ArrayList<Integer> res = new ArrayList<Integer>();
-			             Iterator<Map.Entry<Integer,Float>> it = hmp.entrySet().iterator();
-			             Map.Entry<Integer,Float> entry = it.next();
-				         for (int i = 0; i < index-1; ++i) entry = it.next();
-			             ControladorInterficie.setIdPaper(entry.getKey());
-			             dlm.remove(index);
-			             System.out.println("Parreira" + ControladorInterficie.getIdNodo() + "");
-			             System.out.println("Articulo" + ControladorInterficie.getIdPaper() + "");
-			             ControladorInterficie.deleteRelacion();
+			             int dialog = JOptionPane.OK_CANCEL_OPTION;
+		               	 int result = JOptionPane.showConfirmDialog(null, "¿ Seguro que quieres borrar la relacion indicada?","", dialog);
+		               	 //Le ha dado a aceptar
+		               	 if (result == 0) {
+				             ArrayList<Integer> res = new ArrayList<Integer>();
+				             Iterator<Map.Entry<Integer,Float>> it = hmp.entrySet().iterator();
+				             Map.Entry<Integer,Float> entry = it.next();
+					         for (int i = 0; i < index-1; ++i) entry = it.next();
+				             ControladorInterficie.setIdPaper(entry.getKey());
+				             dlm.remove(index);
+				             ControladorInterficie.deleteRelacion();
+		               	 }
 			     }
 			};
 			list.addMouseListener(mouseListener);
