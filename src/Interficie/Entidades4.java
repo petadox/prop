@@ -9,9 +9,12 @@ import javax.swing.JToggleButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import java.awt.Font;
 @SuppressWarnings("serial")
 public class Entidades4 extends JFrame {
 	private JPanel contentPane;
+	private JTextField txtSeleccionaUnaEntidad;
 	/**
 	 * Launch the application.
 	 */
@@ -40,19 +43,19 @@ public class Entidades4 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnAutor = new JToggleButton("Autor");
-		btnAutor.setBounds(142, 15, 150, 50);
+		btnAutor.setBounds(43, 68, 150, 50);
 		contentPane.add(btnAutor);
 		
 		JToggleButton btnConferencia = new JToggleButton("Conferencia");
-		btnConferencia.setBounds(142, 68, 150, 50);
+		btnConferencia.setBounds(240, 68, 150, 50);
 		contentPane.add(btnConferencia);
 		
 		JToggleButton btnPaper = new JToggleButton("Paper");
-		btnPaper.setBounds(142, 122, 150, 50);
+		btnPaper.setBounds(43, 142, 150, 50);
 		contentPane.add(btnPaper);
 		
 		JToggleButton btnTerme = new JToggleButton("Terme");
-		btnTerme.setBounds(142, 175, 150, 50);
+		btnTerme.setBounds(240, 142, 150, 50);
 		contentPane.add(btnTerme);
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
@@ -62,6 +65,14 @@ public class Entidades4 extends JFrame {
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
+		
+		txtSeleccionaUnaEntidad = new JTextField();
+		txtSeleccionaUnaEntidad.setEditable(false);
+		txtSeleccionaUnaEntidad.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtSeleccionaUnaEntidad.setText("Selecciona una entidad");
+		txtSeleccionaUnaEntidad.setBounds(133, 11, 167, 31);
+		contentPane.add(txtSeleccionaUnaEntidad);
+		txtSeleccionaUnaEntidad.setColumns(10);
 		
 		btnAutor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

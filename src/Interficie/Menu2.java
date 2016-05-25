@@ -10,11 +10,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+import javax.swing.JTextField;
+import java.awt.Font;
 
 public class Menu2 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtEligeUnaAccin;
 
 	/**
 	 * Launch the application.
@@ -45,19 +48,19 @@ public class Menu2 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnCrear = new JToggleButton("Crear");
-		btnCrear.setBounds(142, 15, 150, 50);
+		btnCrear.setBounds(44, 68, 150, 50);
 		contentPane.add(btnCrear);
 		
 		JToggleButton btnConsultar = new JToggleButton("Consultar");
-		btnConsultar.setBounds(142, 68, 150, 50);
+		btnConsultar.setBounds(244, 68, 150, 50);
 		contentPane.add(btnConsultar);
 		
 		JToggleButton btnBorrar = new JToggleButton("Borrar");
-		btnBorrar.setBounds(142, 122, 150, 50);
+		btnBorrar.setBounds(44, 133, 150, 50);
 		contentPane.add(btnBorrar);
 		
 		JToggleButton btnModificar = new JToggleButton("Modificar");
-		btnModificar.setBounds(142, 175, 150, 50);
+		btnModificar.setBounds(244, 133, 150, 50);
 		contentPane.add(btnModificar);
 		
 		btnCrear.addActionListener(new ActionListener() {
@@ -124,6 +127,14 @@ public class Menu2 extends JFrame {
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
+		
+		txtEligeUnaAccin = new JTextField();
+		txtEligeUnaAccin.setEditable(false);
+		txtEligeUnaAccin.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEligeUnaAccin.setText("Elige una acci\u00F3n");
+		txtEligeUnaAccin.setBounds(153, 11, 120, 30);
+		contentPane.add(txtEligeUnaAccin);
+		txtEligeUnaAccin.setColumns(10);
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.VistaGrafo8();

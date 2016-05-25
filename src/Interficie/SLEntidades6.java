@@ -20,8 +20,11 @@ import domini.Pair;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Font;
 public class SLEntidades6 extends JFrame {
 	private JPanel contentPane;
+	private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -49,7 +52,7 @@ public class SLEntidades6 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(146, 11, 248, 240);
+		scrollPane.setBounds(169, 31, 226, 215);
 		contentPane.add(scrollPane);
 		
 		JList<String> list = new JList<String>();
@@ -73,6 +76,13 @@ public class SLEntidades6 extends JFrame {
 		
 		list.setModel(dlm);
 		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField.setEditable(false);
+		textField.setBounds(10, 64, 125, 31);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
 		ControladorInterficie.cargarArrays();
 		ControladorInterficie.ordenarVector();
 		ArrayList<Pair<Integer,String>> autores = ControladorInterficie.getAutors();
@@ -82,6 +92,7 @@ public class SLEntidades6 extends JFrame {
 
 		if (ControladorInterficie.getElement3().equals("Entidades")) {
 			if (ControladorInterficie.getEntidades4().equals("Autor")) {
+				textField.setText("Autores");
 				for (int i = 0; i < autores.size(); i++) {
 				dlm.addElement(autores.get(i).second);	
 				}
@@ -89,24 +100,28 @@ public class SLEntidades6 extends JFrame {
 			
 			else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
 				for (int i = 0; i < conferencies.size(); i++) {
+					textField.setText("Conferencias");
 					dlm.addElement(conferencies.get(i).second);	
 					}
 			}
 			
 			else if (ControladorInterficie.getEntidades4().equals("Terme")) {
 				for (int i = 0; i < termes.size(); i++) {
+					textField.setText("Termes");
 					dlm.addElement(termes.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntidades4().equals("Paper")) {
 				for (int i = 0; i < papers.size(); i++) {
+					textField.setText("Papers");
 					dlm.addElement(papers.get(i).second);
 				}
 			}
 		}
 		else if (ControladorInterficie.getElement3().equals("Relaciones")) {
 			if (ControladorInterficie.getEntRel7().equals("Autor")) {
+				textField.setText("Autores");
 				for (int i = 0; i < autores.size(); i++) {
 				dlm.addElement(autores.get(i).second);
 				}
@@ -114,18 +129,21 @@ public class SLEntidades6 extends JFrame {
 			
 			else if (ControladorInterficie.getEntRel7().equals("Conferencia")) {
 				for (int i = 0; i < conferencies.size(); i++) {
+					textField.setText("Conferencias");
 					dlm.addElement(conferencies.get(i).second);	
 					}
 			}
 			
 			else if (ControladorInterficie.getEntRel7().equals("Terme")) {
 				for (int i = 0; i < termes.size(); i++) {
+					textField.setText("Termes");
 					dlm.addElement(termes.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntRel7().equals("Paper")) {
 				for (int i = 0; i < papers.size(); i++) {
+					textField.setText("Papers");
 					dlm.addElement(papers.get(i).second);
 				}
 			}
