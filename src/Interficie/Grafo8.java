@@ -108,7 +108,7 @@ public class Grafo8 extends JFrame {
 				absoluto.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
 				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				if(tglbtnCrearGrafo.isSelected()) {
-					//ControladorInterficie.VistaIntroduirNGraf10();
+
 					directorio.showOpenDialog(directorio);
 					String path = directorio.getSelectedFile().getAbsolutePath();
 					try {
@@ -120,7 +120,6 @@ public class Grafo8 extends JFrame {
 					dispose();
 				}
 				if(tglbtnCargarGrafo.isSelected()) {
-					//ControladorInterficie.setGrafo8("Cargar");
 					absoluto.showOpenDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
@@ -132,8 +131,6 @@ public class Grafo8 extends JFrame {
 					dispose();
 				}
 				if(tglbtnGuardarGrafo.isSelected()) {
-					//ControladorInterficie.VistaIntroduirNGraf10();
-					System.out.println("aguita");
 					absoluto.showSaveDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
@@ -145,10 +142,8 @@ public class Grafo8 extends JFrame {
 					dispose();
 				}
 				if(tglbtnBorrarGrafo.isSelected()) {
-					//ControladorInterficie.setGrafo8("Borrar");
 					absoluto.showOpenDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
-					//ControladorInterficie.VistaSLGrafos14();
 					try {
 						ControladorInterficie.deleteGraph(path);
 					} catch (IOException e1) {

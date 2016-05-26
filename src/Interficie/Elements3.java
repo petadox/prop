@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +17,9 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 
 public class Elements3 extends JFrame {
 	
@@ -172,6 +177,82 @@ public class Elements3 extends JFrame {
 		textField.setBounds(89, 21, 251, 31);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
+		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
+		btnNuevoGrafo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser absoluto = new JFileChooser();
+				JFileChooser directorio = new JFileChooser();
+				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				absoluto.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
+				directorio.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
+				int res = JOptionPane.showConfirmDialog(null, "Si cambias de grafo, perderás todos los datos ¿Quieres guardar los cambios que has hecho hasta ahora?");
+				if (res == 0) {
+					absoluto.showSaveDialog(absoluto);
+					String path = absoluto.getSelectedFile().getAbsolutePath();
+					try {
+						ControladorInterficie.saveGraph(path);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
+					//usuario da a importar
+					if (cargaroimportar == 0) {
+						directorio.showOpenDialog(absoluto);
+						path = directorio.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.importaGraph(path);
+							} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
+					//cargar
+					else {
+						absoluto.showOpenDialog(absoluto);
+						path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.carregaGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();	
+					}
+				}
+				else if (res == 1) {
+					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
+					if (cargaroimportar == 0) {
+						directorio.showOpenDialog(absoluto);
+						String path = directorio.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.importaGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
+					//cargar
+					else {
+						absoluto.showOpenDialog(absoluto);
+						String path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.carregaGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();	
+					}
+				}
+			}
+		});
+		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
+		btnNuevoGrafo.setBounds(0, 0, 79, 31);
+		contentPane.add(btnNuevoGrafo);
+		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				//ControladorInterficie.setElement3((""));

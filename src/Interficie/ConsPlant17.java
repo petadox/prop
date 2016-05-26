@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.List;
 @SuppressWarnings("serial")
@@ -36,6 +37,7 @@ public class ConsPlant17 extends JFrame {
 	 * Create the frame.
 	 */
 	public ConsPlant17() {
+		setTitle("Consultar Plantilla");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -60,7 +62,7 @@ public class ConsPlant17 extends JFrame {
 		contentPane.add(btnBorrarPlantilla);
 		
 		List list = new List();
-		list.setBounds(43, 24, 150, 195);
+		list.setBounds(38, 26, 150, 195);
 		contentPane.add(list);
 		
 		list.add(ControladorInterficie.getNomPlantilla());

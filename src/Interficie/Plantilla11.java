@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 @SuppressWarnings("serial")
 public class Plantilla11 extends JFrame {
 	private JPanel contentPane;
@@ -64,24 +65,40 @@ public class Plantilla11 extends JFrame {
 		contentPane.add(txtTipus);
 		txtTipus.setColumns(10);
 		
+		JComboBox combotipus = new JComboBox();
+		combotipus.setBounds(156, 94, 156, 38);
+		contentPane.add(combotipus);
+		combotipus.addItem("Autor");
+		combotipus.addItem("Paper");
+		combotipus.addItem("Conferencia");
+		combotipus.addItem("Terme");
+		ControladorInterficie.setTipusPlant11("Autor");
+		combotipus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ControladorInterficie.setTipusPlant11(combotipus.getSelectedItem().toString());
+				//System.out.println(ControladorInterficie.getTipusPlant());
+			}
+		});
+		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField.setBounds(134, 34, 250, 31);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		/*textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_1.setBounds(134, 96, 250, 31);
 		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textField_1.setColumns(10);*/
 		
 		JButton btnAfegirCamp = new JButton("Afegir Camp");
 		btnAfegirCamp.setBounds(134, 153, 178, 48);
 		contentPane.add(btnAfegirCamp);
 		btnAfegirCamp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String s = textField_1.getText();
+				/*String s = textField_1.getText();
 				boolean bo = false;
 				if(s.equals("Autor"))bo = true;
 				if(s.equals("Paper"))bo = true;
@@ -92,7 +109,12 @@ public class Plantilla11 extends JFrame {
 					ControladorInterficie.setTipusPlant11(textField_1.getText());
 					ControladorInterficie.VistaAfegirCamp12();
 					usat = true;
+				}*/
+				String s = textField.getText(); 
+				if (s.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Inserta un nombre para la plantilla antes de continuar");
 				}
+				else usat = true;
 			}
 		});
 		
@@ -101,8 +123,19 @@ public class Plantilla11 extends JFrame {
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String s = textField_1.getText();
-				boolean bo = false;
+				String s = textField.getText();
+				if (s.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Inserta un nombre para la plantilla antes de continuar");
+				}
+				else {
+					ControladorInterficie.setNomPlant11(textField.getText());
+					//ControladorInterficie.setEntidades4(textField_1.getText());
+					if(!usat) ControladorInterficie.borrarCamp12();
+					ControladorInterficie.cargarPlantilla();
+					ControladorInterficie.VistaConsPlant17();
+					dispose();
+				}
+				/*boolean bo = false;
 				if(s.equals("Autor"))bo = true;
 				if(s.equals("Paper"))bo = true;
 				if(s.equals("Conferencia"))bo = true;
@@ -116,12 +149,14 @@ public class Plantilla11 extends JFrame {
 					ControladorInterficie.cargarPlantilla();
 					ControladorInterficie.VistaConsPlant17();
 					dispose();
-				}
+				}*/
 			}
 		});
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
+		
+	
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.setNomPlant11((""));
