@@ -25,7 +25,7 @@ public class GestioDades {
    "directorio" sea una ruta valida y el archivo "nombre".txt exista.
     */
    public static void Borrar_archivo(String ruta) throws FicheroNoExiste, IOException {
-       File archivo = new File(ruta + ".txt");
+       File archivo = new File(ruta);
        if (!archivo.exists())
            throw new FicheroNoExiste("No existe ningun archivo con ese nombre en el directorio especificado.");
        else {
@@ -92,8 +92,25 @@ public class GestioDades {
            return st.nextToken();
        }
    }
-public static int getLastId(String tipus) {
-	// TODO Auto-generated method stub
-	return 0;
-}
+   
+   public static int getLastId(String tipus) throws IOException{
+	   String s;
+	   if(tipus == "Autor") s = "author";
+	   else if(tipus == "Paper") s = "paper";
+	   else if(tipus == "Conferencia") s = "conf";
+	   else s = "term";
+	   File archivo = new File("BaseDades/DBLP_four_area/" + s + ".txt");
+	   FileReader fr = new FileReader(archivo);
+       BufferedReader br = new BufferedReader(fr);
+       String linea1, linea2;
+       linea1 = linea2 = "";
+       while((linea1 = br.readLine()) != null) linea2 = linea1;
+       fr.close();
+       linea1 = "";
+       for (int i=0; linea2.charAt(i) != ' '; i++){
+    	   linea1=linea1+(""+linea2.charAt(i));
+       }
+	   int id = Integer.parseInt(linea1);
+	   return id;
+   }
 }
