@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 import Excepcions.FicheroNoExiste;
-import Excepcions.FicheroYaExistente;
+import Excepcions.FicheroYaExistente;//holi
 public class GestioDades {
 	/* Crea un nuevo archivo con el nombre "nombre" y de tipo .txt en el directorio
     "directorio". "directorio" debe ser una ruta correcta, y el archivo solo se creara
