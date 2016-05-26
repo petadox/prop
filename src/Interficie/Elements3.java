@@ -255,7 +255,6 @@ public class Elements3 extends JFrame {
 		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//ControladorInterficie.setElement3((""));
 				ControladorInterficie.VistaMenu2();
 				dispose();
 			}
