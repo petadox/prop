@@ -15,27 +15,6 @@ import domini.Perfil;
 import domini.PlantillaPerfil;
 
 public class ControladorGD{	//controlador gestio dades
-	/*public static void guardarPerfil(String nomP, String entitat, PlantillaPerfil pp) throws IOException, FicheroNoExiste, FicheroYaExistente{
-		String ruta = "BaseDades/Perfil/" + entitat + "/";
-		
-		ArrayList<ArrayList<String>> CampsPerfil = new ArrayList<ArrayList<String>>();
-		CampsPerfil = p.getCampPle();
-		
-		GestioDades.Crear_archivo(nomP, ruta);
-		GestioDades.Escribir_string(nomP, "salto", nomP, ruta);
-		GestioDades.Escribir_string(nomPlantilla, "salto", nomP, ruta);
-		Iterator<ArrayList<String>> i = CampsPerfil.iterator();
-		while(i.hasNext()){
-			ArrayList<String> aux = i.next();
-			Iterator<String> j = aux.iterator();
-			while(j.hasNext()){
-				String s = j.next();
-				GestioDades.Escribir_string(s, " ", nomP, ruta);
-			}
-			GestioDades.Escribir_string("", "salto", nomP, ruta);
-		}
-		
-	}*/
 	
 	public static void guardarPerfil(Perfil p) throws IOException, FicheroNoExiste, FicheroYaExistente{
 		String nomP = p.getNomPerfil();
