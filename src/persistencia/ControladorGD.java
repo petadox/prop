@@ -94,7 +94,6 @@ public class ControladorGD{	//controlador gestio dades
 		b.close();
 		return perf;
 	}
-
 	
 	public static ArrayList<String> cargarPlantilla(String ruta) throws NumberFormatException, FicheroNoExiste, IOException{
 		ArrayList<String> plant = new ArrayList<String>();
@@ -105,8 +104,7 @@ public class ControladorGD{	//controlador gestio dades
 			plant.add(s);
 		}
 		b.close();
-		System.out.print(plant.size());
-		return plant; 
+		return plant;
 	}
 	
 	public static void guardarPlantilla(PlantillaPerfil pp, String tipus, String nomPP) throws IOException, FicheroNoExiste, FicheroYaExistente{
@@ -115,8 +113,9 @@ public class ControladorGD{	//controlador gestio dades
 		GestioDades.Escribir_string(nomPP, "salto", nomPP, ruta);
 		GestioDades.Escribir_string(tipus, "salto", nomPP, ruta);
 		ArrayList<Camp> info = pp.getInfo();
+		Camp c;
+		
 		for(int i = 0; i < pp.getTam(); i++){
-			Camp c = new Camp();
 			c = info.get(i);
 			GestioDades.Escribir_string(c.getPath().getNom(), "salto", nomPP, ruta);
 			GestioDades.Escribir_string(c.getPath().getDescripcio(), "salto", nomPP, ruta);
