@@ -3,6 +3,7 @@ package Interficie;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
@@ -64,42 +65,47 @@ public class IntroduirNom5 extends JFrame {
 		contentPane.add(nom);
 		nom.setColumns(10);
 		
-		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
+		JButton btnNext = new JButton(new ImageIcon("next.jpg")); 
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControladorInterficie.setNom5(nom.getText());
-				if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
-					ControladorInterficie.VistaEntidades4();
+				if(nom.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
 				}
-				else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
-					ControladorInterficie.modificarNode();
+				else{
+					ControladorInterficie.setNom5(nom.getText());
+					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
+						ControladorInterficie.VistaEntidades4();
+					}
+					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
+						ControladorInterficie.modificarNode();
+					}
+					else {
+						if (ControladorInterficie.getEntidades4() == "Autor") { try {
+							ControladorInterficie.addNode("Autor", nom.getText());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Conf") { try {
+							ControladorInterficie.addNode("Conf", nom.getText());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
+							ControladorInterficie.addNode("Paper", nom.getText());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Term") { try {
+							ControladorInterficie.addNode("Term", nom.getText());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+					}
+					ControladorInterficie.VistaMenu2();
+					dispose();
 				}
-				else {
-					if (ControladorInterficie.getEntidades4() == "Autor") { try {
-						ControladorInterficie.addNode("Autor", nom.getText());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} }
-					else if (ControladorInterficie.getEntidades4() == "Conf") { try {
-						ControladorInterficie.addNode("Conf", nom.getText());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} }
-					else if (ControladorInterficie.getEntidades4() == "Paper") { try {
-						ControladorInterficie.addNode("Paper", nom.getText());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} }
-					else if (ControladorInterficie.getEntidades4() == "Term") { try {
-						ControladorInterficie.addNode("Term", nom.getText());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} }
-				}
-				ControladorInterficie.VistaMenu2();
-				dispose();
 			}
 		});
 		
