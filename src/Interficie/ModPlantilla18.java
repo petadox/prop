@@ -2,15 +2,21 @@ package Interficie;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
+
+import Excepcions.FicheroNoExiste;
+import Excepcions.FicheroYaExistente;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 @SuppressWarnings("serial")
 
 public class ModPlantilla18 extends JFrame {
@@ -82,14 +88,14 @@ public class ModPlantilla18 extends JFrame {
 		txtIntrodueixElNou_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtIntrodueixElNou_1.setEditable(false);
 		txtIntrodueixElNou_1.setText("Introdueix el nou Tipus");
-		txtIntrodueixElNou_1.setBounds(215, 95, 209, 31);
+		txtIntrodueixElNou_1.setBounds(215, 94, 209, 31);
 		contentPane.add(txtIntrodueixElNou_1);
 		txtIntrodueixElNou_1.setColumns(10);
 		txtIntrodueixElNou_1.setVisible(false);
 		
 		textFieldTipus = new JTextField();
 		textFieldTipus.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textFieldTipus.setBounds(215, 137, 209, 31);
+		textFieldTipus.setBounds(215, 136, 209, 31);
 		contentPane.add(textFieldTipus);
 		textFieldTipus.setColumns(10);
 		textFieldTipus.setVisible(false);
@@ -171,15 +177,63 @@ public class ModPlantilla18 extends JFrame {
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//modificar el nom de la plantilla
+				String s = textFieldNom.getText();
+				if(s.isEmpty()){}
+				else {
+					ControladorInterficie.setNomPlant11(s);
+				}
+				
+				//modificar el tipus de la plantilla
+				s = textFieldTipus.getText();
+				if(s.isEmpty()){}
+				else{
+					if(s.equals("Autor") || s.equals("Conferencia") || s.equals("Terme") || s.equals("Paper")) {
+						if(s.equals(ControladorInterficie.getTipusPlant())){}
+						else{
+							int resp = JOptionPane.showConfirmDialog(null,"Si cambia el tipus es borraran TOTS els camps de la plantilla. Vol procedir?", "Alerta!", JOptionPane.YES_NO_OPTION);
+							if(resp == 1){ //resp = no
+								textFieldTipus.setText(ControladorInterficie.getTipusPlantilla());
+							}
+							else{ //resp = si
+								ControladorInterficie.setTipusPlant11(s);
+								ControladorInterficie.borrarCamp12();
+							}
+						}
+					}
+					else JOptionPane.showMessageDialog(null, "Tipus no val·lid. Tipus valids: Autor, Conferencia, Terme i Paper");
+				}
+				
+				//modificar un camp de la plantilla
+				s = textFieldCamp.getText();
+				if(s.isEmpty()){
+					ControladorInterficie.cargarPlantilla();
+					try {
+						ControladorInterficie.VistaConsPlant17();
+					} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+				else{
+					ControladorInterficie.setNumCamp(Integer.parseInt(s));
+					ControladorInterficie.VistaModCampPlantilla18b();
+					dispose();
+				}
+				
 				dispose();
 			}
 		});
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
-		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				try {
+					ControladorInterficie.VistaConsPlant17();
+				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+					e1.printStackTrace();
+				}
 				dispose();
 			}
 			

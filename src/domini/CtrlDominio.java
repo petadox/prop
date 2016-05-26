@@ -9,6 +9,7 @@ import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import persistencia.CtrlDataGraph;
 import persistencia.GestioDades;
@@ -54,19 +55,19 @@ public class CtrlDominio {
         return res;
     }
     
-    public  void generarPerfil(PlantillaPerfil p,Node n) throws PathException, IOException {
+    public  void generarPerfil(PlantillaPerfil p,Node n,String nom) throws PathException, IOException {
        HeteSanic hetesanic = new HeteSanic();
        hetesanic.setGraph(actual);
        ArrayList<Camp> c = p.getInfo();
-       Perfil perf = new Perfil(p,n,"Perfil1");
+       perfilActual = new Perfil(p,n,nom);
             for (int i = 0; i < c.size(); i++) {
                 ArrayList<Pair<Integer,Float>> res = new ArrayList<Pair<Integer,Float>>();
                 res = hetesanic.getHeteSim(c.get(i).getPath(), n);
                 ArrayList<String> asd = convert(res,c.get(i));
-                perf.anadirFila(convert(res,c.get(i)));
+                perfilActual.anadirFila(convert(res,c.get(i)));
             }
-            mostrarPerfil(perf);
     }
+    
     public void mostrarPerfil(Perfil p) {
        ArrayList< ArrayList<String> > a = p.getCampPle();
        for (int i = 0; i < a.size(); i++) {          
@@ -115,23 +116,24 @@ public class CtrlDominio {
     	ControladorGD.guardarPerfil(perfilActual);
     }
     
-
     public void cargarPlantilla(String ruta) throws NumberFormatException, FicheroNoExiste, IOException {
+    	plantillaActual.borrarCamps();
     	ArrayList<String> aux = ControladorGD.cargarPlantilla(ruta);
     	plantillaActual.setNom(aux.get(0));
     	if(aux.get(1).equals("Autor")) plantillaActual.setTipus(Node.Type.Autor);
     	else if(aux.get(1).equals("Conferencia")) plantillaActual.setTipus(Node.Type.Conferencia);
     	else if(aux.get(1).equals("Terme")) plantillaActual.setTipus(Node.Type.Terme);
     	else if(aux.get(1).equals("Paper")) plantillaActual.setTipus(Node.Type.Paper);
-    	for(int i=0; i<aux.size(); i=i+5){
+    	for(int i=2; i<aux.size(); i++){
 	    	Camp c = new Camp();
-	    	c.setPath(aux.get(3), aux.get(2), aux.get(4));
-	    	c.setQuant(Float.parseFloat(aux.get(5)));
-	    	c.setMinim(Integer.parseInt(aux.get(6)));
+	    	String s1, s2, s3, s4, s5;
+	    	s1 = aux.get(i);i++; s2 = aux.get(i); i++; s3 = aux.get(i);i++; s4 = aux.get(i);i++; s5 = aux.get(i);
+	    	c.setPath(s1, s2, s3);
+	    	c.setQuant(Float.parseFloat(s4));
+	    	c.setMinim(Integer.parseInt(s5));
 	    	plantillaActual.setInfo(c);
     	}
     }
-
 
     
     public Perfil cargarPerfil(String ruta) throws FicheroNoExiste, IOException {
@@ -316,9 +318,6 @@ public class CtrlDominio {
 		return plantillaActual.getTam();
 	}
 
-	/*public ArrayList<ArrayList<String>> getTodaPlantilla() {
-		return plantillaActual.getTotaPlantilla();
-	}*/
 	
 	public void deleteP(String ruta) throws FicheroNoExiste, IOException{
 		GestioDades.Borrar_archivo(ruta);
@@ -334,13 +333,14 @@ public class CtrlDominio {
     }
 	
 	public void crearPlantilla(String nomPP, String tipus, ArrayList<ArrayList<String>> camp){
+		plantillaActual.borrarCamps();
 		plantillaActual.setNom(nomPP);
 		if(tipus.equals("Autor")) plantillaActual.setTipus(Node.Type.Autor);
 		else if(tipus.equals("Conferencia")) plantillaActual.setTipus(Node.Type.Conferencia);
 		else if(tipus.equals("Terme")) plantillaActual.setTipus(Node.Type.Terme);
 		else plantillaActual.setTipus(Node.Type.Paper);
-		Camp c = new Camp();
 		for(int i=0; i<camp.size(); i++){
+			Camp c = new Camp();
 			ArrayList<String> aux = camp.get(i);
 			c.setPath(aux.get(0), aux.get(1), aux.get(2));
 			c.setQuant(Float.parseFloat(aux.get(3)));
@@ -348,6 +348,7 @@ public class CtrlDominio {
 			plantillaActual.setInfo(c);
 		}
 	}
+	
 	public static void modificarNode(String nomAntic, String tipus, String newNom, Integer pos) {
 		Node n = new Node();
 		switch(tipus) {
@@ -486,5 +487,61 @@ public class CtrlDominio {
 		}
 		return campsPlant;
 	}
+	
+	public static int getLastId(String tipus) throws IOException{return ControladorGD.getLastId(tipus);}
+
+	public void crearPerfilMem(String ruta, String nomP) throws NumberFormatException, FicheroNoExiste, IOException, PathException {
+		cargarPlantilla(ruta);
+		int id = 0;
+		Node.Type tip = plantillaActual.getTipus();
+		if(tip.equals("Autor")) id=getLastId("Autor")+1;
+		else if(tip.equals("Conferencia")) id = getLastId("Conferencia")+1;
+		else if(tip.equals("Terme")) id = getLastId("Terme")+1;
+		else if(tip.equals("Paper")) id = getLastId("Paper")+1;
+		Random rnd = new Random();
+		int aux = (int)(rnd.nextDouble() * 3 + 0);
+		Node n = new Node();
+		n.setId(id);
+		if(aux == 0) n.setLabel(Node.Label.AI);
+		else if(aux == 1) n.setLabel(Node.Label.Database);
+		else if(aux == 2) n.setLabel(Node.Label.DataMining);
+		else n.setLabel(Node.Label.InformationRetrieval);
+		n.setNom(nomP);
+		n.setTipus(tip);
+		generarPerfil(plantillaActual, n, nomP);
+	}
+
+	public void crearPerfil(String nomPP, String tipus, ArrayList<ArrayList<String>> camp, String nomP) throws IOException, PathException {
+		crearPlantilla(nomPP, tipus, camp);
+		int id = 0;
+		Node.Type tip = plantillaActual.getTipus();
+		if(tip.equals("Autor")) id=getLastId("Autor")+1;
+		else if(tip.equals("Conferencia")) id = getLastId("Conferencia")+1;
+		else if(tip.equals("Terme")) id = getLastId("Terme")+1;
+		else if(tip.equals("Paper")) id = getLastId("Paper")+1;
+		Random rnd = new Random();
+		int aux = (int)(rnd.nextDouble() * 3 + 0);
+		Node n = new Node();
+		n.setId(id);
+		if(aux == 0) n.setLabel(Node.Label.AI);
+		else if(aux == 1) n.setLabel(Node.Label.Database);
+		else if(aux == 2) n.setLabel(Node.Label.DataMining);
+		else n.setLabel(Node.Label.InformationRetrieval);
+		n.setNom(nomP);
+		n.setTipus(tip);
+		generarPerfil(plantillaActual, n, nomP);
+	}
+	
+	public void setNomPlant(String s){plantillaActual.setNom(s);}
+
+	public void setTipusPlant(String auxt) {
+		Node.Type tip = Node.Type.Autor;
+		if(auxt == "Conferencia") tip = Node.Type.Conferencia;
+		else if(auxt == "Terme") tip = Node.Type.Terme;
+		else if(auxt == "Paper") tip = Node.Type.Paper;
+		plantillaActual.setTipus(tip);
+	}
+
+	public void getTamPlantAct() {System.out.print(plantillaActual.getTam());}
 
 }

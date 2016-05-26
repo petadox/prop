@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import Excepcions.FicheroNoExiste;
 import domini.Pair;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -62,7 +65,12 @@ public class SLEntidades6 extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (ControladorInterficie.getconsplant17() != null && ControladorInterficie.getconsplant17().equals("GenerarPerfil")) {
-					ControladorInterficie.VistaConsPlant17();
+					try {
+						ControladorInterficie.VistaConsPlant17();
+					} catch (NumberFormatException | FicheroNoExiste | IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				else if (ControladorInterficie.getElement3().equals("Relaciones")) ControladorInterficie.VistaEntRel7();
 				else ControladorInterficie.VistaEntidades4();

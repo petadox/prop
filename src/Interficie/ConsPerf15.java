@@ -126,7 +126,12 @@ public class ConsPerf15 extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				ControladorInterficie.VistaConsPlant17();
+				try {
+					ControladorInterficie.VistaConsPlant17();
+				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				dispose();
 				
 				// ++ Borrizar perfil; hehehe
