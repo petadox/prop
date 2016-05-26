@@ -114,7 +114,7 @@ public class Elements3 extends JFrame {
 					ControladorInterficie.VistaEntidades4();
 					dispose();
 				}
-				if(btnPerfil.isSelected()){
+				else if(btnPerfil.isSelected()){
 					ControladorInterficie.setElement3("Perfil");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaIntroduirNom5();
@@ -125,7 +125,7 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 				}
-				if(btnPlantilla.isSelected()){
+				else if(btnPlantilla.isSelected()){
 					ControladorInterficie.setElement3("Plantilla");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaPlantilla11();
@@ -155,11 +155,12 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 				}
-				if(btnRelacions.isSelected()){
+				else if(btnRelacions.isSelected()){
 					ControladorInterficie.setElement3("Relaciones");
 					ControladorInterficie.VistaEntRel7();
 					dispose();
 				}
+				else JOptionPane.showOptionDialog(null, "Has de seleccionar un elemento", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);
 			}
 		});
 		

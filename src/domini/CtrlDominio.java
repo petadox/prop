@@ -44,7 +44,6 @@ public class CtrlDominio {
     private ArrayList<String> convert (ArrayList<Pair<Integer,Float>> array, Camp c) throws IOException {
         ArrayList<String> res = new ArrayList<String>();
         int size = array.size() - 1;
-        System.out.println("Size del parametro: " + size + "");
         String nomReal;
         for (int i = size; i >= 0; --i) {
         	if (array.get(i).second >= c.getQuant()) {
@@ -58,26 +57,17 @@ public class CtrlDominio {
     public  void generarPerfil(PlantillaPerfil p,Node n) throws PathException, IOException {
        HeteSanic hetesanic = new HeteSanic();
        hetesanic.setGraph(actual);
-       System.out.println("holi");
        ArrayList<Camp> c = p.getInfo();
-       System.out.println("holi1");
        Perfil perf = new Perfil(p,n,"Perfil1");
             for (int i = 0; i < c.size(); i++) {
-            	System.out.println("El campo tiene: " + c.get(i).getPath().getStringPath()+ "");
                 ArrayList<Pair<Integer,Float>> res = new ArrayList<Pair<Integer,Float>>();
                 res = hetesanic.getHeteSim(c.get(i).getPath(), n);
-                System.out.println("Imprimo contenido: " + res.get(0).second + " ");
                 ArrayList<String> asd = convert(res,c.get(i));
-                for (int k = 0; k < asd.size(); k++) {
-                	System.out.println("Imprimo convert: " + asd.get(k) + "");
-                }
                 perf.anadirFila(convert(res,c.get(i)));
             }
             mostrarPerfil(perf);
     }
     public void mostrarPerfil(Perfil p) {
-       System.out.println ("Nombre del perfil: " + p.getNomPerfil() + "\n");
-       System.out.println ("Nombre de la plantilla: " + p.getNomPlantilla() + "\n");
        ArrayList< ArrayList<String> > a = p.getCampPle();
        for (int i = 0; i < a.size(); i++) {          
     	   for (int j = 0; j < a.get(i).size(); j++) {
@@ -128,7 +118,6 @@ public class CtrlDominio {
 
     public void cargarPlantilla(String ruta) throws NumberFormatException, FicheroNoExiste, IOException {
     	ArrayList<String> aux = ControladorGD.cargarPlantilla(ruta);
-   //System.out.print(aux.size());
     	plantillaActual.setNom(aux.get(0));
     	if(aux.get(1).equals("Autor")) plantillaActual.setTipus(Node.Type.Autor);
     	else if(aux.get(1).equals("Conferencia")) plantillaActual.setTipus(Node.Type.Conferencia);
@@ -416,7 +405,6 @@ public class CtrlDominio {
 				default: break;
 			}
 		}
-		System.out.println("holi");
 		return "No tiene";
 	}
 	

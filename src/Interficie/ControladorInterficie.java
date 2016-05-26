@@ -155,10 +155,7 @@ public class ControladorInterficie {
 	public static void setIdNodo(Integer Id){IdNodo = Id;}
 	public static Integer getIdNodo(){return IdNodo;}
 	
-	public static void borrarCamp12(){
-		Camp12.clear();
-		//System.out.println(ControladorInterficie.getCamp12().get(0).get(0));
-		}
+	public static void borrarCamp12(){Camp12.clear();}
 	
 	public static void setNomG(String nomG) {CtrlD.setNomActual(nomG);}
 	
@@ -373,8 +370,6 @@ public class ControladorInterficie {
 		return CtrlD.getNomPerfil();
 	}
 	/*public static ArrayList<ArrayList<String>> getTodaPlantilla() {
-		System.out.println("CI: " +Camp12.get(0).get(0)+ "");
-		System.out.println("CI1: " +Camp12.get(1).get(0)+ "");
 		return CtrlD.getTodaPlantilla();
 	}*/
 	public static void deleteP(String ruta) throws FicheroNoExiste, IOException {CtrlD.deleteP(ruta);}
@@ -458,10 +453,6 @@ public class ControladorInterficie {
 	public static void cargarPlantilla(){CtrlD.crearPlantilla(NomPlant11, TipusPlant11, Camp12);}
 	
 	public static void modificarNode() {
-		System.out.println("Nombre" +getNombreEntidad()+ "");
-		System.out.println("Entidades4: " +getEntidades4()+ "");
-		System.out.println("New" +getNom5()+ "");
-		System.out.println("Id" +getEntidades6Int()+ "");
 		CtrlD.modificarNode(getNombreEntidad(),getEntidades4(),getNom5(),getEntidades6Int());
 	}
 	

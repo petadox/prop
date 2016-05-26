@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
@@ -81,11 +82,24 @@ public class EntRel7 extends JFrame {
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(btnAutor.isSelected()){ControladorInterficie.setEntRel7("Autor");}
-				if(btnConferencia.isSelected()){ControladorInterficie.setEntRel7("Conferencia");}
-				if(btnTerme.isSelected()){ControladorInterficie.setEntRel7("Terme");}
-				ControladorInterficie.VistaSLEntidades6();
-				dispose();
+				if(btnAutor.isSelected()){
+					ControladorInterficie.setEntRel7("Autor");
+					ControladorInterficie.VistaSLEntidades6();
+					dispose();
+				}
+				else if(btnConferencia.isSelected()){
+					ControladorInterficie.setEntRel7("Conferencia");
+					ControladorInterficie.VistaSLEntidades6();
+					dispose();
+				}
+				else if(btnTerme.isSelected()){
+					ControladorInterficie.setEntRel7("Terme");
+					ControladorInterficie.VistaSLEntidades6();
+					dispose();
+				}
+				else {
+					JOptionPane.showOptionDialog(null, "Has de seleccionar algun tipo de Entidad", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);
+				}
 			}
 		});
 		

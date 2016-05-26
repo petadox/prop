@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
@@ -105,22 +106,22 @@ public class Menu2 extends JFrame {
 					ControladorInterficie.VistaElementos3();
 					dispose();
 				}
-				if(btnConsultar.isSelected()){
+				else if(btnConsultar.isSelected()){
 					ControladorInterficie.setMenu2("Consultar");
 					ControladorInterficie.VistaElementos3();
 					dispose();
 				}
-				if(btnModificar.isSelected()){
+				else if(btnModificar.isSelected()){
 					ControladorInterficie.setMenu2("Modificar");
 					ControladorInterficie.VistaElementos3();
 					dispose();
 				}
-				if(btnBorrar.isSelected()) {
+				else if(btnBorrar.isSelected()) {
 					ControladorInterficie.setMenu2("Borrar");
 					ControladorInterficie.VistaElementos3();
 					dispose();
 				}
-				
+				else JOptionPane.showOptionDialog(null, "Has de seleccionar una accion", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);
 			}
 		});
 		

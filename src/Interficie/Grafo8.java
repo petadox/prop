@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
@@ -119,7 +120,7 @@ public class Grafo8 extends JFrame {
 					ControladorInterficie.VistaMenu2();
 					dispose();
 				}
-				if(tglbtnCargarGrafo.isSelected()) {
+				else if(tglbtnCargarGrafo.isSelected()) {
 					absoluto.showOpenDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
@@ -130,7 +131,7 @@ public class Grafo8 extends JFrame {
 					ControladorInterficie.VistaMenu2();
 					dispose();
 				}
-				if(tglbtnGuardarGrafo.isSelected()) {
+				else if(tglbtnGuardarGrafo.isSelected()) {
 					absoluto.showSaveDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
@@ -141,7 +142,7 @@ public class Grafo8 extends JFrame {
 					ControladorInterficie.VistaMenu2();
 					dispose();
 				}
-				if(tglbtnBorrarGrafo.isSelected()) {
+				else if(tglbtnBorrarGrafo.isSelected()) {
 					absoluto.showOpenDialog(absoluto);
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
@@ -151,6 +152,9 @@ public class Grafo8 extends JFrame {
 					}
 					ControladorInterficie.VistaMenu2();
 					dispose();
+				}
+				else {
+					JOptionPane.showOptionDialog(null, "Has de seleccionar alguna opcion", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);
 				}
 			}
 		});

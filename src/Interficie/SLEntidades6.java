@@ -64,6 +64,7 @@ public class SLEntidades6 extends JFrame {
 				if (ControladorInterficie.getconsplant17() != null && ControladorInterficie.getconsplant17().equals("GenerarPerfil")) {
 					ControladorInterficie.VistaConsPlant17();
 				}
+				else if (ControladorInterficie.getElement3().equals("Relaciones")) ControladorInterficie.VistaEntRel7();
 				else ControladorInterficie.VistaEntidades4();
 				dispose();
 			}
