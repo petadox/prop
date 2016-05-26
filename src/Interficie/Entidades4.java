@@ -164,7 +164,6 @@ public class Entidades4 extends JFrame {
 		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//ControladorInterficie.setEntidades4((""));
 				ControladorInterficie.VistaElementos3();
 				dispose();
 			}

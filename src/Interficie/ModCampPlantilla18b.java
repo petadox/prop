@@ -1,9 +1,9 @@
 package Interficie;
-
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import Excepcions.FicheroNoExiste;
 @SuppressWarnings("serial")
-
 public class ModCampPlantilla18b extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNomCamp;
@@ -54,7 +54,12 @@ public class ModCampPlantilla18b extends JFrame {
 	 */
 	public ModCampPlantilla18b() {
 		Camp12 = ControladorInterficie.getCamp12();
-		aux = Camp12.get(ControladorInterficie.getNumCamp());
+		if(Camp12.size()==0){
+			for(int i=0; i<5; i++){
+				aux.add("");
+			}
+		}
+		else aux = Camp12.get(ControladorInterficie.getNumCamp());
 		
 		setTitle("ModificarCampPlantilla18b");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,7 +143,6 @@ public class ModCampPlantilla18b extends JFrame {
 		contentPane.add(textMin);
 		textMin.setColumns(10);
 		textMin.setText(aux.get(4));
-
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
@@ -196,14 +200,20 @@ public class ModCampPlantilla18b extends JFrame {
 							double auxMin = Double.parseDouble(textMin.getText());
 							double auxQuant = Double.parseDouble(textQuant.getText());
 							if(auxMin == -1 && auxQuant == -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor diferent a -1");
+							if(auxMin > -1 && auxQuant > -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor igual a -1");
 							else{
 								s.add(textDescPlant.getText());
 								s.add(textNomPlant.getText());
 								s.add(textPath.getText());
 								s.add(textQuant.getText());
 								s.add(textMin.getText());
-								ControladorInterficie.setCamp(s);
-								JOptionPane.showMessageDialog(null,"Camp afegit!");
+								ControladorInterficie.modificaCamp(s);
+								JOptionPane.showMessageDialog(null,"Camp modificat!");
+								try {
+									ControladorInterficie.VistaConsPlant17();
+								} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+									e1.printStackTrace();
+								}
 								dispose();
 							}
 						}

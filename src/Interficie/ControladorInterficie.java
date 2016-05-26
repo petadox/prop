@@ -11,6 +11,7 @@ import Excepcions.FicheroYaExistente;
 import domini.CompararArrays;
 import domini.CtrlDominio;
 import domini.Pair;
+import domini.PathException;
 
 //@author Albert Ripol
 
@@ -177,9 +178,11 @@ public class ControladorInterficie {
 	
 	public static void savePP() throws IOException, FicheroNoExiste, FicheroYaExistente{CtrlD.guardarPlantilla(NomPlant11, TipusPlant11, Camp12);}
 	
-	public static void loadPP(String ruta) throws FicheroNoExiste, IOException{CtrlD.cargarPlantilla(ruta);}
+	public static void loadPP(String ruta) throws FicheroNoExiste, IOException{
+		CtrlD.cargarPlantilla(ruta);
+		TipusPlant11 = CtrlD.getTipusPlantilla();
+	}
 	public static void saveP() throws IOException, FicheroYaExistente, FicheroNoExiste{CtrlD.guardarPerfil();}
-	
 	public static void loadP(String ruta) throws FicheroNoExiste, IOException{CtrlD.cargarPerfil(ruta);}
 
 	
@@ -278,7 +281,7 @@ public class ControladorInterficie {
 		slplantilla16.setResizable(false);
 	}
 	
-	public static void VistaConsPlant17() {
+	public static void VistaConsPlant17() throws NumberFormatException, FicheroNoExiste, IOException {
 		consplant17 = new ConsPlant17();
 		consplant17.setLocationRelativeTo(null);
 		consplant17.setVisible(true);
@@ -452,6 +455,13 @@ public class ControladorInterficie {
 	}
 	public static void cargarPlantilla(){CtrlD.crearPlantilla(NomPlant11, TipusPlant11, Camp12);}
 	
+	public static void crearPerfil() throws NumberFormatException, FicheroNoExiste, IOException, PathException{
+		if(Menu2=="Crear" && Element3=="Perfil") CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
+		else{
+			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5);
+		}
+	}
+	
 	public static void modificarNode() {
 		CtrlD.modificarNode(getNombreEntidad(),getEntidades4(),getNom5(),getEntidades6Int());
 	}
@@ -499,6 +509,8 @@ public class ControladorInterficie {
 	}
 	public static void afegirCamp() throws NumberFormatException, FicheroNoExiste, IOException {
 		CtrlD.cargarPlantilla(rutaPlant);
+		setNomPlant11(CtrlD.getNomPlantilla());
+		setTipusPlant11(CtrlD.getTipusPlantilla());
 		ArrayList<ArrayList<String>> camp = new ArrayList<ArrayList<String>>();
 		camp = CtrlD.getCampPlant();
 		Camp12.clear();
@@ -509,5 +521,29 @@ public class ControladorInterficie {
 
 	public static void setRutaPlant(String ruta) {rutaPlant = ruta;}
 	public static String getRutaPlant() {return rutaPlant;}
-
+	
+	public static boolean tipusValid(String s) {
+		if(s.equals("Autor"))return true;
+		if(s.equals("Conferencia"))return true;
+		if(s.equals("Terme"))return true;
+		if(s.equals("Paper"))return true;		
+		return false;
+	}
+	public static void setNomPlantAct(String s) {CtrlD.setNomPlant(s);}
+	public static void impPlantilla17() throws NumberFormatException, FicheroNoExiste, IOException {
+		setNomPlant11(CtrlD.getNomPlantilla());
+		setTipusPlant11(CtrlD.getTipusPlantilla());
+		ArrayList<ArrayList<String>> camp = new ArrayList<ArrayList<String>>();
+		camp = CtrlD.getCampPlant();
+		Camp12.clear();
+		for(int i=0; i<camp.size(); i++){
+			setCamp(camp.get(i));
+		}
+	}
+	public static void getTamPlantAct() {CtrlD.getTamPlantAct();}
+	public static void modificaCamp(ArrayList<String> s) {
+		if(Camp12.size()>0)Camp12.remove(numCamp);
+		Camp12.add(numCamp, s);
+		cargarPlantilla();
+	}
 }

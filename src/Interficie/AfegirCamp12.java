@@ -48,7 +48,6 @@ public class AfegirCamp12 extends JFrame {
 	 * Create the frame.
 	 */
 	public AfegirCamp12() {
-		setTitle("Afegir Camp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -173,34 +172,40 @@ public class AfegirCamp12 extends JFrame {
 			}
 		});
 		ArrayList<String> s = new ArrayList<String>();
-
 		btnHelpM.setBounds(251, 197, 37, 31);
 		contentPane.add(btnHelpM);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(ControladorInterficie.pathValid(textPath.getText())){
-					if(ControladorInterficie.quantValid(textQuant.getText())){
-						if(ControladorInterficie.minValid(textMin.getText())){
-							double auxMin = Double.parseDouble(textMin.getText());
-							double auxQuant = Double.parseDouble(textQuant.getText());
-							if(auxMin == -1 && auxQuant == -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor diferent a -1");
-							else if(auxMin != -1 && auxQuant != -1)JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor igual a -1");
-							else{
-								s.add(textDescPlant.getText());
-								s.add(textNomPlant.getText());
-								s.add(textPath.getText());
-								s.add(textQuant.getText());
-								s.add(textMin.getText());
-								ControladorInterficie.setCamp(s);
-								JOptionPane.showMessageDialog(null,"Camp afegit!");
-								dispose();
+				if(textNomPlant.getText().isEmpty())JOptionPane.showMessageDialog(null,"Introdueix un nom");
+				else if(textDescPlant.getText().isEmpty())JOptionPane.showMessageDialog(null,"Introdueix una descripcio");
+				else if(textPath.getText().isEmpty())JOptionPane.showMessageDialog(null,"Introdueix un path valid");
+				else if(textQuant.getText().isEmpty())JOptionPane.showMessageDialog(null,"Introdueix una quantitat vàlida");
+				else if(textMin.getText().isEmpty())JOptionPane.showMessageDialog(null,"Introdueix un mínim valid");
+				else{
+					if(ControladorInterficie.pathValid(textPath.getText())){
+						if(ControladorInterficie.quantValid(textQuant.getText())){
+							if(ControladorInterficie.minValid(textMin.getText())){
+								double auxMin = Double.parseDouble(textMin.getText());
+								double auxQuant = Double.parseDouble(textQuant.getText());
+								if(auxMin == -1 && auxQuant == -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor diferent a -1");
+								else if(auxMin > -1 && auxQuant > -1)JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor igual a -1");
+								else{
+									s.add(textDescPlant.getText());
+									s.add(textNomPlant.getText());
+									s.add(textPath.getText());
+									s.add(textQuant.getText());
+									s.add(textMin.getText());
+									ControladorInterficie.setCamp(s);
+									JOptionPane.showMessageDialog(null,"Camp afegit!");
+									dispose();
+								}
 							}
+							else JOptionPane.showMessageDialog(null,"Mínim no vàlid"); 
 						}
-						else JOptionPane.showMessageDialog(null,"Mínim no vàlid"); 
+						else JOptionPane.showMessageDialog(null,"Quantitat no vàlid"); 
 					}
-					else JOptionPane.showMessageDialog(null,"Quantitat no vàlid"); 
+					else JOptionPane.showMessageDialog(null,"Path no vàlid"); 
 				}
-				else JOptionPane.showMessageDialog(null,"Path no vàlid"); 
 			}
 		});
 	}

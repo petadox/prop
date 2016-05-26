@@ -6,13 +6,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.List;
 @SuppressWarnings("serial")
@@ -35,9 +33,11 @@ public class ConsPlant17 extends JFrame {
 	}
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws FicheroNoExiste 
+	 * @throws NumberFormatException 
 	 */
-	public ConsPlant17() {
-		setTitle("Consultar Plantilla");
+	public ConsPlant17() throws NumberFormatException, FicheroNoExiste, IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,37 +62,67 @@ public class ConsPlant17 extends JFrame {
 		contentPane.add(btnBorrarPlantilla);
 		
 		List list = new List();
-		list.setBounds(38, 26, 150, 195);
+		list.setBounds(43, 24, 150, 195);
 		contentPane.add(list);
 		
+		
+		ControladorInterficie.impPlantilla17();
 		list.add(ControladorInterficie.getNomPlantilla());
 		list.add(ControladorInterficie.getTipusPlantilla());
-		
 		ArrayList<ArrayList<String>> todaPlantilla = new ArrayList<ArrayList<String>>();
-		
-		if(ControladorInterficie.getMenu2().equals("Crear") && 
-		   ControladorInterficie.getElement3().equals("Plantilla"))todaPlantilla = ControladorInterficie.getCamp12();
-		else{
-			//ControladorInterficie.setCamp(nom, descripcio, path, quant, minim);
-		}
+		todaPlantilla = ControladorInterficie.getCamp12();
 		for (int i = 0; i < todaPlantilla.size(); ++i ) {
 			list.add("");
 			for (int j = 0; j < 5; ++j) {
-				// Alomejor la n y el 5 vayan cambiaditos;
-				list.add(todaPlantilla.get(i).get(j)); // No se si va, creo que si;
+				list.add(todaPlantilla.get(i).get(j));
 			}
 		}
 		
 		btnGuardarYSalir.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ControladorInterficie.savePP();
-					ControladorInterficie.borrarCamp12();
+					if(ControladorInterficie.getMenu2().equals("Crear")){
+						ControladorInterficie.savePP();
+						ControladorInterficie.borrarCamp12();
+						ControladorInterficie.VistaMenu2();
+						dispose();
+						JOptionPane.showMessageDialog(null,"Plantilla guardada correctament");
+					}
+					else{
+						int resp;
+						String ruta = ControladorInterficie.getRutaPlant();
+						String aux = "";
+						for(int i=ruta.length()-1; ruta.charAt(i) != '\\'; i--){
+							aux = aux+ruta.charAt(i);
+						}
+						String aux2 = "";
+						for(int i=aux.length()-1; i>3; i--){
+							aux2 = aux2+aux.charAt(i);
+						}
+						if(aux2.equals(ControladorInterficie.getNomPlantilla())){
+							resp = JOptionPane.showConfirmDialog(null,"Vols sobreescriure la plantilla? en cas contrari dona-li un altre nom", "Alerta!", JOptionPane.YES_NO_OPTION);
+							if(resp == 1){ //resp = no
+								
+							}
+							else{ //resp = si
+								ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
+								ControladorInterficie.cargarPlantilla();
+								ControladorInterficie.savePP();
+								ControladorInterficie.VistaMenu2();
+								dispose();
+							}
+						}
+						else{
+							ControladorInterficie.savePP();
+							ControladorInterficie.borrarCamp12();
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+					}
 				} catch (IOException | FicheroNoExiste | FicheroYaExistente e1) {
 					e1.printStackTrace();
 				}
-				ControladorInterficie.VistaMenu2();
-				dispose();
+				
 			}
 		});
 		
@@ -123,17 +153,24 @@ public class ConsPlant17 extends JFrame {
 				if (ControladorInterficie.getMenu2().equals("Consultar") &&
 						ControladorInterficie.getElement3().equals("Plantilla")) {
 					try {
-						ControladorInterficie.deletePP("BaseDades/PlantillaPerfil/"+ControladorInterficie.getNomPlantilla()+".txt");
-					} catch (FicheroNoExiste | IOException e1) {
+						int resp = JOptionPane.showConfirmDialog(null,"Vols eliminar la plantilla?", "Alerta!", JOptionPane.YES_NO_OPTION);
+						if(resp == 1){ //resp = no
+							
+						}
+						else{ //resp = si
+							ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
+							ControladorInterficie.cargarPlantilla();
+							ControladorInterficie.savePP();
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+						ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
+					} catch (FicheroNoExiste | IOException | FicheroYaExistente e1) {
 						e1.printStackTrace();
 					}
 				}
-				ControladorInterficie.VistaMenu2();
-				dispose();
 				// ++ Borrar Plantilla;
 			}
 		});
-		
-		
 	}
 }
