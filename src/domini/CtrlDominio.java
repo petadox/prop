@@ -8,6 +8,8 @@ package domini;
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -42,17 +44,36 @@ public class CtrlDominio {
         
     }
     
-    private ArrayList<String> convert (ArrayList<Pair<Integer,Float>> array, Camp c) throws IOException {
+    private ArrayList<String> convert (ArrayList<Pair<Integer,Float>> array, Camp c,Node n) throws IOException {
         ArrayList<String> res = new ArrayList<String>();
-        int size = array.size() - 1;
+        
+        Collections.sort(array, Comparator.comparing(p -> -p.second));
+        Collections.reverse(array);
+        // Queda el ArrayList ordenado de mayor a menor (1 y va bajando);
+        
+        int size = array.size();
         String nomReal;
-        for (int i = size; i >= 0; --i) {
-        	if (array.get(i).second >= c.getQuant()) {
-                nomReal = nomNode(array.get(i).first,c.getPath().tipoUltimaLetra(c.getPath().getStringPath()));
-                res.add(nomReal);
-        	}
+        float quant = c.getQuant();
+        int min = c.getMinim();
+        if (min == -1) {
+	        for (int i = size - 1; i >= 0; --i) {
+	        	if (array.get(i).second >= quant) {
+	        		if (!array.get(i).first.equals(n.getId())) {
+	                nomReal = nomNode(array.get(i).first,c.getPath().tipoUltimaLetra(c.getPath().getStringPath()));
+	                res.add(nomReal);
+	        		}
+	        	}
+	        }
+	        return res;
         }
-        return res;
+        else { // Aqui Quant será -1 y he de sacar los min elementos mas importantes;
+        	if (size < min) min = size;
+        	for (int i = min-1; i >= 0; --i) {
+	                nomReal = nomNode(array.get(i).first,c.getPath().tipoUltimaLetra(c.getPath().getStringPath()));
+	                res.add(nomReal);
+	        }
+        	return res;
+        }
     }
     
     public  void generarPerfil(PlantillaPerfil p,Node n,String nom) throws PathException, IOException {
@@ -63,8 +84,7 @@ public class CtrlDominio {
             for (int i = 0; i < c.size(); i++) {
                 ArrayList<Pair<Integer,Float>> res = new ArrayList<Pair<Integer,Float>>();
                 res = hetesanic.getHeteSim(c.get(i).getPath(), n);
-                ArrayList<String> asd = convert(res,c.get(i));
-                perfilActual.anadirFila(convert(res,c.get(i)));
+                perfilActual.anadirFila(convert(res,c.get(i),n));
             }
     }
     
@@ -105,7 +125,7 @@ public class CtrlDominio {
     }
     
     private String nomNode(int id,Node.Type tipus) throws IOException {
-        CtrlImport ctrl = new CtrlImport("C:\\Users\\WIN\\Downloads\\DBLP_four_area");
+        CtrlImport ctrl = new CtrlImport("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades\\DBLP_four_area");
         ctrl.loadGraphInfo();
         Graph g = ctrl.getGraph();
         Node n = g.getNode(id, tipus);
@@ -128,7 +148,7 @@ public class CtrlDominio {
 	    	Camp c = new Camp();
 	    	String s1, s2, s3, s4, s5;
 	    	s1 = aux.get(i);i++; s2 = aux.get(i); i++; s3 = aux.get(i);i++; s4 = aux.get(i);i++; s5 = aux.get(i);
-	    	c.setPath(s1, s2, s3);
+	    	c.setPath(s2, s1, s3);
 	    	c.setQuant(Float.parseFloat(s4));
 	    	c.setMinim(Integer.parseInt(s5));
 	    	plantillaActual.setInfo(c);
@@ -511,24 +531,17 @@ public class CtrlDominio {
 		generarPerfil(plantillaActual, n, nomP);
 	}
 
-	public void crearPerfil(String nomPP, String tipus, ArrayList<ArrayList<String>> camp, String nomP) throws IOException, PathException {
+	public void crearPerfil(String nomPP, String tipus, ArrayList<ArrayList<String>> camp, String nomP,Integer idPerfil) throws IOException, PathException {
 		crearPlantilla(nomPP, tipus, camp);
-		int id = 0;
+		Node n = new Node();
 		Node.Type tip = plantillaActual.getTipus();
-		if(tip.equals("Autor")) id=getLastId("Autor")+1;
-		else if(tip.equals("Conferencia")) id = getLastId("Conferencia")+1;
-		else if(tip.equals("Terme")) id = getLastId("Terme")+1;
-		else if(tip.equals("Paper")) id = getLastId("Paper")+1;
+		n.initialize(tip, idPerfil, nomP);
 		Random rnd = new Random();
 		int aux = (int)(rnd.nextDouble() * 3 + 0);
-		Node n = new Node();
-		n.setId(id);
 		if(aux == 0) n.setLabel(Node.Label.AI);
 		else if(aux == 1) n.setLabel(Node.Label.Database);
 		else if(aux == 2) n.setLabel(Node.Label.DataMining);
 		else n.setLabel(Node.Label.InformationRetrieval);
-		n.setNom(nomP);
-		n.setTipus(tip);
 		generarPerfil(plantillaActual, n, nomP);
 	}
 	

@@ -1,4 +1,4 @@
-package Dominio;
+package domini;
 
 import java.util.ArrayList;
 import java.util.HashMap;

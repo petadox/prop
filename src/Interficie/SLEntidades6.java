@@ -324,7 +324,10 @@ public class SLEntidades6 extends JFrame {
 	            		 }
 	            	 } 
 	            	 else if (ControladorInterficie.getElement3().equals("Plantilla")) {
-	            		 if(ControladorInterficie.getTipusPlant().equals("Autor"))ControladorInterficie.setNom5(autores.get(index).second);
+	            		 if(ControladorInterficie.getTipusPlant().equals("Autor")) {
+	            			 ControladorInterficie.setNom5(autores.get(index).second);
+	            			 ControladorInterficie.setIdPerfil(autores.get(index).first);
+	            		 }
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Conferencia"))ControladorInterficie.setNom5(conferencies.get(index).second);
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Paper"))ControladorInterficie.setNom5(papers.get(index).second);
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Terme"))ControladorInterficie.setNom5(termes.get(index).second);

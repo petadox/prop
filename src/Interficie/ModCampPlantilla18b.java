@@ -202,8 +202,8 @@ public class ModCampPlantilla18b extends JFrame {
 							if(auxMin == -1 && auxQuant == -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor diferent a -1");
 							if(auxMin > -1 && auxQuant > -1) JOptionPane.showMessageDialog(null,"Mínim o Quant han de tenir un valor igual a -1");
 							else{
-								s.add(textDescPlant.getText());
 								s.add(textNomPlant.getText());
+								s.add(textDescPlant.getText());
 								s.add(textPath.getText());
 								s.add(textQuant.getText());
 								s.add(textMin.getText());

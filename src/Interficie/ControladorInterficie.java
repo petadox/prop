@@ -27,7 +27,7 @@ public class ControladorInterficie {
 	private static String SLPerfiles9;
 	private static String Slentidades6;
 	private static Integer entidades6;
-	private static String consultarentidades;
+	private static Integer IdPerfil;
 	private static String nombreEntidad;
 	private static String NomPlant11;
 	private static String TipusPlant11;
@@ -459,7 +459,7 @@ public class ControladorInterficie {
 		if(Menu2=="Consultar" && Element3=="Perfil") CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
 		//genera perfil
 		else{
-			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5);
+			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5,IdPerfil);
 		}
 	}
 	
@@ -546,5 +546,13 @@ public class ControladorInterficie {
 		if(Camp12.size()>0)Camp12.remove(numCamp);
 		Camp12.add(numCamp, s);
 		cargarPlantilla();
+	}
+	
+	public static void setIdPerfil(Integer id) {
+		IdPerfil = id;
+	}
+	
+	public static Integer getIdPerfil() {
+		return IdPerfil;
 	}
 }
