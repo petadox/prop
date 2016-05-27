@@ -296,6 +296,7 @@ public class SLEntidades6 extends JFrame {
 	            				 ControladorInterficie.setEntRel7("Paper");
 	            				 ControladorInterficie.VistaSLEntidades6();
 	            			 }
+	            			 dispose();
 	            		 }
 	            		 else if (ControladorInterficie.getEntRel7().equals("Terme")){
 	            			 ControladorInterficie.setIdNodo(termes.get(index).first);
@@ -306,11 +307,17 @@ public class SLEntidades6 extends JFrame {
 	            				 ControladorInterficie.setEntRel7("Paper");
 	            				 ControladorInterficie.VistaSLEntidades6();
 	            			 }
+	            			 dispose();
 	            		 }
 	            		 else {
 	            			 ControladorInterficie.setIdPaper(papers.get(index).first);
 	            			 boolean aux;
-	            			 if (ControladorInterficie.getMenu2().equals("Crear")) ControladorInterficie.newRelacion();
+	            			 if (ControladorInterficie.getMenu2().equals("Crear")) {
+	            				 if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
+	            					 if(ControladorInterficie.relacionCorrecta()) ControladorInterficie.newRelacion();
+	            					 else JOptionPane.showMessageDialog(null,"El paper ya fue publicado en una conferencia");
+	            				 }
+	            			 }
 	            			 else if (ControladorInterficie.getMenu2().equals("Consultar")) {
 	            				 aux = ControladorInterficie.consRelacion();
 	            				 int dialog = JOptionPane.INFORMATION_MESSAGE;
@@ -318,7 +325,6 @@ public class SLEntidades6 extends JFrame {
 				               	 else JOptionPane.showMessageDialog(null, "No existe la relacion.","", dialog);
 	            			 }
 	            			 else if (ControladorInterficie.getMenu2().equals("Modificar")) ControladorInterficie.modRelacion();
-	            			 /*else ControladorInterficie.deleteRelacion(); */
 	            			 ControladorInterficie.VistaMenu2();
 	            			 dispose();
 	            		 }
@@ -328,9 +334,18 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.setNom5(autores.get(index).second);
 	            			 ControladorInterficie.setIdPerfil(autores.get(index).first);
 	            		 }
-	            		 else if(ControladorInterficie.getTipusPlant().equals("Conferencia"))ControladorInterficie.setNom5(conferencies.get(index).second);
-	            		 else if(ControladorInterficie.getTipusPlant().equals("Paper"))ControladorInterficie.setNom5(papers.get(index).second);
-	            		 else if(ControladorInterficie.getTipusPlant().equals("Terme"))ControladorInterficie.setNom5(termes.get(index).second);
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Conferencia")) {
+	            			 ControladorInterficie.setNom5(conferencies.get(index).second);
+	            			 ControladorInterficie.setIdPerfil(conferencies.get(index).first);
+	            		 }
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Paper")) {
+	            			 ControladorInterficie.setNom5(papers.get(index).second);
+	            			 ControladorInterficie.setIdPerfil(papers.get(index).first);
+	            		 }
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Terme")) {
+	            			 ControladorInterficie.setNom5(termes.get(index).second);
+	            			 ControladorInterficie.setIdPerfil(termes.get(index).first);
+	            		 }
 	            		 
 	            		try {
 							ControladorInterficie.crearPerfil();

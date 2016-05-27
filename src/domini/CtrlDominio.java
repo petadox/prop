@@ -556,5 +556,13 @@ public class CtrlDominio {
 	}
 
 	public void getTamPlantAct() {System.out.print(plantillaActual.getTam());}
-
+	
+	public boolean relacionCorrecta(Integer IdPaper) {
+		ArrayList<HashMap<Integer,Float>> droguitaguena = actual.getMatrixConf().retornarM();
+		boolean trobat = false;
+		for (int i = 0; i < droguitaguena.size()&& !trobat; i++) {
+			if (droguitaguena.get(i).containsKey(IdPaper)) trobat = true;
+		}
+		return !trobat;
+	}
 }

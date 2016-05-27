@@ -555,4 +555,8 @@ public class ControladorInterficie {
 	public static Integer getIdPerfil() {
 		return IdPerfil;
 	}
+	
+	public static boolean relacionCorrecta() {
+		return CtrlD.relacionCorrecta(IdPaper);
+	}
 }
