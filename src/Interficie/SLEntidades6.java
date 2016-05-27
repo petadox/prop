@@ -20,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 
 import Excepcions.FicheroNoExiste;
 import domini.Pair;
+import domini.PathException;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -158,6 +160,37 @@ public class SLEntidades6 extends JFrame {
 			}
 		}
 		
+		else if (ControladorInterficie.getElement3().equals("Plantilla")) {
+			if (ControladorInterficie.getTipusPlant().equals("Autor")) {
+				textField.setText("Autores");
+				for (int i = 0; i < autores.size(); i++) {
+				dlm.addElement(autores.get(i).second);
+				}
+			}
+			
+			else if (ControladorInterficie.getTipusPlant().equals("Conferencia")) {
+				for (int i = 0; i < conferencies.size(); i++) {
+					textField.setText("Conferencias");
+					dlm.addElement(conferencies.get(i).second);	
+					}
+			}
+			
+			else if (ControladorInterficie.getTipusPlant().equals("Terme")) {
+				for (int i = 0; i < termes.size(); i++) {
+					textField.setText("Termes");
+					dlm.addElement(termes.get(i).second);
+				}
+			}
+			
+			else if (ControladorInterficie.getTipusPlant().equals("Paper")) {
+				for (int i = 0; i < papers.size(); i++) {
+					textField.setText("Papers");
+					dlm.addElement(papers.get(i).second);
+				}
+			}
+		}
+		
+		
 		MouseListener mouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {
 		             int index = list.locationToIndex(e.getPoint());
@@ -289,6 +322,20 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.VistaMenu2();
 	            			 dispose();
 	            		 }
+	            	 } 
+	            	 else if (ControladorInterficie.getElement3().equals("Plantilla")) {
+	            		 if(ControladorInterficie.getTipusPlant().equals("Autor"))ControladorInterficie.setNom5(autores.get(index).second);
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Conferencia"))ControladorInterficie.setNom5(conferencies.get(index).second);
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Paper"))ControladorInterficie.setNom5(papers.get(index).second);
+	            		 else if(ControladorInterficie.getTipusPlant().equals("Terme"))ControladorInterficie.setNom5(termes.get(index).second);
+	            		 
+	            		try {
+							ControladorInterficie.crearPerfil();
+						} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
+							e1.printStackTrace();
+						}
+	            		ControladorInterficie.VistaConsPerf15();
+	            		dispose();
 	            	 } 
 			     }
 			 };

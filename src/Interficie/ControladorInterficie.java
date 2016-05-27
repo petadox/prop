@@ -184,7 +184,6 @@ public class ControladorInterficie {
 	}
 	public static void saveP() throws IOException, FicheroYaExistente, FicheroNoExiste{CtrlD.guardarPerfil();}
 	public static void loadP(String ruta) throws FicheroNoExiste, IOException{CtrlD.cargarPerfil(ruta);}
-
 	
 	public static void VistaPrincipal1() {
 		prin1 = new Principal1();
@@ -456,7 +455,9 @@ public class ControladorInterficie {
 	public static void cargarPlantilla(){CtrlD.crearPlantilla(NomPlant11, TipusPlant11, Camp12);}
 	
 	public static void crearPerfil() throws NumberFormatException, FicheroNoExiste, IOException, PathException{
-		if(Menu2=="Crear" && Element3=="Perfil") CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
+		//base datos
+		if(Menu2=="Consultar" && Element3=="Perfil") CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
+		//genera perfil
 		else{
 			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5);
 		}

@@ -1,4 +1,4 @@
-package domini;
+package Dominio;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -12,13 +12,12 @@ import java.util.Set;
 public class SparseMatrix {
 	ArrayList<SparseVector> rows = new ArrayList<SparseVector>();
 	ArrayList<SparseVector> cols = new ArrayList<SparseVector>();
-	// Si hubiera algun paper que no tiene ninguna relacion con autor, term o conf, va a petar la multiplicacion de matrices
+	
 	public SparseMatrix(Matrix matrix) { 
-		int nCols = 0;
+		int nCols = matrix.getNCols();
 		int nRows = matrix.getNRows();
 		for (int i = 0; i < nRows; ++i) {
 			rows.add(new SparseVector());
-			nCols = Math.max(nCols, matrix.getNCols(i));
 		}
 		for (int i = 0; i < nCols; ++i) {
 			cols.add(new SparseVector());
@@ -41,14 +40,29 @@ public class SparseMatrix {
 		}
 	}
 	
+	SparseMatrix(int nRows) {
+		for (int i = 0; i < nRows; ++i) {
+			rows.add(new SparseVector());
+		}
+	}
+	
 	SparseMatrix(SparseMatrix sm) {
 		ArrayList<SparseVector> rows = sm.getRows();
 		for (SparseVector sv : rows) {
-			this.rows.add((SparseVector) sv.clone());
+			SparseVector row = new SparseVector();
+			for (Integer k : sv.keySet()){
+				row.put(k, sv.get(k));
+			}
+			this.rows.add(row);
 		}
+		
 		ArrayList<SparseVector> cols = sm.getCols();
 		for (SparseVector sv : cols) {
-			this.cols.add((SparseVector) sv.clone());
+			SparseVector col = new SparseVector();
+			for (Integer k : sv.keySet()){
+				col.put(k, sv.get(k));
+			}
+			this.cols.add(col);
 		}
 	}
 	
@@ -86,6 +100,20 @@ public class SparseMatrix {
 			cols.get(col).put(row, value);
 //			System.out.println("Trying to set a position of the matrix that is outside the matrix");
 //			throw e;
+		}
+	}
+	
+	void setOnRow(int row, int col, Float value) {
+		if (value == 0.f) {
+			return;
+		}
+		try {
+			rows.get(row).put(col, value);
+		}
+		catch (IndexOutOfBoundsException e) {
+			while (row >= rows.size()) rows.add(new SparseVector());
+			
+			rows.get(row).put(col, value);
 		}
 	}
 	
@@ -131,6 +159,22 @@ public class SparseMatrix {
 		}
 		return ret;
 	}
+	
+	/** 
+	 * This shit returns a SparseMatrix that do not have Cols.
+	 * THIS CANT BE MULTIPLIED ON THE RIGHT SIDE
+	 */
+	static SparseMatrix multiplyHalf(SparseMatrix m1, SparseMatrix m2) {
+		SparseMatrix ret = new SparseMatrix(m1.getNRows());
+		for (int i = 0; i < ret.getNRows(); ++i) {
+			SparseVector v1 = m1.getRow(i);
+			for (int j = 0; j < m2.getNCols(); ++j) {
+				ret.setOnRow(i, j, SparseVector.multiply(v1, m2.getCol(j)));
+			}
+		}
+		return ret;
+	}
+	
 	
 //	static SparseMatrix multiply(Matrix m1, SparseMatrix m2) {
 //		if (m1.getNCols() != m2.getNRows()) throw new RuntimeException("Dimension 'm1' cols and 'm2' rows disagree");

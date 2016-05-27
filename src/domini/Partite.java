@@ -1,4 +1,4 @@
-package domini;
+package Dominio;
 
 import java.util.HashSet;
 import java.util.Set;
