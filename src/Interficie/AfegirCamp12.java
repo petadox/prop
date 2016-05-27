@@ -48,6 +48,7 @@ public class AfegirCamp12 extends JFrame {
 	 * Create the frame.
 	 */
 	public AfegirCamp12() {
+		setTitle("Afegir Camp\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -135,7 +136,7 @@ public class AfegirCamp12 extends JFrame {
 				JOptionPane.showMessageDialog(null, "Escriu el nom de la Plantilla.");
 			}
 		});
-		btnHelpNP.setBounds(352, 29, 37, 31);
+		btnHelpNP.setBounds(352, 29, 47, 31);
 		contentPane.add(btnHelpNP);
 		
 		btnHelpDP = new JButton("?");
@@ -144,7 +145,7 @@ public class AfegirCamp12 extends JFrame {
 				JOptionPane.showMessageDialog(null, "[Opcional] Escrigui una descripció per a la Plantilla.");
 			}
 		});
-		btnHelpDP.setBounds(352, 71, 37, 31);
+		btnHelpDP.setBounds(352, 71, 47, 31);
 		contentPane.add(btnHelpDP);
 		
 		btnHelpP = new JButton("?");
@@ -153,7 +154,7 @@ public class AfegirCamp12 extends JFrame {
 				JOptionPane.showMessageDialog(null, "Escrigui el Path de la Plantilla. P = paper, A = autor, C = conferència i T = terme.");
 			}
 		});
-		btnHelpP.setBounds(352, 113, 37, 31);
+		btnHelpP.setBounds(352, 113, 47, 31);
 		contentPane.add(btnHelpP);
 		
 		btnHelpQ = new JButton("?");
@@ -162,7 +163,7 @@ public class AfegirCamp12 extends JFrame {
 				JOptionPane.showMessageDialog(null, "introdueix un valor entre 0 i 1 o -1 si vol usar l'opció 'Mínim'.");
 			}
 		});
-		btnHelpQ.setBounds(251, 155, 37, 31);
+		btnHelpQ.setBounds(251, 157, 47, 31);
 		contentPane.add(btnHelpQ);
 		
 		btnHelpM = new JButton("?");
