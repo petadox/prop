@@ -15,6 +15,7 @@ import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JToggleButton;
 
 @SuppressWarnings("serial")
 public class IntroduirNom5 extends JFrame {
@@ -112,6 +113,55 @@ public class IntroduirNom5 extends JFrame {
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
+		
+		JToggleButton tglbtnAI = new JToggleButton("AI");
+		tglbtnAI.setBounds(20, 166, 50, 23);
+		contentPane.add(tglbtnAI);
+		
+		JToggleButton tglbtnDataMining = new JToggleButton("DataMining");
+		tglbtnDataMining.setBounds(82, 166, 85, 23);
+		contentPane.add(tglbtnDataMining);
+		
+		JToggleButton tglbtnDatabase = new JToggleButton("Database");
+		tglbtnDatabase.setBounds(172, 166, 79, 23);
+		contentPane.add(tglbtnDatabase);
+		
+		JToggleButton tglbtnInformationalRetrieval = new JToggleButton("InformationRetrieval");
+		tglbtnInformationalRetrieval.setBounds(261, 166, 131, 23);
+		contentPane.add(tglbtnInformationalRetrieval);
+		
+		tglbtnAI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tglbtnDataMining.isSelected() ) tglbtnDataMining.setSelected(false); ;
+				if(tglbtnDatabase.isSelected()) tglbtnDatabase.setSelected(false);
+				if(tglbtnInformationalRetrieval.isSelected()) tglbtnInformationalRetrieval.setSelected(false);
+			}
+		});
+		
+		tglbtnDataMining.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tglbtnAI.isSelected() ) tglbtnAI.setSelected(false);
+				if(tglbtnDatabase.isSelected()) tglbtnDatabase.setSelected(false);
+				if(tglbtnInformationalRetrieval.isSelected()) tglbtnInformationalRetrieval.setSelected(false);
+			}
+		});
+		
+		tglbtnDatabase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tglbtnDataMining.isSelected()) tglbtnDataMining.setSelected(false);
+				if(tglbtnAI.isSelected() ) tglbtnAI.setSelected(false);
+				if(tglbtnInformationalRetrieval.isSelected()) tglbtnInformationalRetrieval.setSelected(false);
+			}
+		});
+		
+		tglbtnInformationalRetrieval.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tglbtnDataMining.isSelected()) tglbtnDataMining.setSelected(false);
+				if(tglbtnAI.isSelected() ) tglbtnAI.setSelected(false);
+				if(tglbtnDatabase.isSelected()) tglbtnDatabase.setSelected(false);
+			}
+		});
+		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.setNom5(nom.getText());

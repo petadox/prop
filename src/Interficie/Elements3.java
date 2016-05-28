@@ -104,6 +104,8 @@ public class Elements3 extends JFrame {
 			}
 		});
 		
+		if (ControladorInterficie.getMenu2().equals("Modificar")) btnRelacions.setEnabled(false);
+		
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
@@ -135,20 +137,24 @@ public class Elements3 extends JFrame {
 						try {
 							JFileChooser importar = new JFileChooser();
 							importar.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades\\PlantillaPerfil"));
-							importar.showOpenDialog(importar);
-							String ruta = importar.getSelectedFile().getAbsolutePath();
-							
-							if(ControladorInterficie.getMenu2() == "Consultar" || 
-							   ControladorInterficie.getMenu2() == "Modificar"){
-									
-								   ControladorInterficie.loadPP(ruta);
-								   ControladorInterficie.VistaConsPlant17();
+							int result = importar.showOpenDialog(importar);
+							if (result == JFileChooser.CANCEL_OPTION) {
+								ControladorInterficie.VistaGrafo8();
+								dispose();
 							}
-							else if(ControladorInterficie.getMenu2() == "Borrar"){
-								ControladorInterficie.deletePP(ruta);
-								ControladorInterficie.VistaMenu2();
-							}
-							
+							else {
+								String ruta = importar.getSelectedFile().getAbsolutePath();
+								if(ControladorInterficie.getMenu2() == "Consultar" || 
+								   ControladorInterficie.getMenu2() == "Modificar"){
+										
+									   ControladorInterficie.loadPP(ruta);
+									   ControladorInterficie.VistaConsPlant17();
+								}
+								else if(ControladorInterficie.getMenu2() == "Borrar"){
+									ControladorInterficie.deletePP(ruta);
+									ControladorInterficie.VistaMenu2();
+								}
+							}	
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
@@ -189,63 +195,96 @@ public class Elements3 extends JFrame {
 				directorio.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
 				int res = JOptionPane.showConfirmDialog(null, "Si cambias de grafo, perderás todos los datos ¿Quieres guardar los cambios que has hecho hasta ahora?");
 				if (res == 0) {
-					absoluto.showSaveDialog(absoluto);
-					String path = absoluto.getSelectedFile().getAbsolutePath();
-					try {
-						ControladorInterficie.saveGraph(path);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					//Si guarda
+					int result = absoluto.showSaveDialog(absoluto);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaElementos3();
+						dispose();
 					}
-					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
-					//usuario da a importar
-					if (cargaroimportar == 0) {
-						directorio.showOpenDialog(absoluto);
-						path = directorio.getSelectedFile().getAbsolutePath();
+					else {
+						String path = absoluto.getSelectedFile().getAbsolutePath();
 						try {
-							ControladorInterficie.importaGraph(path);
-							} catch (IOException e1) {
+							ControladorInterficie.saveGraph(path);
+						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
 						ControladorInterficie.VistaMenu2();
 						dispose();
 					}
+					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
+					//usuario da a importar
+					if (cargaroimportar == 0) {
+						result = directorio.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
+						}
+						else {
+							String path = directorio.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.importaGraph(path);
+								} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+					}
 					//cargar
 					else {
-						absoluto.showOpenDialog(absoluto);
-						path = absoluto.getSelectedFile().getAbsolutePath();
-						try {
-							ControladorInterficie.carregaGraph(path);
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						result = absoluto.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
 						}
-						ControladorInterficie.VistaMenu2();
-						dispose();	
+						else {
+							String path = absoluto.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.carregaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();	
+						}
 					}
 				}
 				else if (res == 1) {
 					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
 					if (cargaroimportar == 0) {
-						directorio.showOpenDialog(absoluto);
-						String path = directorio.getSelectedFile().getAbsolutePath();
-						try {
-							ControladorInterficie.importaGraph(path);
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						int result = directorio.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
 						}
-						ControladorInterficie.VistaMenu2();
-						dispose();
+						else {
+							String path = directorio.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.importaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
 					}
 					//cargar
 					else {
-						absoluto.showOpenDialog(absoluto);
-						String path = absoluto.getSelectedFile().getAbsolutePath();
-						try {
-							ControladorInterficie.carregaGraph(path);
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						int result = absoluto.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
 						}
-						ControladorInterficie.VistaMenu2();
-						dispose();	
+						else {
+							String path = absoluto.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.carregaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
 					}
 				}
 			}

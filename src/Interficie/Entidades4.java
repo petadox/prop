@@ -117,7 +117,7 @@ public class Entidades4 extends JFrame {
 				if (ControladorInterficie.getMenu2().equals("Crear")) { 
 					if(ControladorInterficie.getElement3().equals("Entidades") ||
 						ControladorInterficie.getElement3().equals("Perfiles") ||
-						ControladorInterficie.getElement3().equals("Plantillas")) {
+						ControladorInterficie.getElement3().equals("Plantilla")) {
 							ControladorInterficie.VistaIntroduirNom5();
 					}
 					else ControladorInterficie.VistaEntRel7();
@@ -125,7 +125,7 @@ public class Entidades4 extends JFrame {
 				else if (ControladorInterficie.getMenu2().equals("Consultar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
 					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantillas"))
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))
 						try {
 							ControladorInterficie.VistaSLPlantilla16();
 						} catch (Exception e1) {
@@ -136,7 +136,7 @@ public class Entidades4 extends JFrame {
 				else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
 					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantillas"))
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))
 						try {
 							ControladorInterficie.VistaSLPlantilla16();
 						} catch (Exception e1) {
@@ -147,7 +147,7 @@ public class Entidades4 extends JFrame {
 				else {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
 					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantillas"))
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))
 						try {
 							ControladorInterficie.VistaSLPlantilla16();
 						} catch (Exception e1) {
@@ -155,9 +155,6 @@ public class Entidades4 extends JFrame {
 						}
 					else ControladorInterficie.VistaEntRel7();
 				}
-				
-				
-				
 				dispose();
 			}
 		});

@@ -23,10 +23,8 @@ public class ConsPerf15 extends JFrame {
 		int t = MatriuCamps.size();
 		for (int i = 0; i < t; ++i) {
 			list.add(""); // Linea blanca entre tipo y tipo, tipo heheh;
-			System.out.println("Añado: " +NomsArray.get(i)+ "");
 			list.add(NomsArray.get(i));
 			for (int j = 0; j < MatriuCamps.get(i).size(); ++j) {
-				System.out.println("Añado 2o bucle: " +MatriuCamps.get(i).get(j)+ "");
 				list.add(MatriuCamps.get(i).get(j));
 				
 			}
