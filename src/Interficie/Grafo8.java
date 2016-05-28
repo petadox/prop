@@ -105,8 +105,8 @@ public class Grafo8 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser directorio = new JFileChooser();
 				JFileChooser absoluto = new JFileChooser();
-				directorio.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
-				absoluto.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
+				directorio.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
+				absoluto.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\Graphs\\"));
 				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				if(tglbtnCrearGrafo.isSelected()) {
 					int result = directorio.showOpenDialog(directorio);

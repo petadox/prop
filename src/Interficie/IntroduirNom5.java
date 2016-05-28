@@ -66,50 +66,6 @@ public class IntroduirNom5 extends JFrame {
 		contentPane.add(nom);
 		nom.setColumns(10);
 		
-		JButton btnNext = new JButton(new ImageIcon("next.jpg")); 
-		btnNext.setBounds(293, 215, 131, 31);
-		contentPane.add(btnNext);
-		btnNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(nom.getText().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
-				}
-				else{
-					ControladorInterficie.setNom5(nom.getText());
-					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
-						ControladorInterficie.VistaEntidades4();
-					}
-					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
-						ControladorInterficie.modificarNode();
-					}
-					else {
-						if (ControladorInterficie.getEntidades4() == "Autor") { try {
-							ControladorInterficie.addNode("Autor", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Conf") { try {
-							ControladorInterficie.addNode("Conf", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
-							ControladorInterficie.addNode("Paper", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Term") { try {
-							ControladorInterficie.addNode("Term", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
-				}
-			}
-		});
-		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
@@ -167,6 +123,66 @@ public class IntroduirNom5 extends JFrame {
 				ControladorInterficie.setNom5(nom.getText());
 				ControladorInterficie.VistaEntidades4();
 				dispose();
+			}
+		});
+		
+		JButton btnNext = new JButton(new ImageIcon("next.jpg")); 
+		btnNext.setBounds(293, 215, 131, 31);
+		contentPane.add(btnNext);
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(nom.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
+				}
+				else{
+					ControladorInterficie.setNom5(nom.getText());
+					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
+						ControladorInterficie.VistaEntidades4();
+					}
+					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
+						ControladorInterficie.modificarNode();
+					}
+					else {
+						if (ControladorInterficie.getEntidades4() == "Autor") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Autor", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Conf") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Conf", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Paper", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Term") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Term", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
+				}
 			}
 		});
 	}

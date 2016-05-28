@@ -136,7 +136,7 @@ public class Elements3 extends JFrame {
 					else{ //Consultar/modificar/borrar Plantilla
 						try {
 							JFileChooser importar = new JFileChooser();
-							importar.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades\\PlantillaPerfil"));
+							importar.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\PlantillaPerfil\\"));
 							int result = importar.showOpenDialog(importar);
 							if (result == JFileChooser.CANCEL_OPTION) {
 								ControladorInterficie.VistaGrafo8();
@@ -191,8 +191,8 @@ public class Elements3 extends JFrame {
 				JFileChooser absoluto = new JFileChooser();
 				JFileChooser directorio = new JFileChooser();
 				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				absoluto.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
-				directorio.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
+				absoluto.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
+				directorio.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
 				int res = JOptionPane.showConfirmDialog(null, "Si cambias de grafo, perderás todos los datos ¿Quieres guardar los cambios que has hecho hasta ahora?");
 				if (res == 0) {
 					//Si guarda

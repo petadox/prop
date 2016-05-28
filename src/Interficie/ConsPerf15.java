@@ -97,7 +97,6 @@ public class ConsPerf15 extends JFrame {
 				}
 				ControladorInterficie.VistaMenu2();
 				dispose();
-				
 				// ++ Save AND Exit --> Exito asegurado tito
 			}
 			
@@ -120,7 +119,7 @@ public class ConsPerf15 extends JFrame {
 				if (ControladorInterficie.getMenu2().equals("Consultar") &&
 						ControladorInterficie.getElement3().equals("Perfil")) {
 					try {
-						ControladorInterficie.deleteP("/BaseDades/Perfil/" + ControladorInterficie.getNomPerfil() + ".txt");
+						ControladorInterficie.deleteP(System.getProperty("user.dir")+"\\BaseDades\\Perfil\\" + ControladorInterficie.getNomPerfil() + ".txt");
 					} catch (FicheroNoExiste | IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
