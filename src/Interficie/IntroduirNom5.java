@@ -76,7 +76,8 @@ public class IntroduirNom5 extends JFrame {
 				else{
 					ControladorInterficie.setNom5(nom.getText());
 					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
-						ControladorInterficie.VistaEntidades4();
+						ControladorInterficie.VistaElegirPlantilla20();
+						dispose();
 					}
 					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
 						ControladorInterficie.modificarNode();
@@ -102,9 +103,9 @@ public class IntroduirNom5 extends JFrame {
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						} }
+						ControladorInterficie.VistaMenu2();
+						dispose();
 					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
 				}
 			}
 		});

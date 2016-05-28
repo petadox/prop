@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JToggleButton;
@@ -85,12 +86,15 @@ public class ElegirPlantilla20 extends JFrame {
 				if(btnCrearNova.isSelected()) ControladorInterficie.VistaPlantilla11();
 				else if(btnUsarExistent.isSelected())
 					try {
-						ControladorInterficie.VistaSLPlantilla16();
+						//ControladorInterficie.VistaElegirPlant();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				dispose();
 			}
 		});
+		
+		JOptionPane.showMessageDialog(null, "Ahora debes elegir si crear una plantilla o usar una ya existente: ");
+		
 	}
 }
