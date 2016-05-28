@@ -559,4 +559,8 @@ public class ControladorInterficie {
 	public static boolean relacionCorrecta() {
 		return CtrlD.relacionCorrecta(IdPaper);
 	}
+	
+	public static boolean esUltimaRel() {
+		return CtrlD.esUltimaRel(IdNodo);
+	}
 }

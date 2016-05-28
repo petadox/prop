@@ -77,6 +77,8 @@ public class EntRel7 extends JFrame {
 			}
 		});
 		
+		if (ControladorInterficie.getMenu2().equals("Borrar")) btnConferencia.setEnabled(false);
+		
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);

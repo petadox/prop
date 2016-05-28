@@ -109,49 +109,72 @@ public class Grafo8 extends JFrame {
 				absoluto.setCurrentDirectory(new File("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades"));
 				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				if(tglbtnCrearGrafo.isSelected()) {
-
-					directorio.showOpenDialog(directorio);
-					String path = directorio.getSelectedFile().getAbsolutePath();
-					try {
-						ControladorInterficie.importaGraph(path);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					int result = directorio.showOpenDialog(directorio);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaGrafo8();
+						dispose();
 					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
+					else {
+						String path = directorio.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.importaGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
 				}
 				else if(tglbtnCargarGrafo.isSelected()) {
-					absoluto.showOpenDialog(absoluto);
-					String path = absoluto.getSelectedFile().getAbsolutePath();
-					try {
-						ControladorInterficie.carregaGraph(path);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					int result = absoluto.showOpenDialog(absoluto);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaGrafo8();
+						dispose();
 					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
+					else {
+						String path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.carregaGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
 				}
 				else if(tglbtnGuardarGrafo.isSelected()) {
-					absoluto.showSaveDialog(absoluto);
-					String path = absoluto.getSelectedFile().getAbsolutePath();
-					try {
-						ControladorInterficie.saveGraph(path);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					int result = absoluto.showSaveDialog(absoluto);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaGrafo8();
+						dispose();
 					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
+					else {
+						String path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.saveGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
 				}
 				else if(tglbtnBorrarGrafo.isSelected()) {
-					absoluto.showOpenDialog(absoluto);
-					String path = absoluto.getSelectedFile().getAbsolutePath();
-					try {
-						ControladorInterficie.deleteGraph(path);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					int result = absoluto.showOpenDialog(absoluto);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaGrafo8();
+						dispose();
 					}
-					ControladorInterficie.VistaMenu2();
-					dispose();
+					else {
+						String path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.deleteGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
 				}
 				else {
 					JOptionPane.showOptionDialog(null, "Has de seleccionar alguna opcion", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);

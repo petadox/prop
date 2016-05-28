@@ -17,6 +17,8 @@ import persistencia.CtrlDataGraph;
 import persistencia.GestioDades;
 
 import java.util.Scanner;
+import java.util.Set;
+
 import persistencia.ControladorGD;
 
 import java.io.FileNotFoundException;
@@ -187,13 +189,14 @@ public class CtrlDominio {
     }
     
     public void borrarNodo(String nom,Integer index,int tipus) {
-    	Node n = new Node();
     	if (tipus == 0) {
     		//es autor
     		ArrayList<Node> autors = actual.getAutors();
-    		for (int i = 0; i < autors.size(); i++) {
-    			if (autors.get(i).getNom().equals(nom) && i == index) {
-    				n.initialize(Node.Type.Autor, index, nom);
+    		for (Integer i = 0; i < autors.size(); i++) {
+    			if (autors.get(i) != null) {
+	    			if (autors.get(i).getNom().equals(nom) && i.equals(index)) {
+	    		    	actual.deleteNode(autors.get(i));
+	    			}
     			}
     		}
     	}
@@ -201,9 +204,11 @@ public class CtrlDominio {
     	else if (tipus == 1) {
     		//conferencia
     		ArrayList<Node> conf = actual.getConferencies();
-    		for (int i = 0; i < conf.size(); i++) {
-    			if (conf.get(i).getNom().equals(nom) && i == index) {
-    				n.initialize(Node.Type.Conferencia, index, nom);
+    		for (Integer i = 0; i < conf.size(); i++) {
+    			if (conf.get(i) != null) {
+	    			if (conf.get(i).getNom().equals(nom) && i.equals(index)) {
+	    				actual.deleteNode(conf.get(i));
+	    			}
     			}
     		}
     	}
@@ -211,9 +216,11 @@ public class CtrlDominio {
     	else if (tipus == 2) {
     		//terme
     		ArrayList<Node> termes = actual.getTermes();
-    		for (int i = 0; i < termes.size(); i++) {
-    			if (termes.get(i).getNom().equals(nom) && i == index) {
-    				n.initialize(Node.Type.Terme, index, nom);
+    		for (Integer i = 0; i < termes.size(); i++) {
+    			if (termes.get(i) != null) {
+	    			if (termes.get(i).getNom().equals(nom) && i.equals(index)) {
+	    				actual.deleteNode(termes.get(i));
+	    			}
     			}
     		}
     	}
@@ -221,13 +228,14 @@ public class CtrlDominio {
     	else if (tipus == 3) {
     		//paper
     		ArrayList<Node> papers = actual.getPapers();
-    		for (int i = 0; i < papers.size(); i++) {
-    			if (papers.get(i).getNom().equals(nom) && i == index) {
-    				n.initialize(Node.Type.Paper, index, nom);
+    		for (Integer i = 0; i < papers.size(); i++) {
+    			if (papers.get(i) != null) {
+	    			if (papers.get(i).getNom().equals(nom) && i.equals(index)) {
+	    				actual.deleteNode(papers.get(i));
+	    			}
     			}
     		}
     	}
-    	actual.deleteNode(n);
     }
     
     public ArrayList<Pair<Integer,String>> arrayAutores() {
@@ -564,5 +572,19 @@ public class CtrlDominio {
 			if (droguitaguena.get(i).containsKey(IdPaper)) trobat = true;
 		}
 		return !trobat;
+	}
+	
+	public boolean esUltimaRel(Integer idN) {
+		ArrayList< HashMap<Integer,Float> > paperz = actual.getMatrixAuthor().retornarM();
+		Set<Integer> s = paperz.get(idN).keySet();
+		int count;
+		for (Integer i : s) {
+			count = 0;
+			for (int j = 0; j < paperz.size() && count < 2; ++j) {
+				if (paperz.get(j).containsKey(i)) ++count;
+			}
+			if(count == 1) return true;
+		}
+		return false;
 	}
 }

@@ -123,7 +123,6 @@ public class Graph implements Serializable {
             case Autor:         
                 while (i < autors.size() && !trob) {
                     if (autors.get(i) != null) trob = (autors.get(i).equals(n));
-                    if (trob) System.out.println("Maria Hitz");
                     if (!trob) ++i;
                 }
                 if (!trob) i = -1;

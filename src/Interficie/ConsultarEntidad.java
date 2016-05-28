@@ -231,7 +231,7 @@ public class ConsultarEntidad extends JFrame {
 				             dlm.remove(index);
 				             ControladorInterficie.deleteRelacion();
 		               	 }
-			     }
+		     	}
 			};
 			list.addMouseListener(mouseListener);
 		}

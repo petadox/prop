@@ -219,46 +219,35 @@ public class SLEntidades6 extends JFrame {
 			               	 int result = JOptionPane.showConfirmDialog(null, "¿ Seguro que quieres borrar el nodo indicado?","", dialog);
 			               	 //Le ha dado a aceptar
 			               	 if (result == 0) {
-			               		 dlm.remove(index);
-			               		if (ControladorInterficie.getEntidades4().equals("Autor")) {
-				               		 ControladorInterficie.borrarNode(nomEnt,autores.get(index).first,0);
-				               		 ControladorInterficie.cargarArrays();
-				               		 ControladorInterficie.ordenarVector();
-				               		 ArrayList<Pair<Integer,String>> autores = ControladorInterficie.getAutors();
-				               		 for (int i = 0; i < autores.size(); i++) {
-				               			 dlm.addElement(autores.get(i).second);
-				               		 }
-			               		} 
-			               		if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
-				               		 ControladorInterficie.borrarNode(nomEnt,conferencies.get(index).first,1);
-				               		 ControladorInterficie.cargarArrays();
-				               		 ControladorInterficie.ordenarVector();
-				               		 ArrayList<Pair<Integer,String>> conferencies = ControladorInterficie.getConferencies();
-				               		 for (int i = 0; i < autores.size(); i++) {
-				               			 dlm.addElement(conferencies.get(i).second);
-				               		 }
-				                }
-			               		if (ControladorInterficie.getEntidades4().equals("Terme")) {
-				               		 ControladorInterficie.borrarNode(nomEnt,termes.get(index).first,2);
-				               		 ControladorInterficie.cargarArrays();
-				               		 ControladorInterficie.ordenarVector();
-				               		 ArrayList<Pair<Integer,String>> termes = ControladorInterficie.getTermes();
-				               		 for (int i = 0; i < autores.size(); i++) {
-				               			 dlm.addElement(termes.get(i).second);
-				               		 }
-				                }
-			               		if (ControladorInterficie.getEntidades4().equals("Paper")) {
-				               		 ControladorInterficie.borrarNode(nomEnt,papers.get(index).first,3);
-				               		 ControladorInterficie.cargarArrays();
-				               		 ControladorInterficie.ordenarVector();
-				               		 ArrayList<Pair<Integer,String>> papers = ControladorInterficie.getPapers();
-				               		 for (int i = 0; i < autores.size(); i++) {
-				               			 dlm.addElement(papers.get(i).second);
-				               		 }
-			               		}
-			               	 }
+			               		 if (ControladorInterficie.getEntidades4().equals("Autor")) {
+			               			ControladorInterficie.setIdNodo(autores.get(index).first);
+			               			if (ControladorInterficie.esUltimaRel()) {
+			               				JOptionPane.showMessageDialog(null, "No puedes borrar este autor, es el último autor de un paper.");
+			               			}
+			               			else {
+			               				ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),autores.get(index).first,0);
+			               				ControladorInterficie.VistaSLEntidades6();
+			               				dispose();
+			               			}
+			               		 }
+			               		 else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
+			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),conferencies.get(index).first,1);
+			               			ControladorInterficie.VistaSLEntidades6();
+			               			dispose();
+		               			}
+			               		 else if (ControladorInterficie.getEntidades4().equals("Terme")) {
+			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),termes.get(index).first,2);
+			               			ControladorInterficie.VistaSLEntidades6();
+			               			dispose();
+		               			}
+			               		 else if (ControladorInterficie.getEntidades4().equals("Paper")) {
+			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),papers.get(index).first,3);
+			               			ControladorInterficie.VistaSLEntidades6();
+			               			dispose();			               	 
+		               			}
 			               	 //si le ha dado a cancelar se cierra el dialogo
-			             }       
+			               	 }
+			             }      
 			             else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 			            	 	ControladorInterficie.setSLEntidades6(ControladorInterficie.getEntidades4());
 			            	 	if (ControladorInterficie.getEntidades4().equals("Autor")) {
