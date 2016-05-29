@@ -37,6 +37,10 @@ public class ControladorInterficie {
 	private static ArrayList<ArrayList<String> > Camp12 = new ArrayList<ArrayList<String> >();
 	private static int numCamp;
 	private static String rutaPlant;
+	private static String canviNom;
+	private static Integer iPerCanviNom;
+	private static Integer jPerCanviNom;
+	private static Boolean esNom;
 
 	
 	/*Instancia*/
@@ -64,6 +68,8 @@ public class ControladorInterficie {
 	private static ElegirPlantilla20 elegirplantilla20;
 	private static ModificarPerfil23 modificarperfil23;
 	private static ConsultarEntidad consultarentidad;
+	private static ElegirPlant elegirplant;
+	private static CanviarNom canviarnom;
 
 
 	/*ScrollLists entidades*/
@@ -126,6 +132,18 @@ public class ControladorInterficie {
 	
 	public static String getNombreEntidad() {return nombreEntidad;}
 	public static void setNombreEntidad(String n) {nombreEntidad = n;}
+	
+	public static String getCanviNom() {return canviNom;}
+	public static void setCanviNom(String n) {canviNom = n;}
+	
+	public static Integer getIPerCanviNom() {return iPerCanviNom;}
+	public static void setIPerCanviNom(Integer n) {iPerCanviNom = n;}
+	
+	public static Integer getJPerCanviNom() {return jPerCanviNom;}
+	public static void setJPerCanviNom(Integer n) {jPerCanviNom = n;}
+	
+	public static Boolean getEsNom() {return esNom;}
+	public static void setEsNom(Boolean n) {esNom = n;}
 
 	
 	public static String getSLEntidades6() {return Slentidades6;}
@@ -315,12 +333,27 @@ public class ControladorInterficie {
 		modificarperfil23.setResizable(false);
 	}
 	
+	public static void VistaCanviarNom() {
+		canviarnom = new CanviarNom();
+		canviarnom.setLocationRelativeTo(null);
+		canviarnom.setVisible(true);
+		canviarnom.setResizable(false);
+	}
+	
 	public static void VistaConsultar() {
 		consultarentidad = new ConsultarEntidad();
 		consultarentidad.setLocationRelativeTo(null);
 		consultarentidad.setVisible(true);
 		consultarentidad.setResizable(false);
 	}
+	
+	public static void VistaElegirPlant() {
+		elegirplant = new ElegirPlant();
+		elegirplant.setLocationRelativeTo(null);
+		elegirplant.setVisible(true);
+		elegirplant.setResizable(false);
+	}
+
 	
 	public static void ordenarVector() {
 		Collections.sort(autores,new CompararArrays());
@@ -464,7 +497,7 @@ public class ControladorInterficie {
 	}
 	
 	public static void modificarNode() {
-		CtrlD.modificarNode(getNombreEntidad(),getEntidades4(),getNom5(),getEntidades6Int());
+		CtrlDominio.modificarNode(getNombreEntidad(),getEntidades4(),getNom5(),getEntidades6Int());
 	}
 	
 	public static void relacionesPapers(Integer paper) {
@@ -563,4 +596,17 @@ public class ControladorInterficie {
 	public static boolean esUltimaRel() {
 		return CtrlD.esUltimaRel(IdNodo);
 	}
+	public static void carregaPlantIndex(int index) {
+		CtrlD.cargarPlantIndex(index, Entidades4);
+	}
+	
+	public static void cargarTodasPlantillas() throws NumberFormatException, FicheroNoExiste, IOException {
+		CtrlD.cargarTodasPlantillas();
+		}
+
+	public static void actualitzaNom() {
+		CtrlD.actualitzaNom(iPerCanviNom, jPerCanviNom, esNom, canviNom);
+	}
+
+
 }
