@@ -3,18 +3,19 @@ package Interficie;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import java.awt.Font;
+
+import Excepcions.FicheroNoExiste;
 @SuppressWarnings("serial")
 public class Entidades4 extends JFrame {
 	private JPanel contentPane;
-	private JTextField txtSeleccionaUnaEntidad;
 	/**
 	 * Launch the application.
 	 */
@@ -34,7 +35,6 @@ public class Entidades4 extends JFrame {
 	 * Create the frame.
 	 */
 	public Entidades4() {
-		setTitle("Entidades");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,19 +43,19 @@ public class Entidades4 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnAutor = new JToggleButton("Autor");
-		btnAutor.setBounds(43, 68, 150, 50);
+		btnAutor.setBounds(142, 15, 150, 50);
 		contentPane.add(btnAutor);
 		
 		JToggleButton btnConferencia = new JToggleButton("Conferencia");
-		btnConferencia.setBounds(240, 68, 150, 50);
+		btnConferencia.setBounds(142, 68, 150, 50);
 		contentPane.add(btnConferencia);
 		
 		JToggleButton btnPaper = new JToggleButton("Paper");
-		btnPaper.setBounds(43, 142, 150, 50);
+		btnPaper.setBounds(142, 122, 150, 50);
 		contentPane.add(btnPaper);
 		
 		JToggleButton btnTerme = new JToggleButton("Terme");
-		btnTerme.setBounds(240, 142, 150, 50);
+		btnTerme.setBounds(142, 175, 150, 50);
 		contentPane.add(btnTerme);
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
@@ -65,14 +65,6 @@ public class Entidades4 extends JFrame {
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
-		
-		txtSeleccionaUnaEntidad = new JTextField();
-		txtSeleccionaUnaEntidad.setEditable(false);
-		txtSeleccionaUnaEntidad.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtSeleccionaUnaEntidad.setText("Selecciona una entidad");
-		txtSeleccionaUnaEntidad.setBounds(133, 11, 167, 31);
-		contentPane.add(txtSeleccionaUnaEntidad);
-		txtSeleccionaUnaEntidad.setColumns(10);
 		
 		btnAutor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,43 +116,35 @@ public class Entidades4 extends JFrame {
 				}
 				else if (ControladorInterficie.getMenu2().equals("Consultar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantilla"))
-						try {
-							ControladorInterficie.VistaSLPlantilla16();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantilla"))
-						try {
-							ControladorInterficie.VistaSLPlantilla16();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles")) ControladorInterficie.VistaSLPerfiles9();
-					else if (ControladorInterficie.getElement3().equals("Plantilla"))
-						try {
-							ControladorInterficie.VistaSLPlantilla16();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
+				
+				
+				
 				dispose();
 			}
 		});
 		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				//ControladorInterficie.setEntidades4((""));
 				ControladorInterficie.VistaElementos3();
 				dispose();
 			}

@@ -9,23 +9,18 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
+
+import Excepcions.FicheroNoExiste;
 
 public class Elements3 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -57,19 +52,19 @@ public class Elements3 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnEntitats = new JToggleButton("Entitats");
-		btnEntitats.setBounds(35, 68, 150, 50);
+		btnEntitats.setBounds(142, 15, 150, 50);
 		contentPane.add(btnEntitats);
 		
 		JToggleButton btnPerfil = new JToggleButton("Perfil");
-		btnPerfil.setBounds(247, 68, 150, 50);
+		btnPerfil.setBounds(142, 68, 150, 50);
 		contentPane.add(btnPerfil);
 		
 		JToggleButton btnRelacions = new JToggleButton("Relacions");
-		btnRelacions.setBounds(35, 142, 150, 50);
+		btnRelacions.setBounds(142, 122, 150, 50);
 		contentPane.add(btnRelacions);
 		
 		JToggleButton btnPlantilla = new JToggleButton("Plantilla");
-		btnPlantilla.setBounds(247, 142, 150, 50);
+		btnPlantilla.setBounds(142, 175, 150, 50);
 		contentPane.add(btnPlantilla);
 		
 		btnEntitats.addActionListener(new ActionListener() {
@@ -104,8 +99,6 @@ public class Elements3 extends JFrame {
 			}
 		});
 		
-		if (ControladorInterficie.getMenu2().equals("Modificar")) btnRelacions.setEnabled(false);
-		
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
@@ -116,7 +109,7 @@ public class Elements3 extends JFrame {
 					ControladorInterficie.VistaEntidades4();
 					dispose();
 				}
-				else if(btnPerfil.isSelected()){
+				if(btnPerfil.isSelected()){
 					ControladorInterficie.setElement3("Perfil");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaIntroduirNom5();
@@ -127,174 +120,46 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 				}
-				else if(btnPlantilla.isSelected()){
+				if(btnPlantilla.isSelected()){
 					ControladorInterficie.setElement3("Plantilla");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaPlantilla11();
 						dispose();
 					}
 					else{ //Consultar/modificar/borrar Plantilla
-						try {
+						/*try {
 							JFileChooser importar = new JFileChooser();
-							importar.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\PlantillaPerfil\\"));
-							int result = importar.showOpenDialog(importar);
-							if (result == JFileChooser.CANCEL_OPTION) {
-								ControladorInterficie.VistaGrafo8();
-								dispose();
+							importar.setCurrentDirectory(new File("C:\\Users\\Albert Ripol\\Desktop\\PracticaProp\\ProjectePROP\\BaseDades"));
+							importar.showOpenDialog(importar);
+							String ruta = importar.getSelectedFile().getAbsolutePath();
+							ControladorInterficie.setRutaPlant(ruta);
+							
+							if(ControladorInterficie.getMenu2() == "Borrar"){
+								ControladorInterficie.deletePP(ruta);
+								ControladorInterficie.VistaMenu2();
 							}
-							else {
-								String ruta = importar.getSelectedFile().getAbsolutePath();
-								if(ControladorInterficie.getMenu2() == "Consultar" || 
-								   ControladorInterficie.getMenu2() == "Modificar"){
-										
-									   ControladorInterficie.loadPP(ruta);
-									   ControladorInterficie.VistaConsPlant17();
-								}
-								else if(ControladorInterficie.getMenu2() == "Borrar"){
-									ControladorInterficie.deletePP(ruta);
-									ControladorInterficie.VistaMenu2();
-								}
-							}	
+							
 						} catch (Exception e1) {
 							e1.printStackTrace();
-						}
+						}*/
+						ControladorInterficie.VistaEntidades4();
 						dispose();
 					}
 				}
-				else if(btnRelacions.isSelected()){
+				if(btnRelacions.isSelected()){
 					ControladorInterficie.setElement3("Relaciones");
 					ControladorInterficie.VistaEntRel7();
 					dispose();
 				}
-				else JOptionPane.showOptionDialog(null, "Has de seleccionar un elemento", "", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {} , JOptionPane.NO_OPTION);
 			}
 		});
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
 		contentPane.add(btnBack);
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		if (ControladorInterficie.getMenu2().equals("Crear")) textField.setText("Selecciona que deseas crear");
-		else if (ControladorInterficie.getMenu2().equals("Modificar")) textField.setText("Selecciona que deseas modificar");
-		else if (ControladorInterficie.getMenu2().equals("Consultar")) textField.setText("Selecciona que deseas consultar");
-		else textField.setText("Selecciona que deseas borrar");
-		textField.setBounds(89, 21, 251, 31);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
-		btnNuevoGrafo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser absoluto = new JFileChooser();
-				JFileChooser directorio = new JFileChooser();
-				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				absoluto.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
-				directorio.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
-				int res = JOptionPane.showConfirmDialog(null, "Si cambias de grafo, perderás todos los datos ¿Quieres guardar los cambios que has hecho hasta ahora?");
-				if (res == 0) {
-					//Si guarda
-					int result = absoluto.showSaveDialog(absoluto);
-					if (result == JFileChooser.CANCEL_OPTION) {
-						ControladorInterficie.VistaElementos3();
-						dispose();
-					}
-					else {
-						String path = absoluto.getSelectedFile().getAbsolutePath();
-						try {
-							ControladorInterficie.saveGraph(path);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-						ControladorInterficie.VistaMenu2();
-						dispose();
-					}
-					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
-					//usuario da a importar
-					if (cargaroimportar == 0) {
-						result = directorio.showOpenDialog(absoluto);
-						if (result == JFileChooser.CANCEL_OPTION) {
-							ControladorInterficie.VistaElementos3();
-							dispose();
-						}
-						else {
-							String path = directorio.getSelectedFile().getAbsolutePath();
-							try {
-								ControladorInterficie.importaGraph(path);
-								} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							ControladorInterficie.VistaMenu2();
-							dispose();
-						}
-					}
-					//cargar
-					else {
-						result = absoluto.showOpenDialog(absoluto);
-						if (result == JFileChooser.CANCEL_OPTION) {
-							ControladorInterficie.VistaElementos3();
-							dispose();
-						}
-						else {
-							String path = absoluto.getSelectedFile().getAbsolutePath();
-							try {
-								ControladorInterficie.carregaGraph(path);
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							ControladorInterficie.VistaMenu2();
-							dispose();	
-						}
-					}
-				}
-				else if (res == 1) {
-					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
-					if (cargaroimportar == 0) {
-						int result = directorio.showOpenDialog(absoluto);
-						if (result == JFileChooser.CANCEL_OPTION) {
-							ControladorInterficie.VistaElementos3();
-							dispose();
-						}
-						else {
-							String path = directorio.getSelectedFile().getAbsolutePath();
-							try {
-								ControladorInterficie.importaGraph(path);
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							ControladorInterficie.VistaMenu2();
-							dispose();
-						}
-					}
-					//cargar
-					else {
-						int result = absoluto.showOpenDialog(absoluto);
-						if (result == JFileChooser.CANCEL_OPTION) {
-							ControladorInterficie.VistaElementos3();
-							dispose();
-						}
-						else {
-							String path = absoluto.getSelectedFile().getAbsolutePath();
-							try {
-								ControladorInterficie.carregaGraph(path);
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							ControladorInterficie.VistaMenu2();
-							dispose();
-						}
-					}
-				}
-			}
-		});
-		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
-		btnNuevoGrafo.setBounds(0, 0, 79, 31);
-		contentPane.add(btnNuevoGrafo);
-		
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				//ControladorInterficie.setElement3((""));
 				ControladorInterficie.VistaMenu2();
 				dispose();
 			}
