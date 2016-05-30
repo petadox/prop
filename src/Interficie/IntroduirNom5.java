@@ -10,11 +10,13 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
 
 @SuppressWarnings("serial")
@@ -65,51 +67,6 @@ public class IntroduirNom5 extends JFrame {
 		nom.setBounds(77, 105, 281, 36);
 		contentPane.add(nom);
 		nom.setColumns(10);
-		
-		JButton btnNext = new JButton(new ImageIcon("next.jpg")); 
-		btnNext.setBounds(293, 215, 131, 31);
-		contentPane.add(btnNext);
-		btnNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(nom.getText().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
-				}
-				else{
-					ControladorInterficie.setNom5(nom.getText());
-					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
-						ControladorInterficie.VistaElegirPlantilla20();
-						dispose();
-					}
-					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
-						ControladorInterficie.modificarNode();
-					}
-					else {
-						if (ControladorInterficie.getEntidades4() == "Autor") { try {
-							ControladorInterficie.addNode("Autor", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Conf") { try {
-							ControladorInterficie.addNode("Conf", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
-							ControladorInterficie.addNode("Paper", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						else if (ControladorInterficie.getEntidades4() == "Term") { try {
-							ControladorInterficie.addNode("Term", nom.getText());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} }
-						ControladorInterficie.VistaMenu2();
-						dispose();
-					}
-				}
-			}
-		});
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.setBounds(10, 215, 131, 31);
@@ -170,5 +127,173 @@ public class IntroduirNom5 extends JFrame {
 				dispose();
 			}
 		});
+		
+		JButton btnNext = new JButton(new ImageIcon("next.jpg")); 
+		btnNext.setBounds(293, 215, 131, 31);
+		contentPane.add(btnNext);
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(nom.getText().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
+				}
+				else{
+					ControladorInterficie.setNom5(nom.getText());
+					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
+						ControladorInterficie.VistaEntidades4();
+					}
+					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
+						ControladorInterficie.modificarNode();
+					}
+					else {
+						if (ControladorInterficie.getEntidades4() == "Autor") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Autor", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Conf") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Conf", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Conf", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Paper", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						else if (ControladorInterficie.getEntidades4() == "Term") { try {
+							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"AI");
+							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"Database");
+							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"DataMining");
+							else if (tglbtnInformationalRetrieval.isSelected()) ControladorInterficie.addNode("Term", nom.getText(),"InformationalRetrieval");
+							else ControladorInterficie.addNode("Term", nom.getText(),"");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} }
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
+				}
+			}
+		});
+		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
+		btnNuevoGrafo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser absoluto = new JFileChooser();
+				JFileChooser directorio = new JFileChooser();
+				directorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				absoluto.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
+				directorio.setCurrentDirectory(new File(System.getProperty("user.dir")+"\\BaseDades\\"));
+				int res = JOptionPane.showConfirmDialog(null, "Si cambias de grafo, perderás todos los datos ¿Quieres guardar los cambios que has hecho hasta ahora?");
+				if (res == 0) {
+					//Si guarda
+					int result = absoluto.showSaveDialog(absoluto);
+					if (result == JFileChooser.CANCEL_OPTION) {
+						ControladorInterficie.VistaElementos3();
+						dispose();
+					}
+					else {
+						String path = absoluto.getSelectedFile().getAbsolutePath();
+						try {
+							ControladorInterficie.saveGraph(path);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						ControladorInterficie.VistaMenu2();
+						dispose();
+					}
+					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
+					//usuario da a importar
+					if (cargaroimportar == 0) {
+						result = directorio.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
+						}
+						else {
+							String path = directorio.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.importaGraph(path);
+								} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+					}
+					//cargar
+					else {
+						result = absoluto.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
+						}
+						else {
+							String path = absoluto.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.carregaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();	
+						}
+					}
+				}
+				else if (res == 1) {
+					int cargaroimportar = JOptionPane.showOptionDialog(null, "¿Quieres cargar o importar un grafo?", "Cargar/Importar", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Importar","Cargar"} , JOptionPane.NO_OPTION);
+					if (cargaroimportar == 0) {
+						int result = directorio.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
+						}
+						else {
+							String path = directorio.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.importaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+					}
+					//cargar
+					else {
+						int result = absoluto.showOpenDialog(absoluto);
+						if (result == JFileChooser.CANCEL_OPTION) {
+							ControladorInterficie.VistaElementos3();
+							dispose();
+						}
+						else {
+							String path = absoluto.getSelectedFile().getAbsolutePath();
+							try {
+								ControladorInterficie.carregaGraph(path);
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							ControladorInterficie.VistaMenu2();
+							dispose();
+						}
+					}
+				}
+			}
+		});
+		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
+		btnNuevoGrafo.setBounds(0, 0, 79, 31);
+		contentPane.add(btnNuevoGrafo);
+		
 	}
 }

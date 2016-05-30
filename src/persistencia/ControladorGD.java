@@ -21,10 +21,11 @@ public class ControladorGD{	//controlador gestio dades
 		String nomPP = p.getNomPlantilla();
 		String tipus = p.getTipus();
 		ArrayList<ArrayList<String>> CampsPerfil = p.getCampPle();
-		
-		String ruta = "BaseDades/Perfil/" + tipus + "/";
-		
+		System.out.println("Llego aqui????");
+		//String ruta = System.getProperty("user.dir")+"\\BaseDades\\Perfil\\ " + tipus +"\\";
+		String ruta = "BaseDades/Perfil/" +tipus+"/";
 		GestioDades.Crear_archivo(nomP, ruta);
+		//ruta = System.getProperty("user.dir")+"\\BaseDades\\Perfil\\ " + tipus +"\\"+nomP+".txt";
 		GestioDades.Escribir_string(nomP, "salto", nomP, ruta);
 		GestioDades.Escribir_string(nomPP, "salto", nomP, ruta);
 		Iterator<ArrayList<String>> i = CampsPerfil.iterator();
@@ -37,7 +38,6 @@ public class ControladorGD{	//controlador gestio dades
 			}
 			GestioDades.Escribir_string("", "salto", nomP, ruta);
 		}
-		
 	}
 	
 	public static Perfil cargarPerfil(String ruta) throws FicheroNoExiste, IOException{

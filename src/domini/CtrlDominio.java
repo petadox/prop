@@ -127,7 +127,7 @@ public class CtrlDominio {
     }
     
     private String nomNode(int id,Node.Type tipus) throws IOException {
-        CtrlImport ctrl = new CtrlImport("C:\\Users\\chus\\Documents\\PracticaPROPEclipse\\ProjectePROP\\BaseDades\\DBLP_four_area");
+        CtrlImport ctrl = new CtrlImport(System.getProperty("user.dir")+"\\BaseDades\\DBLP_four_area\\");
         ctrl.loadGraphInfo();
         Graph g = ctrl.getGraph();
         Node n = g.getNode(id, tipus);
@@ -181,11 +181,30 @@ public class CtrlDominio {
     	CtrlDG.saveGraph(actual,path);
     }
     
-    public void guardarNode(String tipus,String nom) throws IOException {
-    	if (tipus == "Autor") { actual.addNode(Node.Type.Autor,nom); }
-    	else if (tipus == "Conferencia") { actual.addNode(Node.Type.Conferencia,nom); }
-    	else if (tipus == "Paper") { actual.addNode(Node.Type.Paper,nom); }
-    	else if (tipus == "Term") { actual.addNode(Node.Type.Terme,nom); }
+    public void guardarNode(String tipus,String nom, String label) throws IOException {
+    	int id = 0;
+    	Node.Type aux = null;
+    	if (tipus.equals("Autor")) { 
+    		aux = Node.Type.Autor;
+    		id = actual.addNode(Node.Type.Autor,nom);
+    	}
+    	else if (tipus.equals("Conferencia")) {
+    		aux = Node.Type.Conferencia;
+    		id = actual.addNode(Node.Type.Conferencia,nom); 
+    	}
+    	else if (tipus.equals("Paper")) {
+    		aux = Node.Type.Paper;
+    		id = actual.addNode(Node.Type.Paper,nom); 
+    	}
+    	else if (tipus.equals("Term")) { 
+    		aux = Node.Type.Terme;
+    		id = actual.addNode(Node.Type.Terme,nom); 
+    	}
+    	
+    	if (label.equals("AI")) actual.addLabel(id, Node.Label.AI, aux);
+    	else if (label.equals("Database")) actual.addLabel(id, Node.Label.Database, aux);
+    	else if (label.equals("DataMining")) actual.addLabel(id, Node.Label.DataMining, aux);
+    	else if (label.equals("InformationalRetrieval")) actual.addLabel(id, Node.Label.InformationRetrieval, aux);
     }
     
     public void borrarNodo(String nom,Integer index,int tipus) {

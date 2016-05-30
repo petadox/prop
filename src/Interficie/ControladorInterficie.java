@@ -166,7 +166,7 @@ public class ControladorInterficie {
 	
 	public static String getSLPerfiles() {return SLPerfiles9;}
 	
-	public static void addNode(String tipus, String nom) throws IOException { CtrlD.guardarNode(tipus, nom);}
+	public static void addNode(String tipus, String nom, String label) throws IOException { CtrlD.guardarNode(tipus, nom, label);}
 	
 	public static void saveGraph(String path) throws FileNotFoundException, IOException { CtrlD.guardarGraph(path);}
 	
