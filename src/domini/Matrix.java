@@ -38,12 +38,7 @@ public class Matrix implements Serializable {
         HashMap<Integer,Float> n = new HashMap<Integer,Float>();
         m.add(n);
     }
-
-    public Matrix trasposarMatriu(){
-        Matrix asd = new Matrix();
-        return asd;
-    }
-
+    
     public Integer getNCols(int index){
         return m.get(index).size();
     }
