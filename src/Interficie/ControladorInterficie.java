@@ -72,7 +72,7 @@ public class ControladorInterficie {
 	private static ConsultarEntidad consultarentidad;
 	private static ElegirPlant elegirplant;
 	private static CanviarNom canviarnom;
-
+  
 
 	/*ScrollLists entidades*/
 
