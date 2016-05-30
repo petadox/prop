@@ -108,8 +108,6 @@ public class ConsPerf15 extends JFrame {
 				
 				ControladorInterficie.VistaModificarPerfil23();
 				dispose();
-				
-				// ++ Modificar Perfiel;
 			}
 			
 		});
@@ -121,14 +119,12 @@ public class ConsPerf15 extends JFrame {
 					try {
 						ControladorInterficie.deleteP(System.getProperty("user.dir")+"\\BaseDades\\Perfil\\" + ControladorInterficie.getNomPerfil() + ".txt");
 					} catch (FicheroNoExiste | IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
 				try {
 					ControladorInterficie.VistaConsPlant17();
 				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				dispose();

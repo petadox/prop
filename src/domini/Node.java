@@ -75,8 +75,6 @@ public class Node implements Serializable {
 	}
 	
 	public boolean equals(Node n) {
-		//System.out.println(this.getId());
-		//System.out.println(n.getId());
 		return (this.getNom().equals(n.getNom()) && this.getId().equals(n.getId()));
 	}
 

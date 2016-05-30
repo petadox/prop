@@ -5,10 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Excepcions.FicheroNoExiste;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -34,12 +38,12 @@ public class Principal1 extends JFrame {
 			}
 		});
 	}
-	//tds pts
+
 	/**
 	 * Create the frame.
 	 */
 	public Principal1() {
-		setTitle("Principal");
+		setTitle("Principal1");
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -63,6 +67,12 @@ public class Principal1 extends JFrame {
 		contentPane.add(btnStart);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					ControladorInterficie.cargarTodasPlantillas();
+				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ControladorInterficie.VistaGrafo8();
 				dispose();
 			}
