@@ -563,4 +563,12 @@ public class ControladorInterficie {
 	public static boolean esUltimaRel() {
 		return CtrlD.esUltimaRel(IdNodo);
 	}
+	
+	public static boolean potBorrarRel() {
+		return CtrlD.potBorrarRel(IdPaper);
+	}
+	
+	public static boolean confBorrable() {
+		return CtrlD.confBorrable(IdNodo);
+	}
 }

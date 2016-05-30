@@ -228,8 +228,13 @@ public class ConsultarEntidad extends JFrame {
 				             Map.Entry<Integer,Float> entry = it.next();
 					         for (int i = 0; i < index-1; ++i) entry = it.next();
 				             ControladorInterficie.setIdPaper(entry.getKey());
-				             dlm.remove(index);
-				             ControladorInterficie.deleteRelacion();
+				             if (ControladorInterficie.potBorrarRel()) {
+				            	 dlm.remove(index);
+				            	 ControladorInterficie.deleteRelacion();
+				             }
+				             else {
+				            	 JOptionPane.showMessageDialog(null, "No puedes borrar esta relacion, el paper se quedaria sin ningun autor.");
+				             }
 		               	 }
 		     	}
 			};

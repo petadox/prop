@@ -262,8 +262,8 @@ public class CtrlDominio {
     	ArrayList<Node> n = actual.getAutors();
     	for (int i = 0; i < n.size(); i++) {
     		if (n.get(i) != null) {
-    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
-    		ret.add(p);
+	    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
+	    		ret.add(p);
     		}
     	}
     	return ret;
@@ -273,8 +273,10 @@ public class CtrlDominio {
     	ArrayList<Pair<Integer,String>> ret = new ArrayList<Pair<Integer,String>>();
     	ArrayList<Node> n = actual.getConferencies();
     	for (int i = 0; i < n.size(); i++) {
-    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
-    		ret.add(p);
+    		if (n.get(i) != null) {
+	    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
+	    		ret.add(p);
+    		}
     	}
     	return ret;
     }
@@ -283,8 +285,10 @@ public class CtrlDominio {
     	ArrayList<Pair<Integer,String>> ret = new ArrayList<Pair<Integer,String>>();
     	ArrayList<Node> n = actual.getPapers();
     	for (int i = 0; i < n.size(); i++) {
-    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
-    		ret.add(p);
+    		if (n.get(i) != null) {
+	    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
+	    		ret.add(p);
+    		}
     	}
     	return ret;
     }
@@ -293,8 +297,10 @@ public class CtrlDominio {
     	ArrayList<Pair<Integer,String>> ret = new ArrayList<Pair<Integer,String>>();
     	ArrayList<Node> n = actual.getTermes();
     	for (int i = 0; i < n.size(); i++) {
-    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
-    		ret.add(p);
+    		if (n.get(i) != null) {
+	    		Pair p = new Pair(n.get(i).getId(), n.get(i).getNom());
+	    		ret.add(p);
+    		}
     	}
     	return ret;
     }
@@ -605,5 +611,21 @@ public class CtrlDominio {
 			if(count == 1) return true;
 		}
 		return false;
+	}
+	
+	public boolean potBorrarRel(Integer IdPaper) {
+		ArrayList< HashMap<Integer,Float> > paperz = actual.getMatrixAuthor().retornarM();
+		int count = 0;
+		for (int j = 0; j < paperz.size() && count < 2; ++j) {
+			if (paperz.get(j).containsKey(IdPaper)) ++count;
+		}
+		if (count == 1) return false;
+		else return true;
+	}
+	
+	public boolean confBorrable(Integer IdNodo) {
+		ArrayList< HashMap<Integer,Float> > conf = actual.getMatrixConf().retornarM();
+		if(!conf.get(IdNodo).isEmpty()) return false;
+		else return true;
 	}
 }

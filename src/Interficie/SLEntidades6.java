@@ -30,6 +30,7 @@ import java.awt.Font;
 public class SLEntidades6 extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField textField_1;
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +58,7 @@ public class SLEntidades6 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(169, 31, 226, 215);
+		scrollPane.setBounds(169, 64, 226, 182);
 		contentPane.add(scrollPane);
 		
 		JList<String> list = new JList<String>();
@@ -70,7 +71,6 @@ public class SLEntidades6 extends JFrame {
 					try {
 						ControladorInterficie.VistaConsPlant17();
 					} catch (NumberFormatException | FicheroNoExiste | IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -83,7 +83,7 @@ public class SLEntidades6 extends JFrame {
 		contentPane.add(btnBack);
 		
 		DefaultListModel<String> dlm = new DefaultListModel<String>();
-		
+		ArrayList<String> aux = new ArrayList<String>();
 		
 		list.setModel(dlm);
 		
@@ -93,6 +93,31 @@ public class SLEntidades6 extends JFrame {
 		textField.setBounds(10, 64, 125, 31);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(169, 24, 159, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (textField_1.getText().length() != 0) {
+		            ArrayList<String> novarraylist = new ArrayList<String>();
+		            for (int i = 0; i < dlm.size(); ++i) {
+		                if (dlm.get(i).contains(textField_1.getText())) novarraylist.add(dlm.get(i));
+		            }
+		            dlm.removeAllElements();
+		            for(int j = 0; j < novarraylist.size(); ++j) dlm.addElement(novarraylist.get(j));
+				}
+				else {
+					dlm.removeAllElements();
+					for (int j = 0; j < aux.size(); ++j) dlm.addElement(aux.get(j));
+				}
+			}
+		});
+		btnBuscar.setBounds(350, 23, 74, 23);
+		contentPane.add(btnBuscar);
 		
 		ControladorInterficie.cargarArrays();
 		ControladorInterficie.ordenarVector();
@@ -105,28 +130,32 @@ public class SLEntidades6 extends JFrame {
 			if (ControladorInterficie.getEntidades4().equals("Autor")) {
 				textField.setText("Autores");
 				for (int i = 0; i < autores.size(); i++) {
-				dlm.addElement(autores.get(i).second);	
+					dlm.addElement(autores.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
+				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
-					textField.setText("Conferencias");
-					dlm.addElement(conferencies.get(i).second);	
-					}
+					dlm.addElement(conferencies.get(i).second);
+					aux.add(autores.get(i).second);
+				}
 			}
 			
 			else if (ControladorInterficie.getEntidades4().equals("Terme")) {
+				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
-					textField.setText("Termes");
 					dlm.addElement(termes.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntidades4().equals("Paper")) {
+				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
-					textField.setText("Papers");
 					dlm.addElement(papers.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 		}
@@ -134,28 +163,32 @@ public class SLEntidades6 extends JFrame {
 			if (ControladorInterficie.getEntRel7().equals("Autor")) {
 				textField.setText("Autores");
 				for (int i = 0; i < autores.size(); i++) {
-				dlm.addElement(autores.get(i).second);
+					dlm.addElement(autores.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntRel7().equals("Conferencia")) {
+				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
-					textField.setText("Conferencias");
-					dlm.addElement(conferencies.get(i).second);	
-					}
+					dlm.addElement(conferencies.get(i).second);
+					aux.add(autores.get(i).second);
+				}
 			}
 			
 			else if (ControladorInterficie.getEntRel7().equals("Terme")) {
+				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
-					textField.setText("Termes");
 					dlm.addElement(termes.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getEntRel7().equals("Paper")) {
+				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
-					textField.setText("Papers");
 					dlm.addElement(papers.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 		}
@@ -164,28 +197,32 @@ public class SLEntidades6 extends JFrame {
 			if (ControladorInterficie.getTipusPlant().equals("Autor")) {
 				textField.setText("Autores");
 				for (int i = 0; i < autores.size(); i++) {
-				dlm.addElement(autores.get(i).second);
+					dlm.addElement(autores.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getTipusPlant().equals("Conferencia")) {
+				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
-					textField.setText("Conferencias");
-					dlm.addElement(conferencies.get(i).second);	
-					}
+					dlm.addElement(conferencies.get(i).second);
+					aux.add(autores.get(i).second);
+				}
 			}
 			
 			else if (ControladorInterficie.getTipusPlant().equals("Terme")) {
+				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
-					textField.setText("Termes");
 					dlm.addElement(termes.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 			
 			else if (ControladorInterficie.getTipusPlant().equals("Paper")) {
+				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
-					textField.setText("Papers");
 					dlm.addElement(papers.get(i).second);
+					aux.add(autores.get(i).second);
 				}
 			}
 		}
@@ -196,20 +233,46 @@ public class SLEntidades6 extends JFrame {
 		             int index = list.locationToIndex(e.getPoint());
 		             String nomEnt = dlm.getElementAt(index);
 	            	 ControladorInterficie.setNombreEntidad(nomEnt);
+	            	 boolean trobat = false;
+	            	 int l;
 	            	 if (ControladorInterficie.getElement3().equals("Entidades")) {
 			             if (ControladorInterficie.getMenu2().equals("Consultar")) {
 			            	 	ControladorInterficie.setSLEntidades6(ControladorInterficie.getEntidades4());
 			            	 	if (ControladorInterficie.getEntidades4().equals("Autor")) {
-			            	 		ControladorInterficie.setEntidades6Int(autores.get(index).first);
+			            	 		for (l = 0; l < autores.size() && !trobat; ++l) {
+			            	 			if (autores.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(autores.get(l).first);
 			            	 	}
 			            	 	else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
-			            	 		ControladorInterficie.setEntidades6Int(conferencies.get(index).first);
+			            	 		for (l = 0; l < conferencies.size() && !trobat; ++l) {
+			            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
 			            	 	}
 			            	 	else if (ControladorInterficie.getEntidades4().equals("Terme")) {
-			            	 		ControladorInterficie.setEntidades6Int(termes.get(index).first);
+			            	 		for (l = 0; l < termes.size() && !trobat; ++l) {
+			            	 			if (termes.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(termes.get(l).first);
 			            	 	}
 			            	 	else {
-			            	 		ControladorInterficie.setEntidades6Int(papers.get(index).first);
+			            	 		for (l = 0; l < papers.size() && !trobat; ++l) {
+			            	 			if (papers.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(papers.get(l).first);
 			            	 	}
 			            	 	ControladorInterficie.VistaConsultar(); 
 			            	 	dispose();
@@ -220,27 +283,65 @@ public class SLEntidades6 extends JFrame {
 			               	 //Le ha dado a aceptar
 			               	 if (result == 0) {
 			               		 if (ControladorInterficie.getEntidades4().equals("Autor")) {
-			               			ControladorInterficie.setIdNodo(autores.get(index).first);
+			               			for (l = 0; l < autores.size() && !trobat; ++l) {
+			            	 			if (autores.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(autores.get(l).first);
+			               			ControladorInterficie.setIdNodo(autores.get(l).first);
 			               			if (ControladorInterficie.esUltimaRel()) {
 			               				JOptionPane.showMessageDialog(null, "No puedes borrar este autor, es el último autor de un paper.");
+			               				ControladorInterficie.VistaSLEntidades6();
+			               				dispose();
 			               			}
 			               			else {
-			               				ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),autores.get(index).first,0);
+			               				ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),autores.get(l).first,0);
 			               				ControladorInterficie.VistaSLEntidades6();
 			               				dispose();
 			               			}
 			               		 }
 			               		 else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
-			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),conferencies.get(index).first,1);
-			               			ControladorInterficie.VistaSLEntidades6();
-			               			dispose();
+			               			for (l = 0; l < conferencies.size() && !trobat; ++l) {
+			            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
+			            	 		ControladorInterficie.setIdNodo(conferencies.get(l).first);
+			            	 		if (ControladorInterficie.confBorrable()) {
+				               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),conferencies.get(l).first,1);
+				               			ControladorInterficie.VistaSLEntidades6();
+				               			dispose();
+			            	 		}
+			            	 		else {
+			            	 			JOptionPane.showMessageDialog(null, "No puedes borrar esta conferencia, habria papers sin conferencia");
+			            	 		}
 		               			}
 			               		 else if (ControladorInterficie.getEntidades4().equals("Terme")) {
+			               			for (l = 0; l < termes.size() && !trobat; ++l) {
+			            	 			if (termes.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(termes.get(l).first);
+			            	 		ControladorInterficie.setIdNodo(termes.get(l).first);
 			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),termes.get(index).first,2);
 			               			ControladorInterficie.VistaSLEntidades6();
 			               			dispose();
 		               			}
 			               		 else if (ControladorInterficie.getEntidades4().equals("Paper")) {
+			               			for (l = 0; l < papers.size() && !trobat; ++l) {
+			            	 			if (papers.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(papers.get(l).first);
+			            	 		ControladorInterficie.setIdNodo(papers.get(l).first);
 			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),papers.get(index).first,3);
 			               			ControladorInterficie.VistaSLEntidades6();
 			               			dispose();			               	 
@@ -251,16 +352,40 @@ public class SLEntidades6 extends JFrame {
 			             else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 			            	 	ControladorInterficie.setSLEntidades6(ControladorInterficie.getEntidades4());
 			            	 	if (ControladorInterficie.getEntidades4().equals("Autor")) {
-			            	 		ControladorInterficie.setEntidades6Int(autores.get(index).first);
+			            	 		for (l = 0; l < autores.size() && !trobat; ++l) {
+			            	 			if (autores.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(autores.get(l).first);
 			            	 	}
 			            	 	else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
-			            	 		ControladorInterficie.setEntidades6Int(conferencies.get(index).first);
+			            	 		for (l = 0; l < conferencies.size() && !trobat; ++l) {
+			            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
 			            	 	}
 			            	 	else if (ControladorInterficie.getEntidades4().equals("Terme")) {
-			            	 		ControladorInterficie.setEntidades6Int(termes.get(index).first);
+			            	 		for (l = 0; l < termes.size() && !trobat; ++l) {
+			            	 			if (termes.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(termes.get(l).first);
 			            	 	}
 			            	 	else {
-			            	 		ControladorInterficie.setEntidades6Int(papers.get(index).first);
+			            	 		for (l = 0; l < papers.size() && !trobat; ++l) {
+			            	 			if (papers.get(l).second.equals(nomEnt)) {
+			            	 				trobat = true;
+			            	 				--l;
+			            	 			}
+			            	 		}
+			            	 		ControladorInterficie.setEntidades6Int(papers.get(l).first);
 			            	 	}
 			            	 	ControladorInterficie.VistaIntroduirNom5(); 
 			            	 	dispose();
@@ -268,7 +393,14 @@ public class SLEntidades6 extends JFrame {
 	            	 }
 	            	 else if (ControladorInterficie.getElement3().equals("Relaciones")) {
 	            		 if (ControladorInterficie.getEntRel7().equals("Autor")) {
-	            			 ControladorInterficie.setIdNodo(autores.get(index).first);
+	            			 for (l = 0; l < autores.size() && !trobat; ++l) {
+		            	 			if (autores.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(autores.get(l).first);
+	            			 ControladorInterficie.setIdNodo(autores.get(l).first);
 	            			 ControladorInterficie.setEntidades4(ControladorInterficie.getEntRel7());
 	            			 if (ControladorInterficie.getMenu2().equals("Borrar")) ControladorInterficie.VistaConsultar(); 
 	            			 else {
@@ -278,6 +410,13 @@ public class SLEntidades6 extends JFrame {
 	            			 dispose();
 	            		 }
 	            		 else if (ControladorInterficie.getEntRel7().equals("Conferencia")) {
+	            			 for (l = 0; l < conferencies.size() && !trobat; ++l) {
+		            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
 	            			 ControladorInterficie.setIdNodo(conferencies.get(index).first);
 	            			 ControladorInterficie.setEntidades4(ControladorInterficie.getEntRel7());
 	            			 if (ControladorInterficie.getMenu2().equals("Borrar")) ControladorInterficie.VistaConsultar(); 
@@ -288,9 +427,15 @@ public class SLEntidades6 extends JFrame {
 	            			 dispose();
 	            		 }
 	            		 else if (ControladorInterficie.getEntRel7().equals("Terme")){
-	            			 ControladorInterficie.setIdNodo(termes.get(index).first);
+	            			 for (l = 0; l < termes.size() && !trobat; ++l) {
+		            	 			if (termes.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(termes.get(l).first);
+	            			 ControladorInterficie.setIdNodo(termes.get(l).first);
 	            			 ControladorInterficie.setEntidades4(ControladorInterficie.getEntRel7());
-	            			 ControladorInterficie.setEntRel7("Paper");
 	            			 if (ControladorInterficie.getMenu2().equals("Borrar")) ControladorInterficie.VistaConsultar(); 
 	            			 else {
 	            				 ControladorInterficie.setEntRel7("Paper");
@@ -299,7 +444,14 @@ public class SLEntidades6 extends JFrame {
 	            			 dispose();
 	            		 }
 	            		 else {
-	            			 ControladorInterficie.setIdPaper(papers.get(index).first);
+	            			 for (l = 0; l < papers.size() && !trobat; ++l) {
+		            	 			if (papers.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 	 }
+		            	 	 ControladorInterficie.setEntidades6Int(papers.get(l).first);
+	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
 	            			 boolean aux;
 	            			 if (ControladorInterficie.getMenu2().equals("Crear")) {
 	            				 if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
