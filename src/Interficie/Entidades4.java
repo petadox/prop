@@ -114,7 +114,7 @@ public class Entidades4 extends JFrame {
 				
 				if (ControladorInterficie.getMenu2().equals("Crear")) { 
 					if(ControladorInterficie.getElement3().equals("Entidades") ||
-						ControladorInterficie.getElement3().equals("Perfiles") ||
+						ControladorInterficie.getElement3().equals("Perfil") ||
 						ControladorInterficie.getElement3().equals("Plantilla")) {
 							ControladorInterficie.VistaIntroduirNom5();
 					}
@@ -122,21 +122,21 @@ public class Entidades4 extends JFrame {
 				}
 				else if (ControladorInterficie.getMenu2().equals("Consultar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+					else if (ControladorInterficie.getElement3().equals("Perfil"))
 						ControladorInterficie.VistaSLPerfiles9();
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+					else if (ControladorInterficie.getElement3().equals("Perfil"))
 						ControladorInterficie.VistaSLPerfiles9();
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+					else if (ControladorInterficie.getElement3().equals("Perfil"))
 						ControladorInterficie.VistaSLPerfiles9();
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();

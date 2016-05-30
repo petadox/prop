@@ -475,20 +475,46 @@ public class SLEntidades6 extends JFrame {
 	            	 } 
 	            	 else if (ControladorInterficie.getElement3().equals("Plantilla")) {
 	            		 if(ControladorInterficie.getTipusPlant().equals("Autor")) {
-	            			 ControladorInterficie.setNom5(autores.get(index).second);
-	            			 ControladorInterficie.setIdPerfil(autores.get(index).first);
+	            			 /*ControladorInterficie.setNom5(autores.get(index).second);
+	            			 ControladorInterficie.setIdPerfil(autores.get(index).first);*/
+	            			 for (l = 0; l < autores.size() && !trobat; ++l) {
+		            	 			if (autores.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+	            			 	ControladorInterficie.setNom5(autores.get(l).second);
+		            	 		ControladorInterficie.setIdPerfil(autores.get(l).first);
 	            		 }
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Conferencia")) {
-	            			 ControladorInterficie.setNom5(conferencies.get(index).second);
-	            			 ControladorInterficie.setIdPerfil(conferencies.get(index).first);
+	            			 for (l = 0; l < conferencies.size() && !trobat; ++l) {
+		            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+	            			 	ControladorInterficie.setNom5(conferencies.get(l).second);
+		            	 		ControladorInterficie.setIdPerfil(conferencies.get(l).first);
 	            		 }
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Paper")) {
-	            			 ControladorInterficie.setNom5(papers.get(index).second);
-	            			 ControladorInterficie.setIdPerfil(papers.get(index).first);
+	            			 for (l = 0; l < papers.size() && !trobat; ++l) {
+		            	 			if (papers.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+	            			 	ControladorInterficie.setNom5(papers.get(l).second);
+		            	 		ControladorInterficie.setIdPerfil(papers.get(l).first);
 	            		 }
 	            		 else if(ControladorInterficie.getTipusPlant().equals("Terme")) {
-	            			 ControladorInterficie.setNom5(termes.get(index).second);
-	            			 ControladorInterficie.setIdPerfil(termes.get(index).first);
+	            			 for (l = 0; l < termes.size() && !trobat; ++l) {
+		            	 			if (termes.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+	            			 	ControladorInterficie.setNom5(termes.get(l).second);
+		            	 		ControladorInterficie.setIdPerfil(termes.get(l).first);
 	            		 }
 	            		 
 	            		try {

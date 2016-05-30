@@ -224,6 +224,7 @@ public class EntRel7 extends JFrame {
 				}
 			}
 		});
+		
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
