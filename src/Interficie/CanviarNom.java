@@ -83,21 +83,28 @@ public class CanviarNom extends JFrame {
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(nom.getText().isEmpty()){
+				if (ControladorInterficie.getAnadirNombre()) {
+					ControladorInterficie.setBorraNom(false);
+					ControladorInterficie.setCanviNom(nom.getText());
+					ControladorInterficie.actualitzaNom();
+					ControladorInterficie.VistaModificarPerfil23();
+					dispose();
+				}
+				
+				
+				else if (nom.getText().isEmpty() && ControladorInterficie.getEsNom()){
 					JOptionPane.showMessageDialog(null, "Introduce un nombre, porfavor");
 				}
-				else{
-					ControladorInterficie.setCanviNom(nom.getText());
-					
-					// Voy a suponer que:
-					// He clicado en la pantalla anterior y con lo cual he convertido
-					// el indice a i y j y se donde tengo que guardar el valor.
-					// Con lo cual debo llamar a la funcion que mete el nuevo valor
-					// en la posicion correspondientedesable; hehehe diente de sable lo pillas ?
-					
+				else if (nom.getText().isEmpty()) {
+					ControladorInterficie.setBorraNom(true);
 					ControladorInterficie.actualitzaNom();
-					
-					
+					ControladorInterficie.VistaModificarPerfil23();
+					dispose();
+				}
+				else{
+					ControladorInterficie.setBorraNom(false);
+					ControladorInterficie.setCanviNom(nom.getText());
+					ControladorInterficie.actualitzaNom();
 					ControladorInterficie.VistaModificarPerfil23();
 					dispose();
 				}

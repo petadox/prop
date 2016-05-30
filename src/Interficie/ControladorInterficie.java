@@ -41,6 +41,8 @@ public class ControladorInterficie {
 	private static Integer iPerCanviNom;
 	private static Integer jPerCanviNom;
 	private static Boolean esNom;
+	private static Boolean borraNom;
+	private static Boolean anadirNombre;
 
 	
 	/*Instancia*/
@@ -144,6 +146,12 @@ public class ControladorInterficie {
 	
 	public static Boolean getEsNom() {return esNom;}
 	public static void setEsNom(Boolean n) {esNom = n;}
+	
+	public static Boolean getBorraNom() {return borraNom;}
+	public static void setBorraNom(Boolean n) {borraNom = n;}
+	
+	public static Boolean getAnadirNombre() {return anadirNombre;}
+	public static void setAnadirNombre(Boolean n) {anadirNombre = n;}
 
 	
 	public static String getSLEntidades6() {return Slentidades6;}
@@ -605,7 +613,7 @@ public class ControladorInterficie {
 		}
 
 	public static void actualitzaNom() {
-		CtrlD.actualitzaNom(iPerCanviNom, jPerCanviNom, esNom, canviNom);
+		CtrlD.actualitzaNom(iPerCanviNom, jPerCanviNom, esNom, canviNom, borraNom, anadirNombre);
 	}
 
 

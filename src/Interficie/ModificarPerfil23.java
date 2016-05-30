@@ -118,17 +118,19 @@ public class ModificarPerfil23 extends JFrame {
 		     public void mouseClicked(MouseEvent e) {
 		             Integer index = list.locationToIndex(e.getPoint());
 		             String nomEnt = dlm.getElementAt(index);
-		             System.out.println(index);
-		             if (nomEnt == "       ") JOptionPane.showMessageDialog(null, "No puedes cambiar eso");
+		             if (nomEnt == "       ") {
+		            	 ControladorInterficie.setAnadirNombre(true);
+		             }
 		             else {
-		            	 actualizaIyJ(index, ArrayDeCamps);
-			             ControladorInterficie.VistaCanviarNom();
-			             dispose();
+		            	 ControladorInterficie.setAnadirNombre(false);
+		             }
+	            	 actualizaIyJ(index, ArrayDeCamps);
+	            	 
+		             ControladorInterficie.VistaCanviarNom();
+		             dispose();
 		             }
 		             
-		             
-		             
-			     }
+		     
 			 };
 			 list.addMouseListener(mouseListener);
 	}
@@ -143,18 +145,17 @@ public class ModificarPerfil23 extends JFrame {
 				
 			}
 		}
+		list.addElement("       ");
 	}
 	
 	private void actualizaIyJ(Integer index, ArrayList<ArrayList<String>> ArrayDeCamps) {
 		Integer n = 0;
 		for (Integer i = 0; i < ArrayDeCamps.size(); ++i) {
 			if (n == index) {
-				System.out.println("LLEGOAQUI");
-				System.out.println("LLEGOAQUI");
-				System.out.println("LLEGOAQUI");
 				ControladorInterficie.setIPerCanviNom(i);
 				ControladorInterficie.setJPerCanviNom(0);
 				ControladorInterficie.setEsNom(true);
+				ControladorInterficie.setAnadirNombre(false);
 			}
 			++n;
 			for (Integer j = 0 ; j < ArrayDeCamps.get(i).size(); ++j) {
@@ -162,8 +163,14 @@ public class ModificarPerfil23 extends JFrame {
 					ControladorInterficie.setIPerCanviNom(i);
 					ControladorInterficie.setJPerCanviNom(j);
 					ControladorInterficie.setEsNom(false);
+					ControladorInterficie.setAnadirNombre(false);
 				}
 				++n;
+			}
+			if (n == index) {
+				ControladorInterficie.setIPerCanviNom(i);
+				ControladorInterficie.setJPerCanviNom(0);
+				ControladorInterficie.setEsNom(false);
 			}
 			++n;
 			// Espacio en blanco, necesito el ++n pero no compruebo la igualdad;

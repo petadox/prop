@@ -99,4 +99,15 @@ public class Perfil {
     	else if(tipus.equals("Conferencia")) return "Coferencia";
     	return "Terme";
     }
+
+	public void actualizaNombre(Integer i, Integer j, String nomNou, Boolean borraNom) {
+		ArrayList<String> array;
+		array = this.CampsPerfil.get(i);
+		array.remove(j.intValue());
+		if (!borraNom) array.add(j, nomNou);
+	}
+
+	public void anadirNombre(Integer i, String nomNou) {
+		this.CampsPerfil.get(i).add(nomNou);
+	}
 }

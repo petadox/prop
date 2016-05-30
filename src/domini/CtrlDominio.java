@@ -637,12 +637,17 @@ public class CtrlDominio {
 		plantillaActual = plantillas.get(i).get(index);
 	}
 
-	public void actualitzaNom(Integer i, Integer j, Boolean esNom, String nomNou) {
-		if (esNom) {
+	public void actualitzaNom(Integer i, Integer j, Boolean esNom, String nomNou, Boolean borraNom, Boolean anadirNombre) {
+		if (anadirNombre) {
+			perfilActual.anadirNombre(i,nomNou);
+		}
+		
+		else if (esNom) {
 			// Es un nombre, con lo cual con la i accedo a su valor en el vector de nombres;
 			plantillaActual.actualizaNombre(i, nomNou);
 		}
 		else {
+			perfilActual.actualizaNombre(i,j,nomNou, borraNom);
 			
 		}
 		

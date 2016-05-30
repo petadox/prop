@@ -365,9 +365,8 @@ public class PlantillaPerfil{
 	public void borrarCamps () { info.clear();}
 	public void actualizaNombre(Integer i, String nomNou) {
 		Camp c;
-		System.out.println(i);
-		System.out.println(info.size());
 		c = info.get(i);
 		c.getPath().setNom(nomNou);
 	}
+	
 }
