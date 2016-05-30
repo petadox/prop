@@ -18,11 +18,13 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import Excepcions.FicheroNoExiste;
+import javax.swing.JTextField;
 
 public class Elements3 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtEligeUnElemento;
 
 	/**
 	 * Launch the application.
@@ -111,7 +113,7 @@ public class Elements3 extends JFrame {
 					ControladorInterficie.VistaEntidades4();
 					dispose();
 				}
-				if(btnPerfil.isSelected()){
+				else if(btnPerfil.isSelected()){
 					ControladorInterficie.setElement3("Perfil");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaIntroduirNom5();
@@ -122,7 +124,7 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 				}
-				if(btnPlantilla.isSelected()){
+				else if(btnPlantilla.isSelected()){
 					ControladorInterficie.setElement3("Plantilla");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaPlantilla11();
@@ -148,10 +150,13 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 				}
-				if(btnRelacions.isSelected()){
+				else if(btnRelacions.isSelected()){
 					ControladorInterficie.setElement3("Relaciones");
 					ControladorInterficie.VistaEntRel7();
 					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Has de seleccionar un elemento");
 				}
 			}
 		});
@@ -273,6 +278,14 @@ public class Elements3 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
+		
+		txtEligeUnElemento = new JTextField();
+		txtEligeUnElemento.setEditable(false);
+		txtEligeUnElemento.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEligeUnElemento.setText("Elige un elemento");
+		txtEligeUnElemento.setBounds(146, 23, 138, 26);
+		contentPane.add(txtEligeUnElemento);
+		txtEligeUnElemento.setColumns(10);
 		
 	}
 }

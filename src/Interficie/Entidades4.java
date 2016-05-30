@@ -19,9 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Excepcions.FicheroNoExiste;
+import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class Entidades4 extends JFrame {
 	private JPanel contentPane;
+	private JTextField txtEligeUnTipo;
 	/**
 	 * Launch the application.
 	 */
@@ -41,6 +43,7 @@ public class Entidades4 extends JFrame {
 	 * Create the frame.
 	 */
 	public Entidades4() {
+		setTitle("Entidades");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -134,12 +137,15 @@ public class Entidades4 extends JFrame {
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
-				else {
+				else if (ControladorInterficie.getMenu2().equals("Borrar")){
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
 					else if (ControladorInterficie.getElement3().equals("Perfil"))
 						ControladorInterficie.VistaSLPerfiles9();
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Has de seleccionar un tipo de entidad");
 				}
 				
 				
@@ -255,6 +261,14 @@ public class Entidades4 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
+		
+		txtEligeUnTipo = new JTextField();
+		txtEligeUnTipo.setEditable(false);
+		txtEligeUnTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEligeUnTipo.setText("Elige un tipo de entidad");
+		txtEligeUnTipo.setBounds(126, 26, 182, 31);
+		contentPane.add(txtEligeUnTipo);
+		txtEligeUnTipo.setColumns(10);
 		
 		
 		btnBack.addActionListener(new ActionListener(){

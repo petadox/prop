@@ -15,11 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class EntRel7 extends JFrame {
 //Entitat - Relacio
 	private JPanel contentPane;
+	private JTextField txtEligeUnTipo;
 
 	/**
 	 * Launch the application.
@@ -41,6 +43,7 @@ public class EntRel7 extends JFrame {
 	 * Create the frame.
 	 */
 	public EntRel7() {
+		setTitle("Relaciones");
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -49,16 +52,17 @@ public class EntRel7 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JToggleButton btnAutor = new JToggleButton("Autor");
-		btnAutor.setBounds(142, 15, 150, 50);
+		JToggleButton btnAutor = new JToggleButton("Autor-Paper");
+		btnAutor.setBounds(10, 95, 120, 50);
 		contentPane.add(btnAutor);
 		
-		JToggleButton btnConferencia = new JToggleButton("Conferencia");
-		btnConferencia.setBounds(142, 68, 150, 50);
+		JToggleButton btnConferencia = new JToggleButton("Conferencia-Paper");
+		btnConferencia.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnConferencia.setBounds(151, 95, 131, 50);
 		contentPane.add(btnConferencia);
 		
-		JToggleButton btnTerme = new JToggleButton("Terme");
-		btnTerme.setBounds(142, 122, 150, 50);
+		JToggleButton btnTerme = new JToggleButton("Terme-Paper");
+		btnTerme.setBounds(304, 95, 120, 50);
 		contentPane.add(btnTerme);
 		
 		btnAutor.addActionListener(new ActionListener() {
@@ -228,6 +232,14 @@ public class EntRel7 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
+		
+		txtEligeUnTipo = new JTextField();
+		txtEligeUnTipo.setEditable(false);
+		txtEligeUnTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEligeUnTipo.setText("Elige un tipo de relaci\u00F3n");
+		txtEligeUnTipo.setBounds(125, 39, 181, 31);
+		contentPane.add(txtEligeUnTipo);
+		txtEligeUnTipo.setColumns(10);
 		
 	}
 }
