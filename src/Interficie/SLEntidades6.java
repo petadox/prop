@@ -142,7 +142,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
 					dlm.addElement(conferencies.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(conferencies.get(i).second);
 				}
 			}
 			
@@ -150,7 +150,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
 					dlm.addElement(termes.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(termes.get(i).second);
 				}
 			}
 			
@@ -158,7 +158,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
 					dlm.addElement(papers.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(papers.get(i).second);
 				}
 			}
 		}
@@ -175,7 +175,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
 					dlm.addElement(conferencies.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(conferencies.get(i).second);
 				}
 			}
 			
@@ -183,7 +183,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
 					dlm.addElement(termes.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(termes.get(i).second);
 				}
 			}
 			
@@ -191,7 +191,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
 					dlm.addElement(papers.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(papers.get(i).second);
 				}
 			}
 		}
@@ -209,7 +209,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Conferencias");
 				for (int i = 0; i < conferencies.size(); i++) {
 					dlm.addElement(conferencies.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(conferencies.get(i).second);
 				}
 			}
 			
@@ -217,7 +217,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Termes");
 				for (int i = 0; i < termes.size(); i++) {
 					dlm.addElement(termes.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(termes.get(i).second);
 				}
 			}
 			
@@ -225,7 +225,7 @@ public class SLEntidades6 extends JFrame {
 				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
 					dlm.addElement(papers.get(i).second);
-					aux.add(autores.get(i).second);
+					aux.add(papers.get(i).second);
 				}
 			}
 		}
@@ -332,7 +332,7 @@ public class SLEntidades6 extends JFrame {
 			            	 		}
 			            	 		ControladorInterficie.setEntidades6Int(termes.get(l).first);
 			            	 		ControladorInterficie.setIdNodo(termes.get(l).first);
-			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),termes.get(index).first,2);
+			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),termes.get(l).first,2);
 			               			ControladorInterficie.VistaSLEntidades6();
 			               			dispose();
 		               			}
@@ -345,7 +345,7 @@ public class SLEntidades6 extends JFrame {
 			            	 		}
 			            	 		ControladorInterficie.setEntidades6Int(papers.get(l).first);
 			            	 		ControladorInterficie.setIdNodo(papers.get(l).first);
-			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),papers.get(index).first,3);
+			               			ControladorInterficie.borrarNode(ControladorInterficie.getNombreEntidad(),papers.get(l).first,3);
 			               			ControladorInterficie.VistaSLEntidades6();
 			               			dispose();			               	 
 		               			}

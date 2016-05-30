@@ -54,19 +54,19 @@ public class Elements3 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnEntitats = new JToggleButton("Entitats");
-		btnEntitats.setBounds(142, 15, 150, 50);
+		btnEntitats.setBounds(25, 68, 150, 50);
 		contentPane.add(btnEntitats);
 		
 		JToggleButton btnPerfil = new JToggleButton("Perfil");
-		btnPerfil.setBounds(142, 68, 150, 50);
+		btnPerfil.setBounds(252, 68, 150, 50);
 		contentPane.add(btnPerfil);
 		
 		JToggleButton btnRelacions = new JToggleButton("Relacions");
-		btnRelacions.setBounds(142, 122, 150, 50);
+		btnRelacions.setBounds(25, 142, 150, 50);
 		contentPane.add(btnRelacions);
 		
 		JToggleButton btnPlantilla = new JToggleButton("Plantilla");
-		btnPlantilla.setBounds(142, 175, 150, 50);
+		btnPlantilla.setBounds(252, 142, 150, 50);
 		contentPane.add(btnPlantilla);
 		
 		btnEntitats.addActionListener(new ActionListener() {
