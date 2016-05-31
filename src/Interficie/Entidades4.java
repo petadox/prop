@@ -48,19 +48,19 @@ public class Entidades4 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnAutor = new JToggleButton("Autor");
-		btnAutor.setBounds(142, 15, 150, 50);
+		btnAutor.setBounds(44, 68, 150, 50);
 		contentPane.add(btnAutor);
 		
 		JToggleButton btnConferencia = new JToggleButton("Conferencia");
-		btnConferencia.setBounds(142, 68, 150, 50);
+		btnConferencia.setBounds(244, 68, 150, 50);
 		contentPane.add(btnConferencia);
 		
 		JToggleButton btnPaper = new JToggleButton("Paper");
-		btnPaper.setBounds(142, 122, 150, 50);
+		btnPaper.setBounds(44, 133, 150, 50);
 		contentPane.add(btnPaper);
 		
 		JToggleButton btnTerme = new JToggleButton("Terme");
-		btnTerme.setBounds(142, 175, 150, 50);
+		btnTerme.setBounds(244, 133, 150, 50);
 		contentPane.add(btnTerme);
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
