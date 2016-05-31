@@ -115,9 +115,14 @@ public class Entidades4 extends JFrame {
 				else if(btnConferencia.isSelected())ControladorInterficie.setEntidades4("Conferencia");
 				else ControladorInterficie.setEntidades4("Terme");
 				
-				if (ControladorInterficie.getMenu2().equals("Crear")) { 
+				if (ControladorInterficie.getMenu2().equals("Crear") &&
+						ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaSLEntidades6();
+					
+				}
+				
+				else if (ControladorInterficie.getMenu2().equals("Crear")) { 
 					if(ControladorInterficie.getElement3().equals("Entidades") ||
-						ControladorInterficie.getElement3().equals("Perfil") ||
 						ControladorInterficie.getElement3().equals("Plantilla")) {
 							ControladorInterficie.VistaIntroduirNom5();
 					}

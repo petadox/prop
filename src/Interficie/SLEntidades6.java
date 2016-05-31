@@ -70,7 +70,12 @@ public class SLEntidades6 extends JFrame {
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (ControladorInterficie.getconsplant17() != null && ControladorInterficie.getconsplant17().equals("GenerarPerfil")) {
+				if (ControladorInterficie.getMenu2().equals("Crear") &&
+						ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaEntidades4();
+				}
+				
+				else if (ControladorInterficie.getconsplant17() != null && ControladorInterficie.getconsplant17().equals("GenerarPerfil")) {
 					try {
 						ControladorInterficie.VistaConsPlant17();
 					} catch (NumberFormatException | FicheroNoExiste | IOException e) {
@@ -222,6 +227,40 @@ public class SLEntidades6 extends JFrame {
 			}
 			
 			else if (ControladorInterficie.getTipusPlant().equals("Paper")) {
+				textField.setText("Papers");
+				for (int i = 0; i < papers.size(); i++) {
+					dlm.addElement(papers.get(i).second);
+					aux.add(papers.get(i).second);
+				}
+			}
+		}
+		
+		else if (ControladorInterficie.getMenu2().equals("Crear")) {
+			if (ControladorInterficie.getEntidades4().equals("Autor")) {
+				textField.setText("Autores");
+				for (int i = 0; i < autores.size(); i++) {
+					dlm.addElement(autores.get(i).second);
+					aux.add(autores.get(i).second);
+				}
+			}
+			
+			else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
+				textField.setText("Conferencias");
+				for (int i = 0; i < conferencies.size(); i++) {
+					dlm.addElement(conferencies.get(i).second);
+					aux.add(conferencies.get(i).second);
+				}
+			}
+			
+			else if (ControladorInterficie.getEntidades4().equals("Terme")) {
+				textField.setText("Termes");
+				for (int i = 0; i < termes.size(); i++) {
+					dlm.addElement(termes.get(i).second);
+					aux.add(termes.get(i).second);
+				}
+			}
+			
+			else if (ControladorInterficie.getEntidades4().equals("Paper")) {
 				textField.setText("Papers");
 				for (int i = 0; i < papers.size(); i++) {
 					dlm.addElement(papers.get(i).second);

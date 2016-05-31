@@ -145,14 +145,15 @@ public class IntroduirNom5 extends JFrame {
 				}
 				else{
 					ControladorInterficie.setNom5(nom.getText());
-					if(ControladorInterficie.getMenu2() == "Crear" && ControladorInterficie.getElement3() == "Perfil"){
+					if(ControladorInterficie.getMenu2().equals("Crear") && ControladorInterficie.getElement3().equals("Perfil")){
 						ControladorInterficie.VistaEntidades4();
+						dispose();
 					}
-					else if(ControladorInterficie.getMenu2() == "Modificar" && ControladorInterficie.getElement3() == "Entidades") {
+					else if(ControladorInterficie.getMenu2().equals("Modificar") && ControladorInterficie.getElement3().equals("Entidades")) {
 						ControladorInterficie.modificarNode();
 					}
 					else {
-						if (ControladorInterficie.getEntidades4() == "Autor") { try {
+						if (ControladorInterficie.getEntidades4().equals("Autor")) { try {
 							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"AI");
 							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"Database");
 							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Autor", nom.getText(),"DataMining");
@@ -161,7 +162,7 @@ public class IntroduirNom5 extends JFrame {
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						} }
-						else if (ControladorInterficie.getEntidades4() == "Conferencia") { try {
+						else if (ControladorInterficie.getEntidades4().equals("Conferencia")) { try {
 							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Conferencia", nom.getText(),"AI");
 							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Conferencia", nom.getText(),"Database");
 							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Conferencia", nom.getText(),"DataMining");
@@ -170,7 +171,7 @@ public class IntroduirNom5 extends JFrame {
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						} }
-						else if (ControladorInterficie.getEntidades4() == "Paper") { try {
+						else if (ControladorInterficie.getEntidades4().equals("Paper")) { try {
 							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"AI");
 							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"Database");
 							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Paper", nom.getText(),"DataMining");
@@ -179,7 +180,7 @@ public class IntroduirNom5 extends JFrame {
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						} }
-						else if (ControladorInterficie.getEntidades4() == "Terme") { try {
+						else if (ControladorInterficie.getEntidades4().equals("Terme")) { try {
 							if (tglbtnAI.isSelected()) ControladorInterficie.addNode("Terme", nom.getText(),"AI");
 							else if (tglbtnDatabase.isSelected()) ControladorInterficie.addNode("Terme", nom.getText(),"Database");
 							else if (tglbtnDataMining.isSelected()) ControladorInterficie.addNode("Terme", nom.getText(),"DataMining");
