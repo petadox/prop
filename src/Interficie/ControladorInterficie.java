@@ -479,9 +479,16 @@ public static void addNode(String tipus, String nom, String label) throws IOExce
 	
 	public static void crearPerfil() throws NumberFormatException, FicheroNoExiste, IOException, PathException{
 		//base datos
-		if(Menu2=="Consultar" && Element3=="Perfil") CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
+		if(Menu2.equals("Consultar") && Element3.equals("Perfil")) CtrlD.crearPerfilMem("BaseDades/Perfil/" + NomPlant11 + ".txt", Nom5);
 		//genera perfil
 		else{
+			System.out.println(NomPlant11);
+			System.out.println(TipusPlant11);
+			System.out.println(Camp12);
+			System.out.println(Nom5);
+			System.out.println(IdPerfil);
+			
+			
 			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5,IdPerfil);
 		}
 	}

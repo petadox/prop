@@ -140,6 +140,18 @@ public class ElegirPlant extends JFrame {
 					}
             	 	dispose();
 	             }
+	             else if (ControladorInterficie.getMenu2().equals("Crear") &&
+	            		 ControladorInterficie.getElement3().equals("Perfil")) {
+	 	            	String ruta = "BaseDades/PlantillaPerfil/" + ControladorInterficie.getEntidades4() + "/" + nomEnt;
+	 	            	ControladorInterficie.setRutaPlant(ruta);
+	             	 	ControladorInterficie.carregaPlantIndex(index);
+	             	 	try {
+	 						ControladorInterficie.VistaSLEntidades6();
+	 					} catch (NumberFormatException e1) {
+	 						e1.printStackTrace();
+	 					}
+	             	 	dispose();
+	 	             }
 	             else if (ControladorInterficie.getMenu2().equals("Borrar")) {
 	            	 int dialog = JOptionPane.OK_CANCEL_OPTION;
 	               	 int result = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres borrar el perfil indicado?","", dialog);
