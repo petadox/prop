@@ -117,7 +117,7 @@ public class Entidades4 extends JFrame {
 				
 				if (ControladorInterficie.getMenu2().equals("Crear") &&
 						ControladorInterficie.getElement3().equals("Perfil")) {
-					ControladorInterficie.VistaSLEntidades6();
+					ControladorInterficie.VistaElegirPlantilla20();
 					
 				}
 				
@@ -279,7 +279,11 @@ public class Entidades4 extends JFrame {
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				//ControladorInterficie.setEntidades4((""));
-				ControladorInterficie.VistaElementos3();
+				if (ControladorInterficie.getMenu2().equals("Crear") &&
+						ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaIntroduirNom5();
+				}
+			else ControladorInterficie.VistaElementos3();
 				dispose();
 			}
 		});

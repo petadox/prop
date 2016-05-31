@@ -72,7 +72,7 @@ public class SLEntidades6 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (ControladorInterficie.getMenu2().equals("Crear") &&
 						ControladorInterficie.getElement3().equals("Perfil")) {
-					ControladorInterficie.VistaEntidades4();
+					ControladorInterficie.VistaElegirPlantilla20();
 				}
 				
 				else if (ControladorInterficie.getconsplant17() != null && ControladorInterficie.getconsplant17().equals("GenerarPerfil")) {
@@ -582,7 +582,7 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.setIdNodo(autores.get(l).first);
 	            			 
 	            			 try {
-									ControladorInterficie.VistaElegirPlantilla20();
+									ControladorInterficie.VistaConsPlant17();
 								} catch (Exception e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -601,7 +601,7 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.setIdNodo(conferencies.get(index).first);
 	            			 
 	            			 try {
-								ControladorInterficie.VistaElegirPlantilla20();
+								ControladorInterficie.VistaConsPlant17();
 							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -620,7 +620,7 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.setIdNodo(termes.get(l).first);
 	            			 
 	            			 try {
-									ControladorInterficie.VistaElegirPlantilla20();
+									ControladorInterficie.VistaConsPlant17();
 								} catch (Exception e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -639,7 +639,7 @@ public class SLEntidades6 extends JFrame {
 	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
 	            			 
 	            			 try {
-									ControladorInterficie.VistaElegirPlantilla20();
+									ControladorInterficie.VistaConsPlant17();
 								} catch (Exception e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();

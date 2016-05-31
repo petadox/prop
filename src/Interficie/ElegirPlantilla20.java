@@ -78,7 +78,7 @@ public class ElegirPlantilla20 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (ControladorInterficie.getMenu2().equals("Crear") && 
 						ControladorInterficie.getElement3().equals("Perfil")) {
-					ControladorInterficie.VistaSLEntidades6();
+					ControladorInterficie.VistaEntidades4();
 				}
 			else ControladorInterficie.VistaEntidades4();
 				dispose();

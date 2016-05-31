@@ -186,6 +186,15 @@ public class ElegirPlant extends JFrame {
 	               	 }
 	               	 //si le ha dado a cancelar se cierra el dialogo
 	             }
+	             else if (ControladorInterficie.getMenu2().equals("Crear") && 
+	            		 ControladorInterficie.getElement3().equals("Perfil")) {
+	            	 ControladorInterficie.carregaPlantIndex(index);
+	            	 	try {
+							e1.printStackTrace();
+						}
+	            	 	dispose();
+	            	 
+	             }
 		     }
 		 };
 		 list.addMouseListener(mouseListener);

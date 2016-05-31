@@ -123,7 +123,12 @@ public class IntroduirNom5 extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.setNom5(nom.getText());
-				ControladorInterficie.VistaEntidades4();
+				if (ControladorInterficie.getMenu2().equals("Crear") &&
+						ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaElementos3();
+					
+				}
+				else ControladorInterficie.VistaEntidades4();
 				dispose();
 			}
 		});

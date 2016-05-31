@@ -1,7 +1,7 @@
 Edo
 Conferencia
-NOMCAMP1
+NomCamp1
+DescCamp1
 CPT
-DESCCAMP1
-0.3
+-1.0
 4
