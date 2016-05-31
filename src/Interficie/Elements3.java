@@ -122,10 +122,10 @@ public class Elements3 extends JFrame {
 					else{
 						try {
 							ControladorInterficie.VistaSLPerfiles9();
+							dispose();
 						} catch (FicheroNoExiste | IOException e1) {
 							e1.printStackTrace();
 						}
-						dispose();
 					}
 				}
 				if(btnPlantilla.isSelected()){

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Excepcions.FicheroNoExiste;
+import domini.PathException;
 public class SLPerfiles9 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -47,17 +48,29 @@ public class SLPerfiles9 extends JFrame {
 		
 		JFileChooser absoluto = new JFileChooser();
 		absoluto.setCurrentDirectory(new File("C:\\Users\\Albert Ripol\\Desktop\\PracticaProp\\ProjectePROP\\BaseDades"));
-		absoluto.showOpenDialog(absoluto);
-		String ruta = absoluto.getSelectedFile().getAbsolutePath();
-		
-		if(ControladorInterficie.getMenu2() == "Consultar" || 
-		   ControladorInterficie.getMenu2() == "Modificar"){
-			   ControladorInterficie.loadP(ruta);
+
+		int result = absoluto.showOpenDialog(absoluto);
+		String ruta = "";
+		if (result == JFileChooser.CANCEL_OPTION) {
+			ControladorInterficie.VistaElementos3();
+			dispose();
 		}
-		else if(ControladorInterficie.getMenu2() == "Borrar"){
-			ControladorInterficie.deleteP(ruta);
+		else { 
+				ruta = absoluto.getSelectedFile().getAbsolutePath();
+			
+			if(ControladorInterficie.getMenu2() == "Consultar" || 
+			   ControladorInterficie.getMenu2() == "Modificar"){
+				   ControladorInterficie.loadP(ruta);
+				   
+				   ControladorInterficie.VistaConsPerf15();
+				   dispose();
+			}
+			else if(ControladorInterficie.getMenu2() == "Borrar"){
+				ControladorInterficie.deleteP(ruta);
+			}
 		}
 		dispose();
+		
 	JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 	btnNuevoGrafo.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
@@ -74,6 +87,7 @@ public class SLPerfiles9 extends JFrame {
 					ControladorInterficie.VistaElementos3();
 					dispose();
 				}
+
 				else {
 					String path = absoluto.getSelectedFile().getAbsolutePath();
 					try {
