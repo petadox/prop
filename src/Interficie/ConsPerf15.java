@@ -30,7 +30,9 @@ public class ConsPerf15 extends JFrame {
 			list.add(""); // Linea blanca entre tipo y tipo, tipo heheh;
 			list.add(NomsArray.get(i));
 			for (int j = 0; j < MatriuCamps.get(i).size(); ++j) {
-				list.add(MatriuCamps.get(i).get(j));
+				if (!MatriuCamps.get(i).get(j).equals(ControladorInterficie.getNombreEntidad())) {
+					list.add(MatriuCamps.get(i).get(j));
+				}
 				
 			}
 			

@@ -590,11 +590,6 @@ public class SLEntidades6 extends JFrame {
 		            	 				--l;
 		            	 			}
 		            	 		}
-	            			 System.out.println("Que pasaaa");
-	            			 System.out.println("Que pasaaa");
-	            			 System.out.println("Que pasaaa");
-	            			 System.out.println("Que pasaaa");
-	            			 
 		            	 	 ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
 		            	 	ControladorInterficie.setIdPerfil(conferencies.get(l).first);
 
