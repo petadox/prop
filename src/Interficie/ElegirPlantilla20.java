@@ -76,7 +76,11 @@ public class ElegirPlantilla20 extends JFrame {
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				ControladorInterficie.VistaEntidades4();
+				if (ControladorInterficie.getMenu2().equals("Crear") && 
+						ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaSLEntidades6();
+				}
+			else ControladorInterficie.VistaEntidades4();
 				dispose();
 			}
 		});
@@ -89,7 +93,7 @@ public class ElegirPlantilla20 extends JFrame {
 				if(btnCrearNova.isSelected()) ControladorInterficie.VistaPlantilla11();
 				else if(btnUsarExistent.isSelected())
 					try {
-						//ControladorInterficie.VistaElegirPlant();
+						ControladorInterficie.VistaElegirPlant();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

@@ -144,7 +144,13 @@ public class ConsPlant17 extends JFrame {
 		btnGenerarPerfil.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.setconsplant17("GenerarPerfil");
-				ControladorInterficie.VistaSLEntidades6();
+				
+				if (ControladorInterficie.getMenu2().equals("Crear") &&
+	            			 ControladorInterficie.getElement3().equals("Perfil")) {
+					ControladorInterficie.VistaConsPerf15();
+				}
+				
+				else ControladorInterficie.VistaSLEntidades6();
 				dispose();
 			}
 			
