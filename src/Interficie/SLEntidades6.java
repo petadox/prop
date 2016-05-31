@@ -638,6 +638,16 @@ public class SLEntidades6 extends JFrame {
 		            	 	 ControladorInterficie.setEntidades6Int(papers.get(l).first);
 	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
 	            			 
+	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
+	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
+	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
+	            			 
+	            			 try {
+	 							ControladorInterficie.crearPerfil();
+	 							} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
+	 								e1.printStackTrace();
+	 							}
+	            			 
 	            			 try {
 									ControladorInterficie.VistaConsPlant17();
 								} catch (Exception e1) {
