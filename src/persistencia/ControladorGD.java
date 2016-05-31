@@ -10,6 +10,7 @@ import java.util.Iterator;
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
 import domini.Camp;
+import domini.CtrlDominio;
 import domini.Node;
 import domini.Perfil;
 import domini.PlantillaPerfil;
@@ -19,9 +20,9 @@ public class ControladorGD{	//controlador gestio dades
 	public static void guardarPerfil(Perfil p) throws IOException, FicheroNoExiste, FicheroYaExistente{
 		String nomP = p.getNomPerfil();
 		String nomPP = p.getNomPlantilla();
-		String tipus = p.getTipus();
+		//String tipus = p.getTipus();
+		String tipus = CtrlDominio.getEntidades4();
 		ArrayList<ArrayList<String>> CampsPerfil = p.getCampPle();
-		System.out.println("Llego aqui????");
 		//String ruta = System.getProperty("user.dir")+"\\BaseDades\\Perfil\\ " + tipus +"\\";
 		String ruta = "BaseDades/Perfil/" +tipus+"/";
 		GestioDades.Crear_archivo(nomP, ruta);
@@ -84,7 +85,6 @@ public class ControladorGD{	//controlador gestio dades
 			plant.add(s);
 		}
 		b.close();
-		System.out.print(plant.size());
 		return plant; 
 	}
 	

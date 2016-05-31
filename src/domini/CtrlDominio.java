@@ -7,6 +7,8 @@ package domini;
 
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
+import Interficie.ControladorInterficie;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -674,5 +676,9 @@ public class CtrlDominio {
 			
 		}
 		
+	}
+
+	public static String getEntidades4() {
+		return ControladorInterficie.getEntidades4();
 	}
 }
