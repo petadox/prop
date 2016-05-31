@@ -564,6 +564,96 @@ public class SLEntidades6 extends JFrame {
 	            		ControladorInterficie.VistaConsPerf15();
 	            		dispose();
 	            	 } 
+	            	 
+	            	//DESDEAQUISALGO
+	            	//DESDEAQUISALGO
+	            	//DESDEAQUISALGO
+	            	 
+	            	 else if (ControladorInterficie.getMenu2().equals("Crear") &&
+	            			 ControladorInterficie.getElement3().equals("Perfil")) {
+	            		 if (ControladorInterficie.getEntidades4().equals("Autor")) {
+	            			 for (l = 0; l < autores.size() && !trobat; ++l) {
+		            	 			if (autores.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(autores.get(l).first);
+	            			 ControladorInterficie.setIdNodo(autores.get(l).first);
+	            			 
+	            			 try {
+									ControladorInterficie.VistaElegirPlantilla20();
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+	            			 
+	            			 dispose();
+	            		 }
+	            		 else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
+	            			 for (l = 0; l < conferencies.size() && !trobat; ++l) {
+		            	 			if (conferencies.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
+	            			 ControladorInterficie.setIdNodo(conferencies.get(index).first);
+	            			 
+	            			 try {
+								ControladorInterficie.VistaElegirPlantilla20();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+	            			 
+	            			 dispose();
+	            		 }
+	            		 else if (ControladorInterficie.getEntidades4().equals("Terme")){
+	            			 for (l = 0; l < termes.size() && !trobat; ++l) {
+		            	 			if (termes.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 		}
+		            	 	 ControladorInterficie.setEntidades6Int(termes.get(l).first);
+	            			 ControladorInterficie.setIdNodo(termes.get(l).first);
+	            			 
+	            			 try {
+									ControladorInterficie.VistaElegirPlantilla20();
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+	            			 
+	            			 dispose();
+	            		 }
+	            		 else {
+	            			 for (l = 0; l < papers.size() && !trobat; ++l) {
+		            	 			if (papers.get(l).second.equals(nomEnt)) {
+		            	 				trobat = true;
+		            	 				--l;
+		            	 			}
+		            	 	 }
+		            	 	 ControladorInterficie.setEntidades6Int(papers.get(l).first);
+	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
+	            			 
+	            			 try {
+									ControladorInterficie.VistaElegirPlantilla20();
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+	            			 
+	            			 dispose();
+	            		 }
+	            	 }
+	            	 
+	            	//HASTAAQUILLEGO
+	            	//HASTAAQUILLEGO
+	            	//HASTAAQUILLEGO
+	            	 
+	            	 
 			     }
 			 };
 			 list.addMouseListener(mouseListener);
