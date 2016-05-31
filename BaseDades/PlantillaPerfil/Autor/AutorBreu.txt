@@ -1,0 +1,17 @@
+Autor breu
+Autor
+Publicacions
+Publicacions d'un autor
+AP
+-1
+3
+Co-autors
+Co-autors d'un autor
+APA
+-1
+3
+Conferencies
+Conferencies a les que ha assistit un autor
+APC
+-1
+3

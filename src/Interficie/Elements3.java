@@ -14,11 +14,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import Excepcions.FicheroNoExiste;
-import javax.swing.JTextField;
 
 public class Elements3 extends JFrame {
 	
@@ -56,19 +56,19 @@ public class Elements3 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnEntitats = new JToggleButton("Entitats");
-		btnEntitats.setBounds(25, 68, 150, 50);
+		btnEntitats.setBounds(142, 15, 150, 50);
 		contentPane.add(btnEntitats);
 		
 		JToggleButton btnPerfil = new JToggleButton("Perfil");
-		btnPerfil.setBounds(252, 68, 150, 50);
+		btnPerfil.setBounds(142, 68, 150, 50);
 		contentPane.add(btnPerfil);
 		
 		JToggleButton btnRelacions = new JToggleButton("Relacions");
-		btnRelacions.setBounds(25, 142, 150, 50);
+		btnRelacions.setBounds(142, 122, 150, 50);
 		contentPane.add(btnRelacions);
 		
 		JToggleButton btnPlantilla = new JToggleButton("Plantilla");
-		btnPlantilla.setBounds(252, 142, 150, 50);
+		btnPlantilla.setBounds(142, 175, 150, 50);
 		contentPane.add(btnPlantilla);
 		
 		btnEntitats.addActionListener(new ActionListener() {
@@ -120,43 +120,29 @@ public class Elements3 extends JFrame {
 						dispose();
 					}
 					else{
-						ControladorInterficie.VistaSLPerfiles9();
+						try {
+							ControladorInterficie.VistaSLPerfiles9();
+						} catch (FicheroNoExiste | IOException e1) {
+							e1.printStackTrace();
+						}
 						dispose();
 					}
 				}
-				else if(btnPlantilla.isSelected()){
+				if(btnPlantilla.isSelected()){
 					ControladorInterficie.setElement3("Plantilla");
 					if(ControladorInterficie.getMenu2() == "Crear"){
 						ControladorInterficie.VistaPlantilla11();
 						dispose();
 					}
 					else{ //Consultar/modificar/borrar Plantilla
-						/*try {
-							JFileChooser importar = new JFileChooser();
-							importar.setCurrentDirectory(new File("C:\\Users\\Albert Ripol\\Desktop\\PracticaProp\\ProjectePROP\\BaseDades"));
-							importar.showOpenDialog(importar);
-							String ruta = importar.getSelectedFile().getAbsolutePath();
-							ControladorInterficie.setRutaPlant(ruta);
-							
-							if(ControladorInterficie.getMenu2() == "Borrar"){
-								ControladorInterficie.deletePP(ruta);
-								ControladorInterficie.VistaMenu2();
-							}
-							
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}*/
 						ControladorInterficie.VistaEntidades4();
 						dispose();
 					}
 				}
-				else if(btnRelacions.isSelected()){
+				if(btnRelacions.isSelected()){
 					ControladorInterficie.setElement3("Relaciones");
 					ControladorInterficie.VistaEntRel7();
 					dispose();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Has de seleccionar un elemento");
 				}
 			}
 		});
@@ -171,6 +157,7 @@ public class Elements3 extends JFrame {
 				dispose();
 			}
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -286,7 +273,6 @@ public class Elements3 extends JFrame {
 		txtEligeUnElemento.setBounds(146, 23, 138, 26);
 		contentPane.add(txtEligeUnElemento);
 		txtEligeUnElemento.setColumns(10);
-		
 	}
 }
 

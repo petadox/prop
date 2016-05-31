@@ -74,7 +74,6 @@ public class ControladorGD{	//controlador gestio dades
 		b.close();
 		return perf;
 	}
-
 	
 	public static ArrayList<String> cargarPlantilla(String ruta) throws NumberFormatException, FicheroNoExiste, IOException{
 		ArrayList<String> plant = new ArrayList<String>();
@@ -85,7 +84,7 @@ public class ControladorGD{	//controlador gestio dades
 			plant.add(s);
 		}
 		b.close();
-		return plant; 
+		return plant;
 	}
 	
 	public static void guardarPlantilla(PlantillaPerfil pp, String tipus, String nomPP) throws IOException, FicheroNoExiste, FicheroYaExistente{

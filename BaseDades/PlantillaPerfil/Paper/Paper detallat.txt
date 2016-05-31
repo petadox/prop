@@ -1,0 +1,17 @@
+Paper detallat
+Paper
+Autors
+Autors que han articipat en l'article
+PA
+0.8
+-1
+Termes
+Paraules clau que apareixen a l'article
+PT
+0.8
+-1
+Altres articles relacionats
+Articles relacionats, per autor, conferencia o termes, amb l'article.
+PAP
+0.8
+-1

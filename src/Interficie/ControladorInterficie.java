@@ -27,23 +27,24 @@ public class ControladorInterficie {
 	private static String SLPerfiles9;
 	private static String Slentidades6;
 	private static Integer entidades6;
-	private static Integer IdPerfil;
+	private static String consultarentidades;
 	private static String nombreEntidad;
 	private static String NomPlant11;
 	private static String TipusPlant11;
-	private static String consPlant17;
-	private static Integer IdPaper;
-	private static Integer IdNodo;
 	private static ArrayList<ArrayList<String> > Camp12 = new ArrayList<ArrayList<String> >();
 	private static int numCamp;
+	private static String consPlant17;
 	private static String rutaPlant;
+	private static int index;
+	private static Integer IdPaper;
+	private static Integer IdNodo;
 	private static String canviNom;
 	private static Integer iPerCanviNom;
 	private static Integer jPerCanviNom;
 	private static Boolean esNom;
 	private static Boolean borraNom;
 	private static Boolean anadirNombre;
-
+	private static Integer IdPerfil;
 	
 	/*Instancia*/
 	
@@ -63,7 +64,6 @@ public class ControladorInterficie {
 	private static Plantilla11 plantilla11;
 	private static AfegirCamp12 afegircamp12;
 	private static ConsPerf15 consperf15;
-	private static SLPlantilla16 slplantilla16;
 	private static ConsPlant17 consplant17;
 	private static ModPlantilla18 modplantilla18;
 	private static ModCampPlantilla18b modcampplantilla18b;
@@ -72,7 +72,7 @@ public class ControladorInterficie {
 	private static ConsultarEntidad consultarentidad;
 	private static ElegirPlant elegirplant;
 	private static CanviarNom canviarnom;
-  
+
 
 	/*ScrollLists entidades*/
 
@@ -152,10 +152,8 @@ public class ControladorInterficie {
 	
 	public static Boolean getAnadirNombre() {return anadirNombre;}
 	public static void setAnadirNombre(Boolean n) {anadirNombre = n;}
-
 	
 	public static String getSLEntidades6() {return Slentidades6;}
-	
 	public static void setSLEntidades6(String entidad) {Slentidades6 = entidad;}
 	
 	public static void setEntRel7(String s) {EntRel7 = s;}
@@ -182,6 +180,7 @@ public class ControladorInterficie {
 	public static void setIdNodo(Integer Id){IdNodo = Id;}
 	public static Integer getIdNodo(){return IdNodo;}
 	
+	
 	public static void borrarCamp12(){Camp12.clear();}
 	
 	public static void setNomG(String nomG) {CtrlD.setNomActual(nomG);}
@@ -192,7 +191,7 @@ public class ControladorInterficie {
 	
 	public static String getSLPerfiles() {return SLPerfiles9;}
 	
-	public static void addNode(String tipus, String nom, String label) throws IOException { CtrlD.guardarNode(tipus, nom, label);}
+public static void addNode(String tipus, String nom, String label) throws IOException { CtrlD.guardarNode(tipus, nom, label);}
 	
 	public static void saveGraph(String path) throws FileNotFoundException, IOException { CtrlD.guardarGraph(path);}
 	
@@ -203,13 +202,14 @@ public class ControladorInterficie {
 	public static void deleteGraph(String path) throws FileNotFoundException, IOException { CtrlD.esborraGraph(path);}
 	
 	public static void savePP() throws IOException, FicheroNoExiste, FicheroYaExistente{CtrlD.guardarPlantilla(NomPlant11, TipusPlant11, Camp12);}
-	
 	public static void loadPP(String ruta) throws FicheroNoExiste, IOException{
 		CtrlD.cargarPlantilla(ruta);
 		TipusPlant11 = CtrlD.getTipusPlantilla();
 	}
+	
 	public static void saveP() throws IOException, FicheroYaExistente, FicheroNoExiste{CtrlD.guardarPerfil();}
 	public static void loadP(String ruta) throws FicheroNoExiste, IOException{CtrlD.cargarPerfil(ruta);}
+
 	
 	public static void VistaPrincipal1() {
 		prin1 = new Principal1();
@@ -267,12 +267,8 @@ public class ControladorInterficie {
 		grafo8.setResizable(false);
 	}
 
-	public static void VistaSLPerfiles9() {
-		try {
-			slperfiles9 = new SLPerfiles9();
-		} catch (FicheroNoExiste | IOException e) {
-			e.printStackTrace();
-		}
+	public static void VistaSLPerfiles9() throws FicheroNoExiste, IOException {
+		slperfiles9 = new SLPerfiles9();
 		slperfiles9.setLocationRelativeTo(null);
 		slperfiles9.setVisible(true);
 		slperfiles9.setResizable(false);
@@ -299,13 +295,6 @@ public class ControladorInterficie {
 		consperf15.setResizable(false);
 	}
 
-	public static void VistaSLPlantilla16() throws Exception, IOException {
-		slplantilla16 = new SLPlantilla16();
-		slplantilla16.setLocationRelativeTo(null);
-		slplantilla16.setVisible(true);
-		slplantilla16.setResizable(false);
-	}
-	
 	public static void VistaConsPlant17() throws NumberFormatException, FicheroNoExiste, IOException {
 		consplant17 = new ConsPlant17();
 		consplant17.setLocationRelativeTo(null);
@@ -361,7 +350,6 @@ public class ControladorInterficie {
 		elegirplant.setVisible(true);
 		elegirplant.setResizable(false);
 	}
-
 	
 	public static void ordenarVector() {
 		Collections.sort(autores,new CompararArrays());
@@ -370,15 +358,15 @@ public class ControladorInterficie {
 		Collections.sort(termes,new CompararArrays());
 	}
 	
-	public static void cargarMapAutores(Integer index) {
+	public static void cargarMapAutores(int index) {
 		Mapa = CtrlD.getRelacionsAutor(index);
 	}
 	
-	public static void cargarMapConferencias(Integer index) {
+	public static void cargarMapConferencias(int index) {
 		Mapa = CtrlD.getRelacionsConferencies(index);
 	}
 	
-	public static void cargarMapTermes(Integer index) {
+	public static void cargarMapTermes(int index) {
 		Mapa = CtrlD.getRelacionsTermes(index);
 	}
 	
@@ -412,25 +400,19 @@ public class ControladorInterficie {
 	public static String getNomPerfil() {
 		return CtrlD.getNomPerfil();
 	}
-	/*public static ArrayList<ArrayList<String>> getTodaPlantilla() {
-		return CtrlD.getTodaPlantilla();
-	}*/
 	public static void deleteP(String ruta) throws FicheroNoExiste, IOException {CtrlD.deleteP(ruta);}
-	
-	public static void deletePP(String ruta) throws FicheroNoExiste, IOException {CtrlD.deletePP(ruta);}
-
+	public static void deletePP(String ruta, int tipus, int index) throws FicheroNoExiste, IOException {CtrlD.deletePP(ruta, tipus, index);}
 	
 	public static boolean pathValid(String path) {
-		boolean yep = false;
-		
-		if (TipusPlant11.equals("Autor") && path.charAt(0) != 'A') return false;
-		if (TipusPlant11.equals("Conferencia") && path.charAt(0) != 'C') return false;
-		if (TipusPlant11.equals("Terme") && path.charAt(0) != 'T') return false;
-		if (TipusPlant11.equals("Paper") && path.charAt(0) != 'P') return false;
-		
+        boolean yep = false;
         int n = path.length();
         int i; // Para el resto (A,C,T);
         int j; // Para las P;
+        if(path.charAt(0) != 'A' && TipusPlant11.equals("Autor")) return false;
+        if(path.charAt(0) != 'C' && TipusPlant11.equals("Conferencia")) return false;
+        if(path.charAt(0) != 'T' && TipusPlant11.equals("Terme")) return false;
+        if(path.charAt(0) != 'P' && TipusPlant11.equals("Paper")) return false;
+        
         if(path.charAt(0) == 'P') { // Primera posicion es la P;
             yep = true;
             i = 1;
@@ -458,7 +440,7 @@ public class ControladorInterficie {
             }
         }
         return yep;
-    }
+	}
 	
 	public static boolean quantValid(String s) {
 		if(s.charAt(0) == '-'){
@@ -503,7 +485,7 @@ public class ControladorInterficie {
 			CtrlD.crearPerfil(NomPlant11, TipusPlant11, Camp12, Nom5,IdPerfil);
 		}
 	}
-	
+
 	public static void modificarNode() {
 		CtrlD.modificarNode(getNombreEntidad(),getEntidades4(),getNom5(),getEntidades6Int());
 	}
@@ -549,6 +531,7 @@ public class ControladorInterficie {
 	public static void modRelacion() {
 		CtrlD.modRelacion(Entidades4,IdNodo,IdPaper);
 	}
+	
 	public static void afegirCamp() throws NumberFormatException, FicheroNoExiste, IOException {
 		CtrlD.cargarPlantilla(rutaPlant);
 		setNomPlant11(CtrlD.getNomPlantilla());
@@ -563,7 +546,7 @@ public class ControladorInterficie {
 
 	public static void setRutaPlant(String ruta) {rutaPlant = ruta;}
 	public static String getRutaPlant() {return rutaPlant;}
-	
+
 	public static boolean tipusValid(String s) {
 		if(s.equals("Autor"))return true;
 		if(s.equals("Conferencia"))return true;
@@ -571,7 +554,9 @@ public class ControladorInterficie {
 		if(s.equals("Paper"))return true;		
 		return false;
 	}
+
 	public static void setNomPlantAct(String s) {CtrlD.setNomPlant(s);}
+
 	public static void impPlantilla17() throws NumberFormatException, FicheroNoExiste, IOException {
 		setNomPlant11(CtrlD.getNomPlantilla());
 		setTipusPlant11(CtrlD.getTipusPlantilla());
@@ -582,7 +567,9 @@ public class ControladorInterficie {
 			setCamp(camp.get(i));
 		}
 	}
+
 	public static void getTamPlantAct() {CtrlD.getTamPlantAct();}
+
 	public static void modificaCamp(ArrayList<String> s) {
 		if(Camp12.size()>0)Camp12.remove(numCamp);
 		Camp12.add(numCamp, s);
@@ -613,10 +600,6 @@ public class ControladorInterficie {
 		return CtrlD.confBorrable(IdNodo);
 	}
 
-	public static void carregaPlantIndex(int index) {
-		CtrlD.cargarPlantIndex(index, Entidades4);
-	}
-	
 	public static void cargarTodasPlantillas() throws NumberFormatException, FicheroNoExiste, IOException {
 		CtrlD.cargarTodasPlantillas();
 		}
@@ -624,4 +607,19 @@ public class ControladorInterficie {
 	public static void actualitzaNom() {
 		CtrlD.actualitzaNom(iPerCanviNom, jPerCanviNom, esNom, canviNom, borraNom, anadirNombre);
 	}
+	
+	public static void carregaPlantIndex(int index) {
+		CtrlD.cargarPlantIndex(index, Entidades4);
+		NomPlant11=CtrlD.getNomPlantilla();
+		TipusPlant11=CtrlD.getTipusPlantilla();
+		Camp12=CtrlD.getCampPlant();
+	}
+
+	public static void setIndex(int index2) {index = index2;}
+	public static int getIndex(){return index;}
+
+	public static void resetejarPlantilles() {
+		CtrlD.resetejarPlantilles();
+	}
+
 }

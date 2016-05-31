@@ -18,9 +18,7 @@ import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-
 @SuppressWarnings("serial")
 
 public class Plantilla11 extends JFrame {
@@ -122,8 +120,8 @@ public class Plantilla11 extends JFrame {
 						ControladorInterficie.setTipusPlant11(textField_1.getText());
 						ControladorInterficie.setEntidades4(textField_1.getText());
 						if(!usat) ControladorInterficie.borrarCamp12();
-						ControladorInterficie.cargarPlantilla();
 						try {
+							ControladorInterficie.cargarPlantilla();
 							ControladorInterficie.VistaConsPlant17();
 						} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
 							e1.printStackTrace();
@@ -146,6 +144,7 @@ public class Plantilla11 extends JFrame {
 			}
 			
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -253,6 +252,5 @@ public class Plantilla11 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
-		
 	}
 }

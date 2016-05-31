@@ -119,10 +119,10 @@ public class ModPlantilla18 extends JFrame {
 		textFieldCamp.setColumns(10);
 		textFieldCamp.setVisible(false);
 		
-		btnGo = new JButton("GO");
+		/*btnGo = new JButton("GO");
 		btnGo.setBounds(215, 239, 60, 23);
 		contentPane.add(btnGo);
-		btnGo.setVisible(false);
+		btnGo.setVisible(false);*/
 		
 		btnModificarNom.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -167,12 +167,12 @@ public class ModPlantilla18 extends JFrame {
 			}
 		});
 		
-		btnGo.addActionListener(new ActionListener() {
+		/*btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModCampPlantilla18b obj = new ModCampPlantilla18b();
 				obj.setVisible(true);
 			}
-		});
+		});*/
 		
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
@@ -240,6 +240,7 @@ public class ModPlantilla18 extends JFrame {
 			}
 			
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -347,6 +348,5 @@ public class ModPlantilla18 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
-		
 	}
 }

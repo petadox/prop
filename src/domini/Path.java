@@ -158,7 +158,7 @@ public class Path implements Serializable {
     //Pre: Cert.
     //Post: Especifica la descripcio del path.
     public void setDescripcio(String contingut) {
-        // Talvez deberia ser string descripci√≥;
+        // Talvez deberia ser string descripciÛ;
         this.descripcioPath = contingut;
     }
     
@@ -201,8 +201,8 @@ public class Path implements Serializable {
         n = this.contingut.size();
         for (int i = n-1; i >= 0 ; --i)
         {   // Si el vector tiene 4 valores, entonces n-1 =  3, que es la
-            // cuarta posici√≥n del vector. cuando i = 0, entrar√° y har√°
-            // la cuarta iteraci√≥n.
+            // cuarta posiciÛn del vector. cuando i = 0, entrar· y har·
+            // la cuarta iteraciÛn.
             reversed.add(this.contingut.get(i));
         }
         return reversed;
@@ -210,12 +210,12 @@ public class Path implements Serializable {
     
     
     
-    //Pre: Contingut no √©s buit.
+    //Pre: Contingut no Ès buit.
     //Post: retorn la primera i la segona meitat del contigut del path.
     //Si lenght(contingut) par, afegeix al final de begin y al principi
     //de end un element = Node.Type.MidElemnt. En el cas de que sigui imparell,
-    //l‚Äôultim element de la primera meitat ser√° el primer element de la segona meitat.
-    //En qualsevol cas, la primera meitat tindr√† el mateix tamany que la segona meitat.
+    //líultim element de la primera meitat ser· el primer element de la segona meitat.
+    //En qualsevol cas, la primera meitat tindr‡ el mateix tamany que la segona meitat.
     public Pair<ArrayList<Node.Type>, ArrayList<Node.Type>> getPath() {
         ArrayList<Node.Type> firstarray = new ArrayList<>();
         ArrayList<Node.Type> secondarray = new ArrayList<>();
@@ -224,7 +224,7 @@ public class Path implements Serializable {
         // Comprobamos la paridad de this.contingut;
         
         if (this.contingut.size()%2 == 0) {
-            // Si path tiene elementos pares, debemos a√±adir el elemento  neutro
+            // Si path tiene elementos pares, debemos aÒadir el elemento  neutro
             // tanto al final del primer minipath, como al principio del primero.
             for (int i = 0; i < n/2; ++i) {
                 firstarray.add(this.contingut.get(i));
@@ -232,7 +232,7 @@ public class Path implements Serializable {
             }
             firstarray.add(Node.Type.MidElement);
             secondarray.add(Node.Type.MidElement);
-            // A√±adimos el midelement al final del primer minipath
+            // AÒadimos el midelement al final del primer minipath
             // y al principio del segundo. Llenamos el segundo.
             for (int i = n/2; i < n; ++i) {
                 secondarray.add(this.contingut.get(i));

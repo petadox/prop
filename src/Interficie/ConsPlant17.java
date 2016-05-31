@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle.Control;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,6 +43,16 @@ public class ConsPlant17 extends JFrame {
 	 * @throws FicheroNoExiste 
 	 * @throws NumberFormatException 
 	 */
+	
+	int geti(){
+		int i;
+		if(ControladorInterficie.getTipusPlant().equals("Autor")) i=0;
+		else if(ControladorInterficie.getTipusPlant().equals("Conferencia")) i=1;
+		else if(ControladorInterficie.getTipusPlant().equals("Paper")) i=2;
+		else i=3;
+		return i;
+	}
+	
 	public ConsPlant17() throws NumberFormatException, FicheroNoExiste, IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -89,6 +101,7 @@ public class ConsPlant17 extends JFrame {
 						ControladorInterficie.savePP();
 						ControladorInterficie.borrarCamp12();
 						ControladorInterficie.VistaMenu2();
+						ControladorInterficie.cargarTodasPlantillas();
 						dispose();
 						JOptionPane.showMessageDialog(null,"Plantilla guardada correctament");
 					}
@@ -96,11 +109,11 @@ public class ConsPlant17 extends JFrame {
 						int resp;
 						String ruta = ControladorInterficie.getRutaPlant();
 						String aux = "";
-						for(int i=ruta.length()-1; ruta.charAt(i) != '\\'; i--){
+						for(int i=ruta.length()-1; ruta.charAt(i) != '/'; i--){
 							aux = aux+ruta.charAt(i);
 						}
 						String aux2 = "";
-						for(int i=aux.length()-1; i>3; i--){
+						for(int i=aux.length()-1; i>=0; i--){
 							aux2 = aux2+aux.charAt(i);
 						}
 						if(aux2.equals(ControladorInterficie.getNomPlantilla())){
@@ -109,9 +122,10 @@ public class ConsPlant17 extends JFrame {
 								
 							}
 							else{ //resp = si
-								ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
+								ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant()+".txt", geti(), ControladorInterficie.getIndex());
 								ControladorInterficie.cargarPlantilla();
 								ControladorInterficie.savePP();
+								ControladorInterficie.cargarTodasPlantillas();
 								ControladorInterficie.VistaMenu2();
 								dispose();
 							}
@@ -119,6 +133,7 @@ public class ConsPlant17 extends JFrame {
 						else{
 							ControladorInterficie.savePP();
 							ControladorInterficie.borrarCamp12();
+							ControladorInterficie.cargarTodasPlantillas();
 							ControladorInterficie.VistaMenu2();
 							dispose();
 						}
@@ -144,18 +159,14 @@ public class ConsPlant17 extends JFrame {
 		btnGenerarPerfil.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				ControladorInterficie.setconsplant17("GenerarPerfil");
-				
 				if (ControladorInterficie.getMenu2().equals("Crear") &&
 	            			 ControladorInterficie.getElement3().equals("Perfil")) {
 					ControladorInterficie.VistaConsPerf15();
 				}
-				
 				else ControladorInterficie.VistaSLEntidades6();
 				dispose();
 			}
-			
 			// ++ Generar Perfil;
-			
 		});
 		
 		btnBorrarPlantilla.addActionListener(new ActionListener(){
@@ -168,20 +179,20 @@ public class ConsPlant17 extends JFrame {
 							
 						}
 						else{ //resp = si
-							ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
-							ControladorInterficie.cargarPlantilla();
-							ControladorInterficie.savePP();
+							ControladorInterficie.setRutaPlant(ControladorInterficie.getRutaPlant()+".txt");
+							ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant(), geti(), ControladorInterficie.getIndex());
+							ControladorInterficie.cargarTodasPlantillas();
 							ControladorInterficie.VistaMenu2();
 							dispose();
 						}
-						ControladorInterficie.deletePP(ControladorInterficie.getRutaPlant());
-					} catch (FicheroNoExiste | IOException | FicheroYaExistente e1) {
+					} catch (FicheroNoExiste | IOException e1) {
 						e1.printStackTrace();
 					}
 				}
 				// ++ Borrar Plantilla;
 			}
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -289,6 +300,5 @@ public class ConsPlant17 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
-		
 	}
 }

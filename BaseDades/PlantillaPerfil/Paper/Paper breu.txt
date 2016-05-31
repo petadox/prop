@@ -1,0 +1,17 @@
+Article breu
+Paper
+Autors
+Autors que han participat en l'article
+PA
+-1
+3
+Termes
+Paraules clau que apareixen a l'article
+PT
+-1
+3
+Altres articles relacionats
+Articles relacionats, per autor, conferencia o termes, amb l'article.
+PAP
+-1
+3

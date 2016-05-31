@@ -15,7 +15,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 /**
- * @author Ferrer RodrÃ­guez, Jorge
+ * @author Ferrer Rodríguez, Jorge
  * @version 1.0
  */
 public class CtrlImport {

@@ -1,0 +1,17 @@
+Terme detallat
+Terme
+Termes de la publicacio
+Termes
+TP
+0.8
+-1
+Autors que usen el terme
+Autors
+TPA
+0.8
+-1
+Termes de les conferencies
+Terme
+TPC
+0.8
+-1

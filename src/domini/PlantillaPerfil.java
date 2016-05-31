@@ -307,8 +307,6 @@ public class PlantillaPerfil{
 	}
 
 	public void modificarPlant(String accio, String element, String nou){
-		//Necessito la classe de gestio de dades per
-		//anar a buscarla plantilla a modificar.
 		ArrayList<String> Plant = new ArrayList<String>();
 		if(accio.equals("eliminar")){
 			Plant.remove(element);
@@ -337,22 +335,6 @@ public class PlantillaPerfil{
 		}
 	}
 	
-	/*public ArrayList<ArrayList<String>> getTotaPlantilla() {
-		ArrayList<ArrayList<String>> totaPlantilla = new ArrayList<ArrayList<String>>();
-		for (int i = 0; i < info.size(); ++i) {
-			ArrayList<String> comodin = new ArrayList<String>();
-			System.out.println(info.get(i).getNomPath());
-			comodin.add(info.get(i).getNomPath());
-			comodin.add(info.get(i).getDescripcioPath());
-			comodin.add(info.get(i).getStringPath());
-			comodin.add(Float.toString(info.get(i).getQuant()));
-			comodin.add(Integer.toString(info.get(i).getMinim()));
-			totaPlantilla.add(comodin);
-		}
-		return totaPlantilla;
-	}*/
-	
-	
 	public ArrayList<String> getNomPath () {
 		ArrayList<String> t = new ArrayList<>();
 		int n = info.size();
@@ -362,11 +344,11 @@ public class PlantillaPerfil{
 		return t;
 	}
 	
-	public void borrarCamps () { info.clear();}
+	public void borrarCamps(){info.clear();}
+	
 	public void actualizaNombre(Integer i, String nomNou) {
 		Camp c;
 		c = info.get(i);
 		c.getPath().setNom(nomNou);
 	}
-	
 }

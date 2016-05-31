@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -55,6 +56,12 @@ public class ElegirPlant extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		try {
+			ControladorInterficie.cargarTodasPlantillas();
+		} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(87, 11, 258, 240);
@@ -120,15 +127,18 @@ public class ElegirPlant extends JFrame {
 		MouseListener mouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {
 	             int index = list.locationToIndex(e.getPoint());
+	             ControladorInterficie.setIndex(index);
 	             String nomEnt = dlm.getElementAt(index);
 	             if (ControladorInterficie.getMenu2().equals("Consultar")) {
-	            	 	ControladorInterficie.carregaPlantIndex(index);
-	            	 	try {
-							ControladorInterficie.VistaConsPlant17();
-						} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
-							e1.printStackTrace();
-						}
-	            	 	dispose();
+	            	String ruta = "BaseDades/PlantillaPerfil/" + ControladorInterficie.getEntidades4() + "/" + nomEnt;
+	            	ControladorInterficie.setRutaPlant(ruta);
+            	 	ControladorInterficie.carregaPlantIndex(index);
+            	 	try {
+						ControladorInterficie.VistaConsPlant17();
+					} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+						e1.printStackTrace();
+					}
+            	 	dispose();
 	             }
 	             else if (ControladorInterficie.getMenu2().equals("Borrar")) {
 	            	 int dialog = JOptionPane.OK_CANCEL_OPTION;
@@ -139,9 +149,9 @@ public class ElegirPlant extends JFrame {
 	               			File directorio = new File("BaseDades/PlantillaPerfil/Autor"); //Ruta de la carpeta con archivos
 	                		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
 	                		String nom = archivos[index];
-	                		String ruta = directorio.getPath();
+	                		String ruta = directorio.getPath()+"\\";
 		               		 try {
-								ControladorInterficie.deletePP(ruta+nom);
+								ControladorInterficie.deletePP(ruta+nom, 0, index);
 							} catch (FicheroNoExiste | IOException e1) {
 								e1.printStackTrace();
 							}
@@ -151,21 +161,9 @@ public class ElegirPlant extends JFrame {
 	                		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
 	                		String nom = archivos[index];
 
-	                		String ruta = directorio.getPath();
+	                		String ruta = directorio.getPath()+"\\";
 		               		 try {
-								ControladorInterficie.deletePP(ruta+nom);
-							} catch (FicheroNoExiste | IOException e1) {
-								e1.printStackTrace();
-							}
-		                }
-	               		else if (ControladorInterficie.getEntidades4().equals("Terme")) {
-	               			File directorio = new File("BaseDades/PlantillaPerfil/Terme"); //Ruta de la carpeta con archivos
-	                		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
-	                		String nom = archivos[index];
-
-	                		String ruta = directorio.getPath();
-		               		 try {
-								ControladorInterficie.deletePP(ruta+nom);
+								ControladorInterficie.deletePP(ruta+nom, 1, index);
 							} catch (FicheroNoExiste | IOException e1) {
 								e1.printStackTrace();
 							}
@@ -175,9 +173,21 @@ public class ElegirPlant extends JFrame {
 	                		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
 	                		String nom = archivos[index];
 
-	                		String ruta = directorio.getPath();
+	                		String ruta = directorio.getPath()+"\\";
 		               		 try {
-								ControladorInterficie.deletePP(ruta+nom);
+								ControladorInterficie.deletePP(ruta+nom, 2, index);
+							} catch (FicheroNoExiste | IOException e1) {
+								e1.printStackTrace();
+							}
+		                }
+	               		else if (ControladorInterficie.getEntidades4().equals("Terme")) {
+	               			File directorio = new File("BaseDades/PlantillaPerfil/Terme"); //Ruta de la carpeta con archivos
+	                		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
+	                		String nom = archivos[index];
+
+	                		String ruta = directorio.getPath()+"\\";
+		               		 try {
+								ControladorInterficie.deletePP(ruta+nom, 3, index);
 							} catch (FicheroNoExiste | IOException e1) {
 								e1.printStackTrace();
 							}
@@ -186,21 +196,18 @@ public class ElegirPlant extends JFrame {
 	               	 }
 	               	 //si le ha dado a cancelar se cierra el dialogo
 	             }
-	             else if (ControladorInterficie.getMenu2().equals("Crear") && 
-	            		 ControladorInterficie.getElement3().equals("Perfil")) {
-	            	 ControladorInterficie.carregaPlantIndex(index);
-	            	 	try {
-							ControladorInterficie.VistaSLEntidades6();
-						} catch (NumberFormatException e1) {
-							e1.printStackTrace();
-						}
+	             else if (ControladorInterficie.getMenu2().equals("Modificar")) {
+	            	 String ruta = "BaseDades/PlantillaPerfil/" + ControladorInterficie.getEntidades4() + "/" + nomEnt;
+		            	ControladorInterficie.setRutaPlant(ruta);
+	            	 	ControladorInterficie.carregaPlantIndex(index);
+	            	 	ControladorInterficie.VistaModPlantilla18();
 	            	 	dispose();
-	            	 
 	             }
 		     }
 		 };
 		 list.addMouseListener(mouseListener);
-			JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
+		 
+		 JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 			btnNuevoGrafo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFileChooser absoluto = new JFileChooser();
@@ -307,7 +314,16 @@ public class ElegirPlant extends JFrame {
 			btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 			btnNuevoGrafo.setBounds(0, 0, 79, 31);
 			contentPane.add(btnNuevoGrafo);
-			
+				
+			JButton btnBack = new JButton(new ImageIcon("back.jpg"));
+			btnBack.setBounds(10, 215, 131, 31);
+			contentPane.add(btnBack);
+			btnBack.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					ControladorInterficie.VistaEntidades4();
+					dispose();
+				}
+				
+			});
 	}
-
 }

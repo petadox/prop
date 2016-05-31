@@ -144,43 +144,59 @@ public class CtrlDominio {
     }
     
     public PlantillaPerfil cargarPlantilla(String ruta) throws NumberFormatException, FicheroNoExiste, IOException {
-    	PlantillaPerfil paux = new PlantillaPerfil();
-    	//plantillaActual.borrarCamps();
-    	ArrayList<String> aux = ControladorGD.cargarPlantilla(ruta);
-    	paux.setNom(aux.get(0));
-    	if(aux.get(1).equals("Autor")) paux.setTipus(Node.Type.Autor);
-    	else if(aux.get(1).equals("Conferencia")) paux.setTipus(Node.Type.Conferencia);
-    	else if(aux.get(1).equals("Terme")) paux.setTipus(Node.Type.Terme);
-    	else if(aux.get(1).equals("Paper")) paux.setTipus(Node.Type.Paper);
-    	for(int i=2; i<aux.size(); i++){
-	    	Camp c = new Camp();
-	    	String s1, s2, s3, s4, s5;
-	    	s1 = aux.get(i);i++; s2 = aux.get(i); i++; s3 = aux.get(i);i++; s4 = aux.get(i);i++; s5 = aux.get(i);
-	    	c.setPath(s2, s1, s3);
-	    	c.setQuant(Float.parseFloat(s4));
-	    	c.setMinim(Integer.parseInt(s5));
-	    	paux.setInfo(c);
-    	}
-    	plantillaActual = paux;
-    	return paux;
+        PlantillaPerfil paux = new PlantillaPerfil();
+        //plantillaActual.borrarCamps();
+        ArrayList<String> aux = ControladorGD.cargarPlantilla(ruta);
+        paux.setNom(aux.get(0));
+        if(aux.get(1).equals("Autor")) paux.setTipus(Node.Type.Autor);
+        else if(aux.get(1).equals("Conferencia")) paux.setTipus(Node.Type.Conferencia);
+        else if(aux.get(1).equals("Terme")) paux.setTipus(Node.Type.Terme);
+        else if(aux.get(1).equals("Paper")) paux.setTipus(Node.Type.Paper);
+        for(int i=2; i<aux.size(); i++){
+            Camp c = new Camp();
+            String s1, s2, s3, s4, s5;
+            s1 = aux.get(i);i++; s2 = aux.get(i); i++; s3 = aux.get(i);i++; s4 = aux.get(i);i++; s5 = aux.get(i);
+            c.setPath(s1, s2, s3);
+            c.setQuant(Float.parseFloat(s4));
+            c.setMinim(Integer.parseInt(s5));
+            paux.setInfo(c);
+        }
+        plantillaActual = paux;
+        return paux;
     }
     
     public void cargarTodasPlantillas() throws NumberFormatException, FicheroNoExiste, IOException {
-    	String tipus = "";
-    	for(int i=0; i<4; i++){
-    		if(i==0) tipus = "Autor"; else if(i==1) tipus = "Conferencia";
-    		else if(i==2) tipus = "Paper"; else if(i==3) tipus = "Terme";
-    		File directorio = new File("BaseDades/PlantillaPerfil/" + tipus); //Ruta de la carpeta con archivos
-    		String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
-    		ArrayList<PlantillaPerfil> plantAux = new ArrayList<PlantillaPerfil>();
-    		for(int j=0; j<archivos.length; j++){
-    			plantAux.add(cargarPlantilla("BaseDades/PlantillaPerfil/" + tipus + "/" + archivos[j]));
-    		}
-    		plantillas.add(plantAux);
-    	}
-    	//mostrarPerfiles();
+        plantillas.clear();
+        String tipus = "";
+        for(int i=0; i<4; i++){
+            if(i==0) tipus = "Autor"; else if(i==1) tipus = "Conferencia";
+            else if(i==2) tipus = "Paper"; else if(i==3) tipus = "Terme";
+            File directorio = new File("BaseDades/PlantillaPerfil/" + tipus); //Ruta de la carpeta con archivos
+            String archivos[]=directorio.list(); //aca cargas todos los nombres de los archivos
+            ArrayList<PlantillaPerfil> plantAux = new ArrayList<PlantillaPerfil>();
+            for(int j=0; j<archivos.length; j++){
+                plantAux.add(cargarPlantilla("BaseDades/PlantillaPerfil/" + tipus + "/" + archivos[j]));
+            }
+            plantillas.add(plantAux);
+        }
+        //mostrarPlantillas();
     }
-
+    
+    private void mostrarPlantillas(){
+        String tipus="";
+        System.out.println(plantillas.size());
+        for(int i=0; i<plantillas.size(); i++){
+            if(i==0) tipus = "Autor"; else if(i==1) tipus = "Conferencia";
+            else if(i==2) tipus = "Paper"; else if(i==3) tipus = "Terme";
+            System.out.println(plantillas.get(i).size());
+            System.out.println(tipus);
+            for(int j=0; j<plantillas.get(i).size(); j++){
+                plantillaActual = plantillas.get(i).get(j);
+                System.out.println("plant " + j + ": " + plantillaActual.getNom());
+            }
+            System.out.println("");
+        }
+    }
     
     public Perfil cargarPerfil(String ruta) throws FicheroNoExiste, IOException {
         return ControladorGD.cargarPerfil(ruta);
@@ -376,55 +392,47 @@ public class CtrlDominio {
 	}
 
 	public String getTipusPlantilla() {
-		
-		switch(plantillaActual.getTipus()) {
-        case Autor:
-            return "Autor";
-        case Conferencia:
-            return "Conferencia";
-        case Paper:
-            return "Paper";
-        case Terme:
-            return "Terme";
-        default:
-            return null;
-		}
-	}
+        Node.Type tipus = plantillaActual.getTipus();
+        if(tipus == Node.Type.Autor) return "Autor";
+        else if(tipus == Node.Type.Conferencia) return "Conferencia";
+        else if(tipus == Node.Type.Terme) return "Terme";
+        return "Paper";
+    }
 
 	public int getSise() {
 		return plantillaActual.getTam();
 	}
-
 	
 	public void deleteP(String ruta) throws FicheroNoExiste, IOException{
 		GestioDades.Borrar_archivo(ruta);
 	}
 	
-	public void deletePP(String ruta) throws FicheroNoExiste, IOException{
-		GestioDades.Borrar_archivo(ruta);
-	}
-	
-	public void guardarPlantilla(String nom, String tipus, ArrayList<ArrayList<String>> camp) throws IOException, FicheroNoExiste, FicheroYaExistente {
-		ControladorGD.guardarPlantilla(plantillaActual, tipus, nom);
-		plantillaActual.borrarCamps();
+	public void deletePP(String ruta, int tipus, int index) throws FicheroNoExiste, IOException{
+        GestioDades.Borrar_archivo(ruta);
+        cargarTodasPlantillas();
     }
 	
-	public void crearPlantilla(String nomPP, String tipus, ArrayList<ArrayList<String>> camp){
-		plantillaActual.borrarCamps();
-		plantillaActual.setNom(nomPP);
-		if(tipus.equals("Autor")) plantillaActual.setTipus(Node.Type.Autor);
-		else if(tipus.equals("Conferencia")) plantillaActual.setTipus(Node.Type.Conferencia);
-		else if(tipus.equals("Terme")) plantillaActual.setTipus(Node.Type.Terme);
-		else plantillaActual.setTipus(Node.Type.Paper);
-		for(int i=0; i<camp.size(); i++){
-			Camp c = new Camp();
-			ArrayList<String> aux = camp.get(i);
-			c.setPath(aux.get(0), aux.get(1), aux.get(2));
-			c.setQuant(Float.parseFloat(aux.get(3)));
-			c.setMinim(Integer.parseInt(aux.get(4)));
-			plantillaActual.setInfo(c);
-		}
-	}
+	public void guardarPlantilla(String nom, String tipus, ArrayList<ArrayList<String>> camp) throws IOException, FicheroNoExiste, FicheroYaExistente {
+       ControladorGD.guardarPlantilla(plantillaActual, tipus, nom);
+       plantillaActual.borrarCamps();
+    }
+    
+    public void crearPlantilla(String nomPP, String tipus, ArrayList<ArrayList<String>> camp){
+        plantillaActual.borrarCamps();
+        plantillaActual.setNom(nomPP);
+        if(tipus.equals("Autor")) plantillaActual.setTipus(Node.Type.Autor);
+        else if(tipus.equals("Conferencia")) plantillaActual.setTipus(Node.Type.Conferencia);
+        else if(tipus.equals("Terme")) plantillaActual.setTipus(Node.Type.Terme);
+        else plantillaActual.setTipus(Node.Type.Paper);
+        for(int i=0; i<camp.size(); i++){
+            Camp c = new Camp();
+            ArrayList<String> aux = camp.get(i);
+            c.setPath(aux.get(0), aux.get(1), aux.get(2));
+            c.setQuant(Float.parseFloat(aux.get(3)));
+            c.setMinim(Integer.parseInt(aux.get(4)));
+            plantillaActual.setInfo(c);
+        }
+    }
 	
 	public void modificarNode(String nomAntic, String tipus, String newNom, Integer pos) {
 		Node n = new Node();
@@ -655,12 +663,14 @@ public class CtrlDominio {
 	}
 	
 	public void cargarPlantIndex(int index, String entidades4) {
-		int i = 0;
-		if(entidades4.equals("Conferencia")) i=1;
-		else if(entidades4.equals("Paper")) i=2;
-		else if(entidades4.equals("Terme")) i=3;
-		plantillaActual = plantillas.get(i).get(index);
-	}
+        int i = 0;
+        if(entidades4.equals("Conferencia")) i=1;
+        else if(entidades4.equals("Paper")) i=2;
+        else if(entidades4.equals("Terme")) i=3;
+        plantillaActual = plantillas.get(i).get(index);
+    }
+
+    public void resetejarPlantilles() {plantillas.clear();}
 
 	public void actualitzaNom(Integer i, Integer j, Boolean esNom, String nomNou, Boolean borraNom, Boolean anadirNombre) {
 		if (anadirNombre) {

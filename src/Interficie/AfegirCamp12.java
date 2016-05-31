@@ -175,6 +175,7 @@ public class AfegirCamp12 extends JFrame {
 			}
 		});
 		ArrayList<String> s = new ArrayList<String>();
+
 		btnHelpM.setBounds(251, 197, 37, 31);
 		contentPane.add(btnHelpM);
 		btnNext.addActionListener(new ActionListener() {
@@ -211,6 +212,7 @@ public class AfegirCamp12 extends JFrame {
 				}
 			}
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -318,6 +320,5 @@ public class AfegirCamp12 extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
-		
 	}
 }

@@ -1,0 +1,17 @@
+AutorDetallada
+Autor
+Publicacions d'un autor
+Publicacions
+AP
+0.8
+-1
+Co-autors d'un autor
+Co-autors
+APA
+0.8
+-1
+Conferencies a les que ha assistit un autor
+Conferencies
+APC
+0.8
+-1

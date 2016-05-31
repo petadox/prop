@@ -1,0 +1,17 @@
+Terme breu
+Terme
+Termes
+Termes de la publicacio
+TP
+-1
+3
+Autors
+Autors que usen el terme
+TPA
+-1
+3
+Terme
+Termes de les conferencies
+TPC
+-1
+3

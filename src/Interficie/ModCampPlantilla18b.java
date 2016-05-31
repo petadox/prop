@@ -1,4 +1,5 @@
 package Interficie;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
 import Excepcions.FicheroNoExiste;
 @SuppressWarnings("serial")
+
 public class ModCampPlantilla18b extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNomCamp;
@@ -145,6 +148,7 @@ public class ModCampPlantilla18b extends JFrame {
 		contentPane.add(textMin);
 		textMin.setColumns(10);
 		textMin.setText(aux.get(4));
+
 		JButton btnNext = new JButton(new ImageIcon("next.jpg"));
 		btnNext.setBounds(293, 215, 131, 31);
 		contentPane.add(btnNext);
@@ -226,6 +230,7 @@ public class ModCampPlantilla18b extends JFrame {
 				else JOptionPane.showMessageDialog(null,"Path no vàlid"); 
 			}
 		});
+		
 		JButton btnNuevoGrafo = new JButton("Nuevo Grafo");
 		btnNuevoGrafo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -333,6 +338,5 @@ public class ModCampPlantilla18b extends JFrame {
 		btnNuevoGrafo.setFont(new Font("Arial", Font.PLAIN, 8));
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
-		
 	}
 }

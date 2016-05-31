@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Alejandro Ib√°√±ez
+ * @author Alejandro Ib·Òez
  */
 
 package domini;

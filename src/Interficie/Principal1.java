@@ -70,7 +70,6 @@ public class Principal1 extends JFrame {
 				try {
 					ControladorInterficie.cargarTodasPlantillas();
 				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				ControladorInterficie.VistaGrafo8();

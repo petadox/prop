@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.io.File;
-
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -16,14 +14,13 @@ import javax.swing.JToggleButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Excepcions.FicheroNoExiste;
-import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class Entidades4 extends JFrame {
 	private JPanel contentPane;
-	private JTextField txtEligeUnTipo;
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +40,6 @@ public class Entidades4 extends JFrame {
 	 * Create the frame.
 	 */
 	public Entidades4() {
-		setTitle("Entidades");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -52,19 +48,19 @@ public class Entidades4 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToggleButton btnAutor = new JToggleButton("Autor");
-		btnAutor.setBounds(41, 68, 150, 50);
+		btnAutor.setBounds(142, 15, 150, 50);
 		contentPane.add(btnAutor);
 		
 		JToggleButton btnConferencia = new JToggleButton("Conferencia");
-		btnConferencia.setBounds(245, 68, 150, 50);
+		btnConferencia.setBounds(142, 68, 150, 50);
 		contentPane.add(btnConferencia);
 		
 		JToggleButton btnPaper = new JToggleButton("Paper");
-		btnPaper.setBounds(41, 138, 150, 50);
+		btnPaper.setBounds(142, 122, 150, 50);
 		contentPane.add(btnPaper);
 		
 		JToggleButton btnTerme = new JToggleButton("Terme");
-		btnTerme.setBounds(245, 138, 150, 50);
+		btnTerme.setBounds(142, 175, 150, 50);
 		contentPane.add(btnTerme);
 		
 		JButton btnBack = new JButton(new ImageIcon("back.jpg"));
@@ -115,46 +111,66 @@ public class Entidades4 extends JFrame {
 				else if(btnConferencia.isSelected())ControladorInterficie.setEntidades4("Conferencia");
 				else ControladorInterficie.setEntidades4("Terme");
 				
-				if (ControladorInterficie.getMenu2().equals("Crear") &&
-						ControladorInterficie.getElement3().equals("Perfil")) {
-					ControladorInterficie.VistaElegirPlantilla20();
-					
-				}
-				
-				else if (ControladorInterficie.getMenu2().equals("Crear")) { 
+				if (ControladorInterficie.getMenu2().equals("Crear")) { 
 					if(ControladorInterficie.getElement3().equals("Entidades") ||
 						ControladorInterficie.getElement3().equals("Plantilla")) {
+							if(ControladorInterficie.getElement3().equals("Plantilla")){
+								ControladorInterficie.borrarCamp12();
+								ControladorInterficie.resetejarPlantilles();
+							}
 							ControladorInterficie.VistaIntroduirNom5();
+					}
+					else if(ControladorInterficie.getElement3().equals("Perfil")){
+						ControladorInterficie.VistaElegirPlantilla20();
 					}
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else if (ControladorInterficie.getMenu2().equals("Consultar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfil"))
-						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						try {
+							ControladorInterficie.VistaSLPerfiles9();
+						} catch (FicheroNoExiste | IOException e2) {
+							e2.printStackTrace();
+						}
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else if (ControladorInterficie.getMenu2().equals("Modificar")) {
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfil"))
-						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						try {
+							ControladorInterficie.VistaSLPerfiles9();
+						} catch (FicheroNoExiste | IOException e2) {
+							e2.printStackTrace();
+						}
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
 				else if (ControladorInterficie.getMenu2().equals("Borrar")){
 					if (ControladorInterficie.getElement3().equals("Entidades")) ControladorInterficie.VistaSLEntidades6();
-					else if (ControladorInterficie.getElement3().equals("Perfil"))
-						ControladorInterficie.VistaSLPerfiles9();
+					else if (ControladorInterficie.getElement3().equals("Perfiles"))
+						try {
+							ControladorInterficie.VistaSLPerfiles9();
+						} catch (FicheroNoExiste | IOException e2) {
+							e2.printStackTrace();
+						}
 					else if (ControladorInterficie.getElement3().equals("Plantilla"))ControladorInterficie.VistaElegirPlant();
 					else ControladorInterficie.VistaEntRel7();
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "Has de seleccionar un tipo de entidad");
+				else JOptionPane.showMessageDialog(null, "Has de seleccionar un tipo de entidad");
+				dispose();
+			}
+		});
+		
+		btnBack.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ControladorInterficie.cargarTodasPlantillas();
+				} catch (NumberFormatException | FicheroNoExiste | IOException e1) {
+					e1.printStackTrace();
 				}
-				
-				
-				
+				ControladorInterficie.VistaElementos3();
 				dispose();
 			}
 		});
@@ -267,7 +283,7 @@ public class Entidades4 extends JFrame {
 		btnNuevoGrafo.setBounds(0, 0, 79, 31);
 		contentPane.add(btnNuevoGrafo);
 		
-		txtEligeUnTipo = new JTextField();
+		JTextField txtEligeUnTipo = new JTextField();
 		txtEligeUnTipo.setEditable(false);
 		txtEligeUnTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtEligeUnTipo.setText("Elige un tipo de entidad");
@@ -275,18 +291,6 @@ public class Entidades4 extends JFrame {
 		contentPane.add(txtEligeUnTipo);
 		txtEligeUnTipo.setColumns(10);
 		
-		
-		btnBack.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				//ControladorInterficie.setEntidades4((""));
-				if (ControladorInterficie.getMenu2().equals("Crear") &&
-						ControladorInterficie.getElement3().equals("Perfil")) {
-					ControladorInterficie.VistaIntroduirNom5();
-				}
-			else ControladorInterficie.VistaElementos3();
-				dispose();
-			}
-		});
 	}
 }
 

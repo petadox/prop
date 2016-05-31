@@ -1,0 +1,17 @@
+Conferencies breu
+Conferencia
+Papers
+Papers publicats a la conferencia
+CP
+-1
+3
+Autors
+Autors que han participat a la conferencia
+CPA
+-1
+3
+Terme
+Termes importants de la conferencia
+CPT
+-1
+3

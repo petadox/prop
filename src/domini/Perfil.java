@@ -20,7 +20,7 @@ public class Perfil {
     Node node;
     private ArrayList<ArrayList<String>>  CampsPerfil;
     // Cada fila sera el equivalente a un camp del ArrayList<Camp> de
-    // la clase Plantilla; La fila 0 equivaldra a la posiciÃ³n 0 del array.
+    // la clase Plantilla; La fila 0 equivaldra a la posición 0 del array.
     /*
         Plantilla tiene:
             protected string nomPlantilla;

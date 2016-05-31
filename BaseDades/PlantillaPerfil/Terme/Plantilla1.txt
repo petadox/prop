@@ -1,7 +1,0 @@
-Plantilla1
-Terme
-CAMPO1
-DESCCAMP
-TPC
--1.0
-4

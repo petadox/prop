@@ -1,0 +1,17 @@
+Conferencies detallat
+Conferencia
+Publicacions
+Publicacions de la Conferencia
+CP
+0.8
+-1
+Autors
+Autors que han participat a la conferencia
+CPA
+0.8
+-1
+Termes
+Termes importants de les conferencies
+CPT
+0.8
+-1
