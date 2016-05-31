@@ -620,22 +620,28 @@ public class SLEntidades6 extends JFrame {
 		            	 	ControladorInterficie.setIdPerfil(papers.get(l).first);
 	            			 
 	            		 }
-	            		 
-	            		 try {
-								ControladorInterficie.crearPerfil();
-							} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e2) {
-								// TODO Auto-generated catch block
-								e2.printStackTrace();
-							}
+	            		 if (ControladorInterficie.getCrearNova()) {
 	            			 
-	            			 try {
-									ControladorInterficie.VistaConsPlant17();
-								} catch (Exception e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-	            			 
+	            			 ControladorInterficie.VistaPlantilla11();
 	            			 dispose();
+	            		 }
+	            		 else {
+		            		 try {
+									ControladorInterficie.crearPerfil();
+								} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e2) {
+									// TODO Auto-generated catch block
+									e2.printStackTrace();
+								}
+		            			 
+		            			 try {
+										ControladorInterficie.VistaConsPlant17();
+									} catch (Exception e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+		            			 
+		            			 dispose();
+	            		 }
 	            		 
 	            		 
 	            	 }

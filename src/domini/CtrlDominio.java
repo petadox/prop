@@ -198,8 +198,9 @@ public class CtrlDominio {
         }
     }
     
-    public void cargarPerfil(String ruta) throws FicheroNoExiste, IOException {
+    public Perfil cargarPerfil(String ruta) throws FicheroNoExiste, IOException {
         perfilActual = ControladorGD.cargarPerfil(ruta);
+        return perfilActual;
     }
         
     public void guardarPerfil(Perfil p) throws IOException, FicheroYaExistente, FicheroNoExiste {

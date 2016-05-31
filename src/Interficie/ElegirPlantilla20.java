@@ -90,14 +90,19 @@ public class ElegirPlantilla20 extends JFrame {
 		contentPane.add(btnNext);
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(btnCrearNova.isSelected()) ControladorInterficie.VistaPlantilla11();
-				else if(btnUsarExistent.isSelected())
-					try {
-						ControladorInterficie.VistaElegirPlant();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				dispose();
+				if(btnCrearNova.isSelected()) {
+					ControladorInterficie.VistaSLEntidades6();
+					ControladorInterficie.setCrearNova(true);
+				}
+				else if(btnUsarExistent.isSelected()) {
+						ControladorInterficie.setCrearNova(false);
+						try {
+							ControladorInterficie.VistaElegirPlant();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					dispose();
+				}
 			}
 		});
 		

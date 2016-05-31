@@ -45,6 +45,7 @@ public class ControladorInterficie {
 	private static Boolean borraNom;
 	private static Boolean anadirNombre;
 	private static Integer IdPerfil;
+	private static Boolean crearNova;
 	
 	/*Instancia*/
 	
@@ -179,6 +180,9 @@ public class ControladorInterficie {
 	
 	public static void setIdNodo(Integer Id){IdNodo = Id;}
 	public static Integer getIdNodo(){return IdNodo;}
+	
+	public static void setCrearNova(Boolean Id){crearNova = Id;}
+	public static Boolean getCrearNova(){return crearNova;}
 	
 	
 	public static void borrarCamp12(){Camp12.clear();}

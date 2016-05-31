@@ -164,6 +164,7 @@ public class ConsPlant17 extends JFrame {
 				if (ControladorInterficie.getMenu2().equals("Crear") &&
 	            			 ControladorInterficie.getElement3().equals("Perfil")) {
 					try {
+						System.out.println("SHEEEGOAQUI?");
 						ControladorInterficie.crearPerfil();
 					} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
 						// TODO Auto-generated catch block
