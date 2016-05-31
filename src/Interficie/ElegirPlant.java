@@ -190,6 +190,8 @@ public class ElegirPlant extends JFrame {
 	            		 ControladorInterficie.getElement3().equals("Perfil")) {
 	            	 ControladorInterficie.carregaPlantIndex(index);
 	            	 	try {
+							ControladorInterficie.VistaSLEntidades6();
+						} catch (NumberFormatException e1) {
 							e1.printStackTrace();
 						}
 	            	 	dispose();
