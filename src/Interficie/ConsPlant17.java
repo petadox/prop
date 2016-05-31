@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Excepcions.FicheroNoExiste;
 import Excepcions.FicheroYaExistente;
+import domini.PathException;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -161,6 +163,12 @@ public class ConsPlant17 extends JFrame {
 				ControladorInterficie.setconsplant17("GenerarPerfil");
 				if (ControladorInterficie.getMenu2().equals("Crear") &&
 	            			 ControladorInterficie.getElement3().equals("Perfil")) {
+					try {
+						ControladorInterficie.crearPerfil();
+					} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					ControladorInterficie.VistaConsPerf15();
 				}
 				else ControladorInterficie.VistaSLEntidades6();

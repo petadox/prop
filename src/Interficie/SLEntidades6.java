@@ -568,8 +568,7 @@ public class SLEntidades6 extends JFrame {
 	            	 
 	            	//DESDEAQUISALGO
 	            	//DESDEAQUISALGO
-	            	//DESDEAQUISALGO
-	            	 
+	            	//DESDEAQUISALGo
 	            	 else if (ControladorInterficie.getMenu2().equals("Crear") &&
 	            			 ControladorInterficie.getElement3().equals("Perfil")) {
 	            		 if (ControladorInterficie.getEntidades4().equals("Autor")) {
@@ -580,7 +579,7 @@ public class SLEntidades6 extends JFrame {
 		            	 			}
 		            	 		}
 		            	 	 ControladorInterficie.setEntidades6Int(autores.get(l).first);
-	            			 ControladorInterficie.setIdNodo(autores.get(l).first);
+		            	 	ControladorInterficie.setIdPerfil(autores.get(l).first);
 	            			 
 
 	            		 }
@@ -591,8 +590,13 @@ public class SLEntidades6 extends JFrame {
 		            	 				--l;
 		            	 			}
 		            	 		}
+	            			 System.out.println("Que pasaaa");
+	            			 System.out.println("Que pasaaa");
+	            			 System.out.println("Que pasaaa");
+	            			 System.out.println("Que pasaaa");
+	            			 
 		            	 	 ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
-	            			 ControladorInterficie.setIdNodo(conferencies.get(index).first);
+		            	 	ControladorInterficie.setIdPerfil(conferencies.get(l).first);
 
 	            		 }
 	            		 else if (ControladorInterficie.getEntidades4().equals("Terme")){
@@ -603,7 +607,7 @@ public class SLEntidades6 extends JFrame {
 		            	 			}
 		            	 		}
 		            	 	 ControladorInterficie.setEntidades6Int(termes.get(l).first);
-	            			 ControladorInterficie.setIdNodo(termes.get(l).first);
+		            	 	ControladorInterficie.setIdPerfil(termes.get(l).first);
 	            		 }
 	            		 else {
 	            			 for (l = 0; l < papers.size() && !trobat; ++l) {
@@ -613,7 +617,7 @@ public class SLEntidades6 extends JFrame {
 		            	 			}
 		            	 	 }
 		            	 	 ControladorInterficie.setEntidades6Int(papers.get(l).first);
-	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
+		            	 	ControladorInterficie.setIdPerfil(papers.get(l).first);
 	            			 
 	            		 }
 	            		 
@@ -635,7 +639,6 @@ public class SLEntidades6 extends JFrame {
 	            		 
 	            		 
 	            	 }
-	            	 
 	            	//HASTAAQUILLEGO
 	            	//HASTAAQUILLEGO
 	            	//HASTAAQUILLEGO

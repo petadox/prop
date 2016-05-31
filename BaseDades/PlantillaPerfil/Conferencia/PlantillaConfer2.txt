@@ -1,0 +1,7 @@
+PlantillaConfer2
+Conferencia
+NomCamp1
+DescCamp1
+CP
+-1.0
+4
