@@ -557,6 +557,7 @@ public class SLEntidades6 extends JFrame {
 	            		 }
 	            		 
 	            		try {
+	            			ControladorInterficie.afegirCamp();
 							ControladorInterficie.crearPerfil();
 						} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
 							e1.printStackTrace();
@@ -581,14 +582,7 @@ public class SLEntidades6 extends JFrame {
 		            	 	 ControladorInterficie.setEntidades6Int(autores.get(l).first);
 	            			 ControladorInterficie.setIdNodo(autores.get(l).first);
 	            			 
-	            			 try {
-									ControladorInterficie.VistaConsPlant17();
-								} catch (Exception e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-	            			 
-	            			 dispose();
+
 	            		 }
 	            		 else if (ControladorInterficie.getEntidades4().equals("Conferencia")) {
 	            			 for (l = 0; l < conferencies.size() && !trobat; ++l) {
@@ -599,15 +593,7 @@ public class SLEntidades6 extends JFrame {
 		            	 		}
 		            	 	 ControladorInterficie.setEntidades6Int(conferencies.get(l).first);
 	            			 ControladorInterficie.setIdNodo(conferencies.get(index).first);
-	            			 
-	            			 try {
-								ControladorInterficie.VistaConsPlant17();
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-	            			 
-	            			 dispose();
+
 	            		 }
 	            		 else if (ControladorInterficie.getEntidades4().equals("Terme")){
 	            			 for (l = 0; l < termes.size() && !trobat; ++l) {
@@ -618,15 +604,6 @@ public class SLEntidades6 extends JFrame {
 		            	 		}
 		            	 	 ControladorInterficie.setEntidades6Int(termes.get(l).first);
 	            			 ControladorInterficie.setIdNodo(termes.get(l).first);
-	            			 
-	            			 try {
-									ControladorInterficie.VistaConsPlant17();
-								} catch (Exception e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-	            			 
-	            			 dispose();
 	            		 }
 	            		 else {
 	            			 for (l = 0; l < papers.size() && !trobat; ++l) {
@@ -638,15 +615,14 @@ public class SLEntidades6 extends JFrame {
 		            	 	 ControladorInterficie.setEntidades6Int(papers.get(l).first);
 	            			 ControladorInterficie.setIdPaper(papers.get(l).first);
 	            			 
-	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
-	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
-	            			 System.out.println("Estoy aquuiiii, aquuiiii, para quererteee!");
-	            			 
-	            			 try {
-	 							ControladorInterficie.crearPerfil();
-	 							} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e1) {
-	 								e1.printStackTrace();
-	 							}
+	            		 }
+	            		 
+	            		 try {
+								ControladorInterficie.crearPerfil();
+							} catch (NumberFormatException | FicheroNoExiste | IOException | PathException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
 	            			 
 	            			 try {
 									ControladorInterficie.VistaConsPlant17();
@@ -656,7 +632,8 @@ public class SLEntidades6 extends JFrame {
 								}
 	            			 
 	            			 dispose();
-	            		 }
+	            		 
+	            		 
 	            	 }
 	            	 
 	            	//HASTAAQUILLEGO
