@@ -154,7 +154,7 @@ public class CtrlDominio {
 	    	Camp c = new Camp();
 	    	String s1, s2, s3, s4, s5;
 	    	s1 = aux.get(i);i++; s2 = aux.get(i); i++; s3 = aux.get(i);i++; s4 = aux.get(i);i++; s5 = aux.get(i);
-	    	c.setPath(s1, s2, s3);
+	    	c.setPath(s2, s1, s3);
 	    	c.setQuant(Float.parseFloat(s4));
 	    	c.setMinim(Integer.parseInt(s5));
 	    	paux.setInfo(c);
